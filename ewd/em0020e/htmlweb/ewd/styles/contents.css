@@ -1,0 +1,181 @@
+
+
+
+BODY, INPUT, TABLE, TH, TD, A { 
+	font-size:			10pt;
+	font-family:		"Verdana" sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+body.category {
+	background-color:#E9EEEA;
+}
+
+div.space1 {
+	width:		20px;
+	height:		20px;
+}
+
+div.space2 {
+	width:		40px;
+	height:		40px;
+}
+
+
+
+
+
+td.title {
+	background:#666666;
+	color:#FFFFFF;
+	font-weight:bold;
+	text-align: center;
+}
+
+td.title4map {
+	background:#666666;
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+
+
+
+table.list-item {
+	border:				1px solid #CCCCCC;
+	margin:				8px 0px;
+}
+
+td.list-item {
+	background-color:	#FFFFFF;
+	border-left:		10px solid #b7c4ca;
+	cursor:				hand;
+}
+
+td.list-item-hover {
+	background-color:	#C6CFD3;
+	border-left:		10px solid #b7c4ca;
+	cursor:				hand;
+}
+
+td.list-item-active {
+	background-color:	#A9B2B7;
+	border-left:		10px solid #b7c4ca;
+	cursor:				hand;
+}
+
+a.list-item {
+	overflow:			hidden;
+	height:				18px;
+	color:				#000000;
+}
+
+a.list-item-hover {
+	overflow:			visible;
+	height:				18px;
+	color:				#ffffff;
+}
+
+a.list-item-active {
+	overflow:			visible;
+	height:				18px;
+	color:				#ffffff;
+}
+
+
+
+
+th.titlelist-head {
+	color: #666666;
+	background-color:	#C9C9C9;
+}
+
+td.titlelist-group {
+	color:				#666666;
+	background-color:	#DDE3E6;
+}
+
+td.titlelist-item {
+	background-color:	#C7D0D6;
+	border-left:		5px solid #A3B5BC;
+	cursor:				hand;
+}
+
+td.titlelist-item-hover {
+	background-color:	#DDE3E6;
+	border-left:		10px solid #A3B5BC;
+	cursor:				hand;
+}
+
+a.titlelist-item {
+	color:				#666666;
+}
+
+a.titlelist-item-hover {
+	color:				#DC883D;
+}
+
+
+
+
+
+
+td.conninfo-caption {
+	color:				#666666;
+	background-color:	#C7D0D6;
+}
+
+td.conninfo-value {
+	color:				#666666;
+	background-color:	#EEEEEE;
+}
+
+td.conninfo-fig {
+	background-color:	#ECF0F2;
+}
+
+a.conninfo-link-item {
+	display:			block;
+	margin:				5px 0px;
+	color:				#1B6384;
+	text-decoration:	underline;
+}
+
+a.conninfo-link-item:hover {
+	color:				#DC883D;
+	text-decoration:	none;
+}
+
+a.conninfo-link-item-other {
+	display:			block;
+	margin:				5px 0px;
+	color:				#1B6384;
+	text-decoration:	underline;
+}
+
+a.conninfo-link-item-other:hover {
+	color:				#3B96BF;
+	text-decoration:	none;
+}
+
+
+
+
+
+td.readme-button {
+	background-color: #a82e2e;
+	text-align:       center;
+}
+
+a.readme-button {
+	font:				bold 9pt sans-serif;
+	color:				#ffffff;
+}
+
+a.readme-button:hover {
+	color:				#ffff99;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>system menu</TITLE>
+<LINK REL="STYLESHEET" TYPE="text/css" HREF="../menu.css"/>
+<STYLE type="text/css">
+	BODY{
+	padding-top : 0px;
+	margin-top : 0px;
+	padding-bottom : 0px;
+	margin-bottom : 0px;
+	}
+</STYLE>
+<script language="JavaScript" src="../relay.js"></script>
+<script language="JavaScript" src="../lib.js"></script>
+<script FOR="window" EVENT="onload">
+
+	loadXML("/ewd/ewd342e/f_relay/pages.xml");
+
+	var xmlList = null;
+
+	function loadXML(xmlFile) {
+		console.log("filke ", xmlFile);
+		xhttp = new XMLHttpRequest();
+		return new Promise(function(resolve, reject) {
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (xhttp.status >= 300) {
+						reject("Error, status code = " + xhttp.status);
+					} else {
+						xmlList = xhttp.responseXML;
+						resolve(xmlList);
+						console.log("xmlList ", xmlList);
+						onload_page();
+					}
+				}
+			};
+			xhttp.open("GET", xmlFile, true);
+			xhttp.send();
+			return;
+		}); 
+	}
+
+	// function loadPageInfo(fileName)
+	// {
+	// 	xmlList= new ActiveXObject("Microsoft.XMLDOM");
+	// 	xmlList.async=false;
+
+	// 	if( xmlList.load(fileName) == false ){
+	// 		alert( "File not found:\n\t" + fileName );
+	// 	}
+	// }
+
+	function getPageList(){	return xmlList; }
+</script>
+
+
+
+<body>
+	<table border="0" width="100%">
+		<tr>
+			<td width="20%">
+			</td>
+			<td align="center">
+				<table>
+					<tr>
+						<td>
+							<div id="prevBtn"><input type="button" name="prev_page" value=" &lt; " onclick="page(-1)"></div>
+						</td>
+						<td><div id="n_page">page 1</div></td>
+						<td>
+							<div id="nextBtn"><input type="button" name="next_page" value=" &gt; " onclick="page(1)"></div>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="20%" align="right">
+					<div id="btn_Inner" style="visibility:hidden"><input type="button" name="inner" value="Inner Circuit" onclick="navigateToInner()"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</HTML>

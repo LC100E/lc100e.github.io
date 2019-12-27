@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Relay</title>
+<SCRIPT for="window" event="onload">
+	document_onload();
+
+	var pageParam = -1;
+
+	function document_onload(){
+
+		if( window.location.search != "" ){
+			pageParam = getParam(window.location.search, "page");
+			console.log("onload pageParam ", pageParam)
+			setPDF( pageParam );
+			menuFrame.setPageInfo( pageParam );
+		}
+
+	}
+
+	function getPageParam(){ return pageParam; }
+
+	function getParam( query, param )
+	{
+		var val = "";
+
+		var ss=devideParam(query);
+
+		for( var i = 0; i < ss.length; i++ ){
+			if( ss[i] == param ){
+				if( i < ss.length - 1){
+					val = ss[i + 1];
+					break;
+				}
+			}
+		}
+		return val;
+
+	}
+
+	function devideParam(str)
+	{
+		var regExp=/&|=/;
+
+		str = str.substr(1);
+		return str.split(regExp);
+	}
+
+
+	function getPDFName(){
+		console.log("get PDFName ", PDF_Frame.location.pathname);
+		console.log("get PDFName ", window.location.pathname);
+		// return PDF_Frame.location.pathname;
+		return window.location.pathname;
+	}
+
+	function setPDF(url){
+		// PDF_Frame.location = url + ".pdf";
+		window.location.assign(url + ".pdf");
+	}
+
+
+
+</SCRIPT>
+</HEAD>
+<FRAMESET rows="30,*" cols="*" framespacing="0" border="0" noresize scrolling="no" frameborder="no">
+  <FRAME src="menu.html" name="menuFrame" noresize scrolling="no">
+  <FRAME name="PDF_Frame">
+  <NOFRAMES>
+  
+  <NOFRAMES>
+  <BODY"></BODY>
+  </NOFRAMES>
+  
+  </NOFRAMES>
+</FRAMESET>
+</html>

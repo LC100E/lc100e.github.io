@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+  <TITLE id="frameopen"></TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1" charset="iso-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel=stylesheet type="text/css" href="disp.css">
+<SCRIPT language="JavaScript" src="sub.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+  
+  function frameopen(){
+    parent.parent.location.href = "./tree1.html"
+  }
+  function setbtnimage(status, PsBaseFile, PoObj){
+    if (status==0) {
+      document.images[PoObj].src='./images/' + PsBaseFile + '1.gif';
+    }else if (status==1) {
+      document.images[PoObj].src='./images/' + PsBaseFile + '2.gif';
+    }else{
+      document.images[PoObj].src='./images/' + PsBaseFile + '3.gif';
+    }
+  }
+  
+  </SCRIPT>
+  <script type="text/javascript">
+  GetTitleName("frameopen");
+  </script>
+</HEAD>
+
+<BODY class="header">
+<TABLE border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
+  <TBODY>
+    <TR>
+      <TD class ="sepa"></TD>
+    </TR>
+    <TR>
+      <TD>
+      <TABLE border="0" cellpadding="0" cellspacing="0">
+        <TBODY>
+          <TR>
+            <TD width="35"></TD>
+            <TD nowrap><A href="javascript:parent.parent.menu_search.frameopen()" onmousedown="setbtnimage(2,'treeopen','treeopen')" onmouseover="setbtnimage(1,'treeopen','treeopen')" onmouseout="setbtnimage(0,'treeopen','treeopen')" onmouseup="setbtnimage(1,'treeopen','treeopen')"><IMG src="./images/treeopen1.gif" border="0" id="treeopen"></A></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BODY>
+</HTML>

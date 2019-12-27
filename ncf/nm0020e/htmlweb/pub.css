@@ -1,0 +1,39 @@
+/* $Id: pub.css,v 1.2 2003/12/01 03:13:02 maniwa Exp $ */
+
+body {
+	font-family: arial, sans-serif;
+	margin: 0px;
+}
+div.top {
+	font-size:   0pt;
+	height:      8px;
+}
+
+
+.model {
+	align;       center;
+	font-family:      verdana;
+	line-height:      1.2em;
+	background-color: #808080;
+	color:            #FFFFFF;
+	font-size:        10pt;
+	font-weight:      bold;
+	width:            360px;
+	height:           1em;
+	padding:          4px 10px 4px 10px;
+	filter: progid:DXImageTransform.Microsoft.Gradient(
+		gradientType='0',
+		startColorstr='#8a7d71',
+		endColorstr='#5e442e'
+	);
+}
+
+.pubno {
+	font-size:        8pt;
+}
+
+frameset.footer {
+	border-style: solid;
+	border-width: 0px 0px 5px 0px; 
+	border-color: #990000
+}

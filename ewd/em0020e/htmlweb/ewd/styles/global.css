@@ -1,0 +1,102 @@
+
+
+
+BODY, INPUT, TABLE, TH, TD, A { 
+	font-size:			10pt;
+	font-family:		sans-serif;
+}
+
+a {
+	font:				bold 9pt sans-serif;
+	text-decoration:	none;
+}
+
+
+
+
+
+img.logo {
+	margin-bottom:    8px;
+}
+
+span.system-name {
+	color:         #A82E2E;
+	font-size:     14pt;
+	font-weight:   bold;
+}
+
+span.select-name {
+	color:            #FFFFFF;
+	font-weight:      bold;
+	padding:          2px 10px;
+}
+
+td.select-name {
+	background-color: #5e442e;
+}
+
+
+
+
+
+td.window-control-button {
+	background-color: #a82e2e;
+	text-align:       center;
+}
+
+td.window-control-button-hover {
+	background-color: #cd5c5c;
+	text-align:       center;
+}
+
+a.window-control-button {
+	color:            #ffffff;
+}
+
+a.window-control-button:hover {
+	color:            #ffff99;
+}
+
+
+
+
+
+td.popup-button {
+	background-color: #3f8495;
+	text-align:       center;
+}
+
+td.popup-button-hover {
+	background-color: #0099aa;
+	text-align:       center;
+}
+
+a.popup-button {
+	color:            #ffffff;
+}
+
+a.popup-button:hover {
+	color:            #ccffff;
+}
+
+
+
+
+
+td.popup-item {
+	background-color:	#f7f9f9;
+}
+
+td.popup-item-hover {
+	background-color:	#dfffff;
+}
+
+a.popup-item {
+	font-weight:		nomal;
+	color:				#666666;
+}
+
+a.popup-item:hover {
+	font-weight:		nomal;
+	color:				#DC883D;
+}

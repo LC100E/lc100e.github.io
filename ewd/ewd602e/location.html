@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Relay / Routing</title>
+<SCRIPT for="window" event="onload">
+	document_onload();
+
+	function document_onload(){
+
+		if( window.location.search != "" ){
+			var sysCode = getSystemCode(window.location.search);
+
+		    data.async = false;
+		    if( data.load("h_system/" + sysCode + ".xml") == false ){
+				alert( "See Page data not found" );
+				return;
+			}
+		    ss.async = false;
+		    ss.load("location.xsl");
+		    display();
+		}
+	}
+
+    function display()
+    {
+      data.transformNodeToObject(ss.XMLDocument, resultTree.XMLDocument);
+      menuFrame.document.write(resultTree.xml);
+    }
+
+    function refresh()
+    {
+      menuFrame.document.body.innerHTML = "";
+      display();
+    }
+
+
+	function getSystemCode( query )
+	{
+		var sysCode = "";
+
+		var ss=devideParam(query);
+
+		for( var i = 0; i < ss.length; i++ ){
+			if( ss[i] == "code" ){
+				if( i < ss.length - 1){
+					sysCode = ss[i + 1];
+					break;
+				}
+			}
+		}
+		return sysCode;
+
+	}
+
+	function devideParam(str)
+	{
+		var regExp=/&|=/;
+
+		str = str.substr(1);
+		return str.split(regExp);
+	}
+
+
+	function getPDFName(){
+		// return PDF_Frame.location.pathname;
+		return window.location.pathname;
+	}
+
+	function setPDF(code){
+		// PDF_Frame.location = "overall/" + code + ".pdf";
+		window.location.assign("overall/" + code + ".pdf");
+	}
+
+
+</SCRIPT>
+<XML id="data"></XML>
+<XML id="ss"></XML>
+<XML id="defaultss" src="location.xsl"></XML>
+<XML id="resultTree"></XML>
+
+</HEAD>
+<FRAMESET rows="*" cols="200,*" framespacing="0" border="0" noresize scrolling="no" frameborder="yes">
+  <FRAME name="menuFrame" >
+  <FRAME name="PDF_Frame" src="loc_main.html">
+  <NOFRAMES>
+  
+  <NOFRAMES>
+  <BODY></BODY>
+  </NOFRAMES>
+  
+  </NOFRAMES>
+</FRAMESET>
+</html>
