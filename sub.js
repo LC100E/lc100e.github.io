@@ -1,11 +1,12 @@
 async function GetTitleName(id) {
   title = await L_GetModelName(id);
+  console.log("L3 id " + id + " " + title);
   document.getElementById(id).innerHTML = title;
   return;
 }
 
 async function L_GetModelName() {
-  var xmlFile="model.xml";
+  var xmlFile="./model.xml";
   try {
     let xmlRoot = await loadXML(xmlFile);
     model = xmlRoot.getElementsByTagName("modelname")[0].textContent;
@@ -37,6 +38,7 @@ function loadXML(xmlFile) {
 
 async function GetModelName(id) {
   let model =  await L_GetModelName();
+  document.getElementById(id).innerHTML = model
   return;
 }
 
@@ -66,7 +68,18 @@ async function GetModelCodes(id) {
 }
 
 
-function GetCopyrightYear() {
-  sRet="";
-  document.write(sRet);
+async function GetCopyrightYear(id) {
+  var xmlFile="./model.xml";
+  try {
+    let XMLroot = await loadXML(xmlFile);
+    document.getElementById(id).innerHTML = getCopyright(XMLroot);
+    return;
+  } catch (err) {
+    console.log("error: ",err)
+  }
+
+  function getCopyright(xmlDoc) {
+    var copyright = xmlDoc.getElementsByTagName("copyrightyear")[0].textContent;
+    return copyright;
+  }
 }
