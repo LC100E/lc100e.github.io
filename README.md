@@ -11,7 +11,7 @@
 ![image of landcruiser](https://i.imgur.com/vKBx6Zz.jpg)
 
 
-available at https://lc100e.github.io/manual/
+Factory manual is available at https://lc100e.github.io/manual/
 
 
 ---
