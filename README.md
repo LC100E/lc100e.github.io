@@ -9,7 +9,7 @@
 	- HDJ100 series
 
 
-[Imgur](https://i.imgur.com/vKBx6Zz.jpg)
+![image of landcruiser](https://i.imgur.com/vKBx6Zz.jpg)
 
 
 
