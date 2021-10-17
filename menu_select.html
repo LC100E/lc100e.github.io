@@ -6,14 +6,33 @@
 <SCRIPT language="JavaScript" src="sub.js"></SCRIPT>
 <script type="text/javascript">
 // <!--
-function init(){
-  var xmldoc = new ActiveXObject("Microsoft.XMLDOM"); // DOM�I�u�W�F�N�g�̍쐬
-  xmldoc.async=false;
+
+async function loadXML(xmlFile) {
+  var xhttp = new XMLHttpRequest();
+  return new Promise(function(resolve, reject) {
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        if (xhttp.status >= 300) {
+          reject("Error, status code = " + xhttp.status)
+        } else {
+          resolve(xhttp.responseXML);
+        }
+      }
+    };
+
+    xhttp.open("GET", xmlFile, true);
+    xhttp.send();
+  }); 
+}
+
+async function init(){
+  // var xmldoc = new ActiveXObject("Microsoft.XMLDOM"); // DOM�I�u�W�F�N�g�̍쐬
+  // xmldoc.async=false;
   var XmlFile="list.xml"; // �z�[���f�B���N�g���ւ̑��΃p�X
   var HomePath="./"
-  xmldoc.load(HomePath + XmlFile); // XML�����̓ǂݍ���
+  // xmldoc.load(HomePath + XmlFile); // XML�����̓ǂݍ���
+  var xmldoc = await loadXML(Homepath + XmlFile);
   var Root=xmldoc.documentElement; // ���[�g�m�[�h�̎擾
-
 //  document.write("<xmp>")
   var Len=Root.childNodes.length; // �q�m�[�h���̎擾
   for(var i=0;i<Len;i++) {
