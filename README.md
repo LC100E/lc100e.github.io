@@ -17,7 +17,6 @@ Factory manual is available at https://lc100e.github.io/manual/
 ---
 known issues:
 1. navigation in popups don't work (Oct-2021)
-2. navigation at bottom of left menu does not work (Oct-2021)
 
 The files making up this site are cica 2005 and are slowly being updated to support current browsers (working towards html4 as of Oct-2021).
 - You will see minor alerts re: missing info - these can be ignored.
