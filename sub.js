@@ -1,6 +1,5 @@
 async function GetTitleName(id) {
   title = await L_GetModelName(id);
-  console.log("L3 id " + id + " " + title);
   document.getElementById(id).innerHTML = title;
   return;
 }

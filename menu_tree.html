@@ -168,11 +168,8 @@ function linkclick(psObj) {
 }
 
 function ViewTree(id,n) {
-  console.log("ViewTree: id, ", id, " n ", n);
   if(document.getElementById(id)){
-    console.log("display: ",window.getComputedStyle(document.getElementById(id)).display)
     if (window.getComputedStyle(document.getElementById(id)).display === "none"){
-      console.log("")
       document.getElementById(id).style="display:block";
       document.getElementById("Node"+id).src=mImg[n];
       openFlag[id]=true;
@@ -184,26 +181,6 @@ function ViewTree(id,n) {
   } else {
     console.log("menu id not found in ViewTree");
   }
-
-// old code
-//     if(openFlag[id]){
-//       document.getElementById("Node"+id).src=pImg[n];
-//       if (ColorFlag[id]!=-1) {
-//         document.getElementById("FD"+id).src=fImg[ColorFlag[id] * 2]; // not sure about this one
-//       }
-//       document.getElementById(id).style.display="none";
-//       openFlag[id]=false;
-//     }else{
-//       document.getElementById("Node"+id).src=mImg[n];
-//       if (ColorFlag[id]!=-1) {
-//         document.getElementById("FD"+id).src=fImg[ColorFlag[id] * 2 + 1]; // not sure
-//       }
-//       document.getElementById(id).style.display="block";
-//       openFlag[id]=true;
-//     }
-//   } else {
-//     console.log("menu id not found in ViewTree");
-//   }
 }
 
 function AllClose(){
@@ -215,8 +192,8 @@ function AllClose(){
       if (ColorFlag[i]!=-1) {
         document.getElementById("FD"+i).src=fImg[ColorFlag[i] * 2];
       }
-      document.getElementById(i).style="display:block";
-      openFlag[i]=true;
+      document.getElementById(i).style="display:none";
+      openFlag[i]=false;
     }
   }
 }
