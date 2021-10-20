@@ -16,11 +16,11 @@ Factory manual is available at https://lc100e.github.io/manual/
 
 ---
 known issues:
-1. navigation in popups don't work (Oct-2021)
+none
 
 The files making up this site are cica 2005 and are slowly being updated to support current browsers (working towards html4 as of Oct-2021).
-- You will see minor alerts re: missing info - these can be ignored.
+- You will see minor alerts re: missing info - these can be ignored and will be progressively fixed
 - all PDF pages should be visible.
 - tested with Chrome and safari.  Browsers handle PDFs different but both work.
-- if you find an issue you can open an Issue against this repo.
+- if you find any issue you can open an Issue against this repo.
 
