@@ -46,7 +46,8 @@ async function loadPageInfo(filename) {
 
 
 function getPageList() {
-	return xmlList; 
+	/* return xmlList;  */
+	return  loadPageInfo("pages.xml");
 }
 </SCRIPT>
 <script type="text/javascript" src="../relay.js"></script>

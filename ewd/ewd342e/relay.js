@@ -246,7 +246,8 @@ function getInnerCircuitPages( node )
 
 function getPageNode(nPage)
 {
-	var list = getPageList();
+	var list =  getPageList();
+	console.log("getPageNode L250 list: " + list);
 	if( list == null ){
 		alert("page info not found");
 		return null;
