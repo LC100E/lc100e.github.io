@@ -6,7 +6,7 @@
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>Relay</title>
 <SCRIPT for="window" event="onload">
-	document_onload();
+	// document_onload();
 
 	var pageParam = -1;
 
@@ -14,7 +14,7 @@
 
 		if( window.location.search != "" ){
 			pageParam = getParam(window.location.search, "page");
-			
+			console.log("setPageInfo("+pageParam+")");			
 			setPDF( pageParam );
 			menuFrame.setPageInfo( pageParam );
 		}
@@ -64,7 +64,7 @@
 
 </SCRIPT>
 </HEAD>
-<FRAMESET rows="30,*" cols="*" framespacing="0" border="0" noresize scrolling="no" frameborder="no">
+<FRAMESET rows="30,*" cols="*" framespacing="0" border="0" noresize scrolling="no" frameborder="no" onload="document_onload()">
   <FRAME src="menu.html" name="menuFrame" noresize scrolling="no">
   <FRAME name="PDF_Frame">
   <NOFRAMES>

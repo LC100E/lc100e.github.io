@@ -19,12 +19,12 @@ function getCurrentPage()
 
 	return getPageString(pdfName);
 
-/*
+
 	// get page number from menu frame
-	var pageStr = document.all.n_page.innerHTML;
-	if( pageStr.length < 5 )	return -1;
-	return pageStr.substr(5);
-*/
+	// var pageStr = document.all.n_page.innerHTML;
+	// if( pageStr.length < 5 )	return -1;
+	// return pageStr.substr(5);
+
 }
 
 
@@ -95,11 +95,13 @@ function onload_page()
 }
 
 // setup initial page information from xml
-function setPageInfo(nPage)
+async function setPageInfo(nPage)
 {
+	console.log("L100 nPage: " + nPage);
 	resetPageInfo();
 
-	var list = getPageList();
+	var list = await getPageList();
+	console.log("L104 xmlList: " + list);
 	if( list == null ){
 		alert("page info not found");
 		return;

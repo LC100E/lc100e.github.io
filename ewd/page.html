@@ -11,18 +11,23 @@
 	
 	var pageParam = -1;
 
-	function document_onload(){
+	async function document_onload(){
 		if( window.location.search != "" ){
 			pageParam = getParam(window.location.search, "page");
-			setPDF( pageParam );
-			console.log("setPageInfo("+pageParam+")");
-			menuFrame.setPageInfo( pageParam );
+			path = getParam(window.location.search, "path");
+			console.log("page: " + pageParam + " path: " + path);
+			await menuFrame.loadXML(path + "pages.xml")
+			setPDF( path + pageParam );
+			menuFrame.setPageInfo( pageParam, path );
 		}
 	}
 
 	// document_onload();
 
-	function getPageParam(){ return pageParam; }
+	function getPageParam(){ 
+		console.log("returning param and path: " + pageParam + " " + path);
+		return { pageParam, path };
+	}
 
 	function getParam( query, param )
 	{
@@ -59,6 +64,11 @@
 
 	function setPDF(url){
 		pdfFrame.location = url + ".pdf";
+		console.log("url: " + + url);
+		console.log("origin: " + pdfFrame.origin);
+		console.log("location: " + pdfFrame.location);
+		console.log("pathname: " + pdfFrame.location.pathname);
+		console.log("name: " + pdfFrame.name);
 	}
 
 </SCRIPT>

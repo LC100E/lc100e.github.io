@@ -15,44 +15,53 @@ BODY{
 }
 -->
 </STYLE>
-<SCRIPT FOR="window" EVENT="onload">
-	loadPageInfo("pages.xml");
-	onload_page();
-</SCRIPT>
-<script language="JavaScript">
-var xmlList = null;
-
-	function loadXML(xmlFile) {
-		console.log("filke ", xmlFile);
-		xhttp = new XMLHttpRequest();
-		return new Promise(function(resolve, reject) {
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4) {
-					if (xhttp.status >= 300) {
-						reject("Error, status code = " + xhttp.status);
-					} else {
-						xmlList = xhttp.responseXML;
-						resolve(xmlList);
-						console.log("xmlList ", xmlList);
-						onload_page();
-					}
-				}
-			};
-			xhttp.open("GET", xmlFile, true);
-			xhttp.send();
-			return;
-		}); 
-	}
-
-function getPageList(){	return xmlList; }
-</script>
 
 <script language="JavaScript" src="../routing.js"></script>
 <script language="JavaScript" src="../lib.js"></script>
 
+<SCRIPT FOR="window" EVENT="onload">
 </SCRIPT>
-<!--
--->
+<script language="JavaScript">
+var xmlList = null;
+
+	async function loadXML(xmlFile) {
+		var xhttp = new XMLHttpRequest();
+		return new Promise(function(resolve, reject) {
+			xhttp.onreadystatechange = function() {
+			if (this.readyState == 4) {
+				if (xhttp.status >= 300) {
+				reject("Error, status code = " + xhttp.status)
+			} else {
+				resolve(xhttp.responseXML);
+				}
+			}
+			};
+
+			xhttp.open("GET", xmlFile, true);
+			xhttp.send();
+		}); 
+	}
+
+	async function loadPageInfo(filename) {
+		xmlList = await loadXML(filename);
+		console.log("XMLlist: " + xmlList);
+	}
+
+function getPageList(){	return xmlList; }
+
+</script>
+
+
+<script>
+	async function init() {
+		await loadPageInfo("pages.xml");	
+		onload_page();
+	}
+
+	init();
+</script>
+
+
       <div align="center">
 		<table border="0">
 			<tr>
@@ -66,4 +75,5 @@ function getPageList(){	return xmlList; }
 			</tr>
       </div>
   </table>
+  
 </HTML>

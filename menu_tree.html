@@ -54,6 +54,7 @@ async function loadPDFxml(xmlFile, id) {
         }
       }
     };
+    console.log("xmlFile name: " + xmlFile);
     xhttp.open("GET", xmlFile, true);
     xhttp.send();
     return;

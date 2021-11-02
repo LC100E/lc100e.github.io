@@ -4,33 +4,22 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>Relay</title>
+<title>Overall EWD</title>
 <SCRIPT for="window" event="onload">
 	// document_onload();
-
-	var pageParam = -1;
-	var arrayPage;
 
 	function document_onload(){
 
 		if( window.location.search != "" ){
-			pageParam = getParam(window.location.search, "page");
-			// ページ情報分解
-			arrayPage = pageParam.split("+");
-			if( arrayPage == null )	return;
-
-			alert("open inner: " + arrayPage[0]);
-			setPDF( arrayPage[0] );
-			i_menuFrame.initPageInfo( arrayPage );
-			console.log("open inner: " + arrayPage[0]);
+			// setPDF( getSystemCode(window.location.search) );
+			code = getParam(window.location.search, "code");
+			path = getParam(window.location.search, "path");
+			console.log("code: " + code + " path: " + path);
+			setPDF( path + "overall/" + code );
 		}
-		console.log("search is blank";)
 
 	}
 
-function getPageArray(){ return arrayPage; }
-
-	// 複数ページを+記号区切りで受け取る
 	function getParam( query, param )
 	{
 		var val = "";
@@ -46,8 +35,25 @@ function getPageArray(){ return arrayPage; }
 			}
 		}
 		return val;
-
 	}
+
+	// function getSystemCode( query )
+	// {
+	// 	var sysCode = "";
+
+	// 	var ss=devideParam(query);
+
+	// 	for( var i = 0; i < ss.length; i++ ){
+	// 		if( ss[i] == "code" ){
+	// 			if( i < ss.length - 1){
+	// 				sysCode = ss[i + 1];
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
+	// 	return sysCode;
+
+	// }
 
 	function devideParam(str)
 	{
@@ -59,14 +65,13 @@ function getPageArray(){ return arrayPage; }
 
 
 	function getPDFName(){
-		// return PDF_Frame.location.pathname;
-		return window.location.pathname;
+		// return pdfFrame.location.pathname;
+		return pdfFrame.location.pathname;
 	}
 
 	function setPDF(code){
-		// PDF_Frame.location = "overall/" + code + ".pdf";
-		window.location.assign("overall/" + code + ".pdf");
-		// window.location.assign( code + ".pdf");
+		// pdfFrame.location = "overall/" + code + ".pdf";
+		pdfFrame.location.assign(code + ".pdf");
 	}
 
 
@@ -74,14 +79,7 @@ function getPageArray(){ return arrayPage; }
 </SCRIPT>
 </HEAD>
 <FRAMESET rows="30,*" cols="*" framespacing="0" border="0" noresize scrolling="no" frameborder="no" onload="document_onload()">
-  <FRAME src="i_menu.html" name="i_menuFrame" noresize scrolling="no">
-  <FRAME name="PDF_Frame">
-  <NOFRAMES>
-  
-  <NOFRAMES>
-  <BODY></BODY>
-  </NOFRAMES>
-  
-  </NOFRAMES>
+  <FRAME src="overall_menu.html" name="menuFrame" noresize scrolling="no">
+  <FRAME name="pdfFrame">
 </FRAMESET>
 </html>

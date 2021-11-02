@@ -12,11 +12,11 @@ function getPageString( fileName )
 
 function getCurrentPage()
 {
-
 	// get page number from current pdf file
 	var pdfName = getCurrentPDFName();
 	if( pdfName == null )	return -1;
-
+	console.debug("pdfName " + pdfName);
+	console.debug("page string " + getPageString(pdfName));
 	return getPageString(pdfName);
 
 }
@@ -27,13 +27,17 @@ function gotoPage( nPage )
 	dspPage(nPage);
 	setBtnState();
 	checkInnerCircuitExist( nPage );
-	parent.setPDF( nPage );
+
+	parent.setPDF( getFilePath(getCurrentPDFName()) + nPage );
 
 }
 
 function page(n)
 {
+	
 	var nPage = parseInt(getCurrentPage());
+	console.log("current page: " + nPage);
+	console.log("current window pathname: " + window.location.pathname);
 	if( nPage < 0 ){
 		alert( "page error" );
 		return;
@@ -96,12 +100,16 @@ function onload_page()
 		return;
 	}
 	console.log("onload page param ", parent.getPageParam());
-	setPageInfo( parent.getPageParam() );
+	console.log("parent path: " + parent.location.pathname);
+	var { pageParam, path } = parent.getPageParam();
+	console.log("file: " + pageParam + " path: " + path);
+	setPageInfo( pageParam, path );
 }
 
 // setup initial page information from xml
-function setPageInfo(nPage)
+function setPageInfo(nPage, path)
 {
+	console.log("page: " + nPage + " path: " + path);
 	resetPageInfo();
 
 
@@ -265,7 +273,6 @@ function getPageNode(nPage)
 		return null;
 	}
 
-	console.log("pageNodeLIst length ", pageNodeList.length)
 	for( var i = 0; i < pageNodeList.length; i++ ){
 		var pageNo = pageNodeList[i].getAttribute( "no" );
 		if( parseInt(pageNo) == parseInt(nPage) ){
