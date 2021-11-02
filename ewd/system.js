@@ -32,17 +32,20 @@ function showLocation(){
 }
 
 function showLocationList(){
-	openSubWnd( "../loclist.html", "ewd_sub" );
+	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
+	openSubWnd( path + "loclist.html", "ewd_sub" );
 }
 
 function showConnectorList(){
-	openSubWnd( "../connlist.html", "ewd_sub" );
+	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
+	openSubWnd( path + "connlist.html", "ewd_sub" );
 }
 
 
 function printPDF(){
 	var fileName = getCurrentDspFile();
-	if( fileName != null )	openSubWnd( "print/" + fileName, "ewd_print" );
+	const path = getFilePath(getCurrentPDFName(), 2); // levels up from m_overall/overall/
+	if( fileName != null )	openSubWnd( path + "print/" + fileName, "ewd_print" );
 }
 
 function getCurrentDspFile()
@@ -60,15 +63,11 @@ function getCurrentDspFile()
 	return fileName;
 }
 
-// 2003-12-11 change
 function openSubWnd(urlStr, wndName)
 {
 	w = window.open( urlStr, wndName,
 		"left = 0, top = 0, width=715, height=570, toolbar=no, menubar=no, location=no, status=no, resizable=yes, scrollbars=yes" );
 	return w;
-	// w = window.open( urlStr, wndName,
-	// 	"left = 0, top = 0, width=715, height=570, toolbar=no, menubar=no, location=no, status=no, resizable=yes, scrollbars=yes" );
-	// return w;
 }
 
 function mouseDown_btn(id)
