@@ -28,7 +28,9 @@ function showLocation(){
 		return;
 	}
 	var code = cutExtension(fileName);
-	openSubWnd( "../location.html?code=" + code, "ewd_sub" );
+	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
+	openSubWnd( path + "location.html?code=" + code, "ewd_sub" );
+	// openSubWnd( "../location.html?code=" + code, "ewd_sub" );
 }
 
 function showLocationList(){
