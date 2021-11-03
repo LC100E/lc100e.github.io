@@ -14,9 +14,9 @@ function getCurrentPage()
 {
 	// get page number from current pdf file
 	var pdfName = getCurrentPDFName();
-	if( pdfName == null )	return -1;
-	console.debug("pdfName " + pdfName);
-	console.debug("page string " + getPageString(pdfName));
+	if( pdfName == null )
+		return -1;
+
 	return getPageString(pdfName);
 
 }
@@ -36,8 +36,6 @@ function page(n)
 {
 	
 	var nPage = parseInt(getCurrentPage());
-	console.log("current page: " + nPage);
-	console.log("current window pathname: " + window.location.pathname);
 	if( nPage < 0 ){
 		alert( "page error" );
 		return;
@@ -91,7 +89,7 @@ function dspPage( nPage )
 function onload_page()
 {
 	if( initPage != 0 )	{
-		console.log("onload_page returing as already initialised");
+		console.log("onload_page returning as already initialised");
 		return;
 	}
 
@@ -99,27 +97,20 @@ function onload_page()
 		alert("Parent window not found");
 		return;
 	}
-	console.log("onload page param ", parent.getPageParam());
-	console.log("parent path: " + parent.location.pathname);
 	var { pageParam, path } = parent.getPageParam();
-	console.log("file: " + pageParam + " path: " + path);
 	setPageInfo( pageParam, path );
 }
 
 // setup initial page information from xml
-function setPageInfo(nPage, path)
-{
-	console.log("page: " + nPage + " path: " + path);
+function setPageInfo(nPage, path){
+
 	resetPageInfo();
 
-
-	var pageNode
-
-	pageNode = getPageNode( nPage )
+	var pageNode = getPageNode( nPage );
 
 	if( pageNode == null )	return;
 
-	checkInnerCircuitExist( nPage )
+	checkInnerCircuitExist( nPage );
 		//------
 
 	prevPages = pageNode.getAttribute("prev");
@@ -146,7 +137,6 @@ function checkBlankPage( nPage )
 	var pageNode;
 
 	pageNode = getPageNode(nPage);
-	console.log("pageNode = " + pageNode);
 
 	if( pageNode == null )	return false;
 
@@ -172,7 +162,6 @@ function checkInnerCircuitExist( nPage )
 	var innerNodeList;
 
 	node = getPageNode(nPage);
-	console.log("pageNode = " + node);
 
 	innerNodeList = node.getElementsByTagName("inner");
 	if( innerNodeList.length > 0 ){
@@ -189,6 +178,7 @@ function navigateToInner()
 	var arrayPage;
 
 	pageNode = getPageNode( getCurrentPage() );
+	path = getFilePath( getCurrentPDFName() );
 
 	if( pageNode == null ){
 		alert("Link Info Erro: Inner Circuit ");
@@ -202,11 +192,9 @@ function navigateToInner()
 		return;
 	}
 
-	var param = makePageParam( arrayPage );
-
+	var param = makePageParam( path, arrayPage );
 
 //	parent.navigate("inner.html" + param);
-	console.log("inner page to open: " + "inner.html" + param);
 	openSubWnd( "inner.html" + param, "ewd_inner");
 }
 
@@ -219,7 +207,7 @@ function openSubWnd(urlStr, wndName)
 }
 
 
-function makePageParam( arrayPage )
+function makePageParam( path, arrayPage )
 {
 
 	var i;
@@ -228,7 +216,7 @@ function makePageParam( arrayPage )
 	if( arrayPage == null )	return resultStr;
 	if( arrayPage.length <= 0 )	return resultStr;
 
-	resultStr = "?page=" + arrayPage[0];
+	resultStr = "?path=" + path + "&page=" + arrayPage[0];
 
 	for( i = 1; i < arrayPage.length; i++ ){
 		resultStr += "+" + arrayPage[i];
@@ -257,8 +245,6 @@ function getInnerCircuitPages( node )
 function getPageNode(nPage)
 {
 	var list =  getPageList();
-	console.log("page node: " + nPage);
-	console.log("getPageNode list: " + list);
 	if( list == null ){
 		console.log("page Node info not found.  Page: " + nPage);
 		alert("page info not found");
@@ -266,7 +252,6 @@ function getPageNode(nPage)
 	}
 	// pageNodeList = list.getElementsByTagName("PageList/page");
 	pageNodeList = list.getElementsByTagName("page");
-	console.log("pageNodeList ", pageNodeList);
 	if( pageNodeList == null ){
 		console.log("page Node info not found.  Page: " + nPage);
 		alert("page Node info not found");
@@ -276,7 +261,6 @@ function getPageNode(nPage)
 	for( var i = 0; i < pageNodeList.length; i++ ){
 		var pageNo = pageNodeList[i].getAttribute( "no" );
 		if( parseInt(pageNo) == parseInt(nPage) ){
-			console.log("****** page ", pageNodeList[i]);
 			return pageNodeList[i];
 		}
 	}

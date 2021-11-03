@@ -15,22 +15,18 @@
 		if( window.location.search != "" ){
 			pageParam = getParam(window.location.search, "page");
 			path = getParam(window.location.search, "path");
-			console.log("page: " + pageParam + " path: " + path);
 			await menuFrame.loadXML(path + "pages.xml")
 			setPDF( path + pageParam );
 			menuFrame.setPageInfo( pageParam, path );
 		}
 	}
 
-	// document_onload();
 
 	function getPageParam(){ 
-		console.log("returning param and path: " + pageParam + " " + path);
 		return { pageParam, path };
 	}
 
-	function getParam( query, param )
-	{
+	function getParam( query, param ){
 		var val = "";
 
 		var ss=devideParam(query);
@@ -47,8 +43,7 @@
 
 	}
 
-	function devideParam(str)
-	{
+	function devideParam(str)	{
 		var regExp=/&|=/;
 
 		str = str.substr(1);
@@ -57,18 +52,11 @@
 
 
 	function getPDFName(){
-		console.log("windows url " + window.location.pathname);
-		console.log("pdfFrame url " + pdfFrame.location.pathname);
 		return pdfFrame.location.pathname;
-}
+	}
 
 	function setPDF(url){
 		pdfFrame.location = url + ".pdf";
-		console.log("url: " + + url);
-		console.log("origin: " + pdfFrame.origin);
-		console.log("location: " + pdfFrame.location);
-		console.log("pathname: " + pdfFrame.location.pathname);
-		console.log("name: " + pdfFrame.name);
 	}
 
 </SCRIPT>

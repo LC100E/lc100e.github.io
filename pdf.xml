@@ -6264,14 +6264,14 @@
 	</menu>
 	<menu>
 		<title>Electrical Wiring Diagram</title><color>2</color>
-		<item><title>INTRODUCTION</title><url>../ewd/ewd342e/a_intro/a_intro.pdf</url></item>
-		<item><title>HOW TO USE THIS MANUAL</title><url>../ewd/ewd342e/b_howto/b_howto.pdf</url></item>
+		<item><title>INTRODUCTION</title><url>./ewd/ewd342e/a_intro/a_intro.pdf</url></item>
+		<item><title>HOW TO USE THIS MANUAL</title><url>./ewd/ewd342e/b_howto/b_howto.pdf</url></item>
 		<menu>
 			<title>ABBREVIATIONS</title><color>-1</color>
-			<item><title>1998.1 - 2002.7</title><url>../ewd/ewd342e/d_abbrevi/d_abbrevi.pdf</url></item>
-			<item><title>2002.8 - 2003.7</title><url>../ewd/ewd512e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>../ewd/ewd575e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>../ewd/ewd602e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
+			<item><title>1998.1 - 2002.7</title><url>./ewd/ewd342e/d_abbrevi/d_abbrevi.pdf</url></item>
+			<item><title>2002.8 - 2003.7</title><url>./ewd/ewd512e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>./ewd/ewd575e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>./ewd/ewd602e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>RELAY LOCATIONS</title><color>-1</color>
