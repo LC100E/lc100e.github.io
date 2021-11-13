@@ -1,55 +1,65 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1" charset="iso-8859-1">
 <META http-equiv="Content-Style-Type" content="text/css">
 <link rel=stylesheet type="text/css" href="disp.css">
 <SCRIPT language="JavaScript" src="sub.js"></SCRIPT>
+
+<title>Navigation control</title>
 <SCRIPT type="text/javascript">
-function framesetsize(num,size){
-  var o=parent.parent.document.getElementsByTagName("frameset")[num];
-  var colrow = o.getAttribute("cols")?"cols":"rows";
-  o.setAttribute(colrow,size);
-}
+
+  
+// function framesetsize(num,size){
+//   var o=parent.parent.document.getElementsByTagName("frameset")[num];
+//   var colrow = o.getAttribute("cols")?"cols":"rows";
+//   o.setAttribute(colrow,size);
+// }
 
 function frameclose(){
-  framesetsize(4, '*,33');
-  framesetsizewidth(1, "0,*");
-  framesetsizewidth(2, "0,*");
+  window.top.document.getElementById("nav").style.display = "none";
+  window.top.document.getElementById("content").style.gridColumn = "1 / span 2";
+  window.top.document.getElementById("pdf").style.gridRow = "2 / span 1";
+  window.top.document.getElementById("frameopen").style.display="block";
+  
 }
 function frameopen(){
-  framesetsize(4, '*,0');
-  framesetsizewidth(1, "260,*");
-  framesetsizewidth(2, "260,*");
+  window.top.document.getElementById("nav").style.display = "grid";
+  window.top.document.getElementById("content").style.gridColumn = "2 / span 1";
+  window.top.document.getElementById("pdf").style.gridArea = "pdf";
+  window.top.document.getElementById("frameopen").style.display="none";
 }
 
-function frameresize(num,addsize) {
-  var o=parent.parent.document.getElementsByTagName("frameset")[num];
-  var colrow = o.getAttribute("cols")?"cols":"rows";
-  var nowsize = o.getAttribute(colrow).split(",", 1);
-  nowsize = parseInt(nowsize) + addsize;
-  if (nowsize < 260) {
-	nowsize = 260;
-  }
-  framesetsize(num, nowsize.toString() + ",*");
+// function frameresize(num,addsize) {
+//   var o=parent.parent.document.getElementsByTagName("frameset")[num];
+//   var colrow = o.getAttribute("cols")?"cols":"rows";
+//   var nowsize = o.getAttribute(colrow).split(",", 1);
+//   nowsize = parseInt(nowsize) + addsize;
+//   if (nowsize < 260) {
+// 	nowsize = 260;
+//   }
+//   framesetsize(num, nowsize.toString() + ",*");
 
-}
-function framesetsizewidth(num,size){
-  var o=parent.parent.document.getElementsByTagName("frameset")[num];
-  var colrow = o.getAttribute("cols")?"cols":"rows";
-  o.setAttribute(colrow,size);
-}
+// }
 
-function frameresizewidth(num, addsize) {
-  var o=parent.parent.document.getElementsByTagName("frameset")[num];
-  var colrow = o.getAttribute("cols")?"cols":"rows";
-  var nowsize = o.getAttribute(colrow).split(",", 1);
-  nowsize = parseInt(nowsize) + addsize;
-  if (nowsize < 260) {
-	nowsize = 260;
-  }
-  framesetsizewidth(num, nowsize.toString() + ",*");
+// function framesetsizewidth(num,size){
+//   var o=parent.parent.document.getElementsByTagName("frameset")[num];
+//   var colrow = o.getAttribute("cols")?"cols":"rows";
+//   o.setAttribute(colrow,size);
+// }
 
-}
+// function frameresizewidth(num, addsize) {
+//   var o=parent.parent.document.getElementsByTagName("frameset")[num];
+//   var colrow = o.getAttribute("cols")?"cols":"rows";
+//   var nowsize = o.getAttribute(colrow).split(",", 1);
+//   nowsize = parseInt(nowsize) + addsize;
+//   if (nowsize < 260) {
+// 	nowsize = 260;
+//   }
+//   framesetsizewidth(num, nowsize.toString() + ",*");
+
+// }
+
 function setbtnimage(status, PsBaseFile, PoObj){
   if (status==0) {
 	document.images[PoObj].src='./images/' + PsBaseFile + '1.gif';
@@ -63,14 +73,22 @@ function setbtnimage(status, PsBaseFile, PoObj){
 </SCRIPT>
 <script type="text/javascript">
 
-// GetTitleName();
+GetTitleName();
 
 </script>
 </HEAD>
+
 <BODY class="header">
 <TABLE border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
   <TBODY>
     <TR>
+      <TD valign="middle" align="center">
+        <A href="javascript:frameclose()" onmousedown="setbtnimage(2,'treeclose','treeclose')" onmouseover="setbtnimage(1,'treeclose','treeclose')" onmouseout="setbtnimage(0,'treeclose','treeclose')" onmouseup="setbtnimage(1,'treeclose','treeclose')"><IMG src="images/treeclose1.gif" border="0" id="treeclose"></A>
+        <A href="javascript:parent.menu_tree.AllClose()" onmousedown="setbtnimage(2,'reset','reset')" onmouseover="setbtnimage(1,'reset','reset')" onmouseout="setbtnimage(0,'reset','reset')" onmouseup="setbtnimage(1,'reset','reset')"><IMG src="images/reset1.gif" border="0" id="reset"></A>
+      </TD>
+    </TR>
+
+    <!-- <TR>
       <TD class="sepa"></TD>
     </TR>
     <TR>
@@ -82,14 +100,19 @@ function setbtnimage(status, PsBaseFile, PoObj){
           </TR>
           <TR>
             <TD width="4"></TD>
-            <TD nowrap valign="top"><A href="javascript:javascript:frameresizewidth(1,-50);frameresizewidth(2,-50)" onmousedown="setbtnimage(2,'widthdown','widthdown')" onmouseover="setbtnimage(1,'widthdown','widthdown')" onmouseout="setbtnimage(0,'widthdown','widthdown')" onmouseup="setbtnimage(1,'widthdown','widthdown')"><IMG src="images/widthdown1.gif" border="0" id="widthdown"></A> <A href="javascript:frameclose()" onmousedown="setbtnimage(2,'treeclose','treeclose')" onmouseover="setbtnimage(1,'treeclose','treeclose')" onmouseout="setbtnimage(0,'treeclose','treeclose')" onmouseup="setbtnimage(1,'treeclose','treeclose')"><IMG src="images/treeclose1.gif" border="0" id="treeclose"></A> <A href="javascript:frameresizewidth(1,+50);frameresizewidth(2,+50)" onmousedown="setbtnimage(2,'widthup','widthup')" onmouseover="setbtnimage(1,'widthup','widthup')" onmouseout="setbtnimage(0,'widthup','widthup')" onmouseup="setbtnimage(1,'widthup','widthup')"><IMG src="images/widthup1.gif" border="0" id="widthup"></A></TD>
+            <TD nowrap valign="top">
+              <A href="javascript:javascript:frameresizewidth(1,-50);frameresizewidth(2,-50)" onmousedown="setbtnimage(2,'widthdown','widthdown')" onmouseover="setbtnimage(1,'widthdown','widthdown')" onmouseout="setbtnimage(0,'widthdown','widthdown')" onmouseup="setbtnimage(1,'widthdown','widthdown')"><IMG src="images/widthdown1.gif" border="0" id="widthdown"></A> 
+              <A href="javascript:frameclose()" onmousedown="setbtnimage(2,'treeclose','treeclose')" onmouseover="setbtnimage(1,'treeclose','treeclose')" onmouseout="setbtnimage(0,'treeclose','treeclose')" onmouseup="setbtnimage(1,'treeclose','treeclose')"><IMG src="images/treeclose1.gif" border="0" id="treeclose"></A>
+              <A href="javascript:frameresizewidth(1,+50);frameresizewidth(2,+50)" onmousedown="setbtnimage(2,'widthup','widthup')" onmouseover="setbtnimage(1,'widthup','widthup')" onmouseout="setbtnimage(0,'widthup','widthup')" onmouseup="setbtnimage(1,'widthup','widthup')"><IMG src="images/widthup1.gif" border="0" id="widthup"></A>
+            </TD>
             <TD width="4"></TD>
             <TD nowrap valign="top"><A href="javascript:parent.menu_tree.AllClose()" onmousedown="setbtnimage(2,'reset','reset')" onmouseover="setbtnimage(1,'reset','reset')" onmouseout="setbtnimage(0,'reset','reset')" onmouseup="setbtnimage(1,'reset','reset')"><IMG src="images/reset1.gif" border="0" id="reset"></A></TD>
-          </TR>
+           </TR>
         </TBODY>
       </TABLE>
       </TD>
-    </TR>
+    </TR> -->
+
   </TBODY>
 </TABLE>
 </BODY>

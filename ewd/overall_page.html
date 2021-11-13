@@ -1,12 +1,14 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
-<META http-equiv="Content-Style-Type" content="text/css">
-<title>Overall EWD</title>
-<SCRIPT for="window" event="onload">
-	// document_onload();
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<link rel=stylesheet href="./page.css">
+	<script src="./page.js"></script>
+
+	<title>Overall EWD</title>
+
+	<!-- <SCRIPT for="window" event="onload">
 
 	function document_onload(){
 
@@ -14,7 +16,6 @@
 			// setPDF( getSystemCode(window.location.search) );
 			code = getParam(window.location.search, "code");
 			path = getParam(window.location.search, "path");
-			console.log("code: " + code + " path: " + path);
 			setPDF( path + "overall/" + code );
 		}
 
@@ -37,24 +38,6 @@
 		return val;
 	}
 
-	// function getSystemCode( query )
-	// {
-	// 	var sysCode = "";
-
-	// 	var ss=devideParam(query);
-
-	// 	for( var i = 0; i < ss.length; i++ ){
-	// 		if( ss[i] == "code" ){
-	// 			if( i < ss.length - 1){
-	// 				sysCode = ss[i + 1];
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
-	// 	return sysCode;
-
-	// }
-
 	function devideParam(str)
 	{
 		var regExp=/&|=/;
@@ -76,10 +59,17 @@
 
 
 
-</SCRIPT>
+</SCRIPT> -->
 </HEAD>
-<FRAMESET rows="30,*" cols="*" framespacing="0" border="0" noresize scrolling="no" frameborder="no" onload="document_onload()">
-  <FRAME src="overall_menu.html" name="menuFrame" noresize scrolling="no">
-  <FRAME name="pdfFrame">
-</FRAMESET>
+
+<body onload="document_onload_overall()">
+	<div class="pdfContainer">
+		<div>
+			<iframe id="menuFrame" src="overall_menu.html" scrolling="no"></iframe>
+		</div>
+		<div>
+			<iframe id="pdfFrame"></iframe>
+		</div>
+	</div>
+</body>
 </html>

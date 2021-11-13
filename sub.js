@@ -17,6 +17,8 @@ async function L_GetModelName() {
   }
 }
 
+var xmlList = null;
+
 function loadXML(xmlFile) {
   var xhttp = new XMLHttpRequest();
   return new Promise(function(resolve, reject) {
@@ -25,7 +27,8 @@ function loadXML(xmlFile) {
         if (xhttp.status >= 300) {
           reject("Error, status code = " + xhttp.status)
         } else {
-          resolve(xhttp.responseXML);
+          xmlList =  xhttp.responseXML;
+          resolve (xmlList);
         }
       }
     };
@@ -33,6 +36,10 @@ function loadXML(xmlFile) {
     xhttp.send();
     return;
   }); 
+}
+
+function getPageList() {
+	return xmlList; 
 }
 
 async function GetModelName(id) {
@@ -82,3 +89,4 @@ async function GetCopyrightYear(id) {
     return copyright;
   }
 }
+

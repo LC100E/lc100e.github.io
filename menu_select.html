@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
 <META http-equiv="Content-Type" content="text/html" charset="iso-8859-1">
@@ -26,32 +26,31 @@ async function loadXML(xmlFile) {
 }
 
 async function init(){
-  // var xmldoc = new ActiveXObject("Microsoft.XMLDOM"); // DOM�I�u�W�F�N�g�̍쐬
-  // xmldoc.async=false;
   var XmlFile="list.xml"; // �z�[���f�B���N�g���ւ̑��΃p�X
   var HomePath="./"
-  // xmldoc.load(HomePath + XmlFile); // XML�����̓ǂݍ���
   var xmldoc = await loadXML(Homepath + XmlFile);
   var Root=xmldoc.documentElement; // ���[�g�m�[�h�̎擾
-//  document.write("<xmp>")
   var Len=Root.childNodes.length; // �q�m�[�h���̎擾
+
   for(var i=0;i<Len;i++) {
     if (Root.childNodes(i).nodeName == "title") {
       document.write("<B>" + Root.childNodes(i).text + "</B><BR>");
     } else if (Root.childNodes(i).nodeName == "dates") {
       document.write("<select name='dataselect' size='1' tabindex='0' onchange='ChangeTree()'>")
       document.write("<option value='' selected='selected'>Select the Production Date:</option>")
+      
       var childNode = Root.childNodes.item(i); //�q�m�[�h�ɃJ�����g���ړ�
       var childLen = childNode.childNodes.length;
+
       for(var j=0;j<childLen;j++) {
         var sValue = childNode.childNodes.item(j).getAttribute('value');
         var sDispText = childNode.childNodes.item(j).text;
         document.write("<option value='" + sValue + "'>" + sDispText + "</option>")
       }
+
       document.write("</select>")
     }
   }
-//  document.write("</xmp>")
 }
 
 function ChangeTree() {

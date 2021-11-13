@@ -1,15 +1,13 @@
 var arrayPage;
 var pageIndex;
 
-function getPageString( fileName )
-{
+function getPageString( fileName ) {
 	var fName = getFileName(fileName);
 	return cutExtension(fName);
 
 }
 
-function getCurrentPage()
-{
+function getCurrentPage() {
 
 	// get page number from current pdf file
 	var pdfName = getCurrentPDFName();
@@ -18,16 +16,14 @@ function getCurrentPage()
 	return getPageString(pdfName);
 }
 
-function initPageInfo( pageInfo )
-{
+function initPageInfo( pageInfo ) {
 	arrayPage = pageInfo;
 	pageIndex = 0;
 	dspPage(pageIndex);
 	setBtnState();
 }
 
-function page(nDirect)
-{
+function page(nDirect) {
 	if( nDirect < 0 ){
 		pageIndex--;
 	}
@@ -41,15 +37,13 @@ function page(nDirect)
 	setBtnState();
 }
 
-function setBtnState()
-{
+function setBtnState() {
 	setPrevBtnState( pageIndex != 0 );
 	setNextBtnState( pageIndex != ( arrayPage.length - 1) );
 
 }
 
-function dspPage( nIndex )
-{
+function dspPage( nIndex ) {
 	document.all.n_page.innerHTML = "page " + (parseInt(nIndex) + 1);
 }
 

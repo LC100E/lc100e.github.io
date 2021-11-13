@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title id="title">LC100 Workshop Manual</title>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156919145-1"></script>
   <script>
@@ -11,47 +13,27 @@
     gtag('config', 'UA-156919145-1');
   </script>
 
+  <meta name="description" content="Landcruiser 100 Series Factory Workshop Manual">
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
   <meta http-equiv="Pragma" content="no-cache">
-  <link rel=stylesheet type="text/css" href="disp.css">
-  <SCRIPT language="JavaScript" src="sub.js"></SCRIPT>
-  <SCRIPT language="JavaScript">
+  <link rel=stylesheet href="./style.css">
+  <SCRIPT src="sub.js"></SCRIPT>
 
-    moveTo(0,0);
-    resizeTo(screen.width,screen.height-28);
 
-  </SCRIPT>
-
-  <TITLE id="index3"></TITLE>
-
-  <script type="text/javascript">
-  GetTitleName("index3");
-  </script>
 </head>
 
-<frameset rows="33,*" border="0" framespacing="0">
-
-  <!-- top row with 2 col -->
-  <frameset cols="260,*" border="0" framespacing="0">
-    <frame src="menu_top.html" frameborder="0" scrolling="no" noresize>
-    <frame src="top.html" scrolling="no" frameborder="0" name="top" noresize>
-  </frameset>
-
-
-  <!-- body with 2 cols -->
-  <frameset cols="260,*" border="0" framespacing="0">
-
-    <frameset rows="*,33" border="0" framespacing="0">
-      <frame src="menu_tree.html" nowrap scrolling="auto" name="menu_tree" marginheight="0" marginwidth="0">
-      <frame src="menu_search.html" scrolling="no" name="menu_search" frameborder="0">
-    </frameset>
-
-    <frameset rows="*,0" border="0" framespacing="0">
-      <frame src="pdf.html" scrolling="no" name="pdf" frameborder="0" noresize>
-      <frame src="frameopen.html" scrolling="no" name="frameopen" frameborder="0" noresize>
-    </frameset>
-  </frameset>
-<noframes>
-</noframes>
-</frameset>
+<body>
+  <div class="container" id="mainContainer">
+    <div class="nav" id="nav">
+      <iframe src="menu_top.html" scrolling="no"></iframe>
+      <iframe name="menu_tree" id="menu_tree" src="menu_tree.html"></iframe> 
+      <iframe name="menu_search" id="menu_search" src="menu_search.html"></iframe>  
+    </div>
+    <div class="content" id="content">
+      <iframe src="top.html"></iframe>
+      <iframe name="pdf" id="pdf" src="pdf.html" style="grid-area:pdf"></iframe>
+      <iframe name="frameopen" id="frameopen" src="frameopen.html" style="display:none"></iframe></frame>
+    </div>
+  </div>
+</body>
 </html>

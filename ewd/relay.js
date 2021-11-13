@@ -21,7 +21,6 @@ function getCurrentPage()
 
 }
 
-
 function gotoPage( nPage )
 {
 	dspPage(nPage);
@@ -79,12 +78,10 @@ function setNextBtnState( bState ){
 	}
 }
 
-
 function dspPage( nPage )
 {
 	document.all.n_page.innerHTML = "page " + (parseInt(nPage) - parseInt(initPage) + 1);
 }
-
 
 function onload_page()
 {
@@ -123,7 +120,6 @@ function setPageInfo(nPage, path){
 	setBtnState();
 }
 
-
 function openSubWnd(urlStr, wndName)
 {
 	w = window.open( urlStr, wndName,
@@ -147,7 +143,6 @@ function checkBlankPage( nPage )
 
 	return false;
 }
-
 
 function resetPageInfo()
 {
@@ -194,18 +189,8 @@ function navigateToInner()
 
 	var param = makePageParam( path, arrayPage );
 
-//	parent.navigate("inner.html" + param);
 	openSubWnd( "inner.html" + param, "ewd_inner");
 }
-
-function openSubWnd(urlStr, wndName)
-{
-	w = window.open( urlStr, wndName,
-		"left = 0, top = 0, width=715, height=570, toolbar=no, menubar=no, location=no, status=no, resizable=yes, scrollbars=yes" );
-
-	return w;
-}
-
 
 function makePageParam( path, arrayPage )
 {
@@ -241,7 +226,6 @@ function getInnerCircuitPages( node )
 	return rs;
 }
 
-// async
 function getPageNode(nPage)
 {
 	var list =  getPageList();

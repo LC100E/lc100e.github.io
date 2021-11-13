@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<link REL="STYLESHEET" type="text/css" href="./menu.css"/>
+
+<title>Connector List</title>
+
+<script FOR="window" EVENT="onload">
+
+	function document_onload(){
+    if( window.location.search != "" ){
+      path = getParam(window.location.search, "path");
+      console.debug("path: " + path);
+      document.getElementById('menuFrame').src = path + "connector_list.html";
+    }
+  }
+
+  function getParam( query, param ) {
+    var val = "";
+    var ss=devideParam(query);
+
+    for( var i = 0; i < ss.length; i++ ){
+      if( ss[i] == param ){
+        if( i < ss.length - 1){
+          val = ss[i + 1];
+          break;
+        }
+      }
+    }
+    return val;
+  }
+
+function devideParam(str) {
+		var regExp=/&|=/;
+
+		str = str.substr(1);
+		return str.split(regExp);
+	}
+</script>
+
+</HEAD>
+
+<body onload="document_onload()">
+  <div class="container" id="connList">
+    <iframe id="menuFrame" ></iframe>
+    <iframe id="pdfFrame" name="PDF_Frame" src="loc_main.html"></iframe>
+  </div>
+</body>
+</html>
+
+

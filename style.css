@@ -1,0 +1,52 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns: 20% auto;
+    grid-template-areas:
+        "nav content";
+}
+
+.nav {
+    box-sizing: border-box;
+
+    grid-area: nav;
+    
+    display: grid;
+    grid-template-rows: 33px auto 33px;
+    grid-template-areas:
+        "menuTop"
+        "menuTree"
+        "menuSearch";
+
+}
+
+.content {
+    box-sizing: border-box;
+
+    display: grid;
+    grid-area: content;
+    grid-template-rows: 33px auto 33px;
+    grid-template-areas:
+        "pdfTop"
+        "pdf"
+        "pdf";
+}
+
+iframe {
+    border-width: 0px;
+    outline: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
