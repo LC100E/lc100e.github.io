@@ -35,12 +35,12 @@ function showLocation(){
 
 function showLocationList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( path + "loclist.html", "ewd_sub" );
+	openSubWnd( "loclist.html?path=" + path, "ewd_sub" );
 }
 
 function showConnectorList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( path + "connlist.html", "ewd_sub" );
+	openSubWnd( "connlist.html?path=" + path, "ewd_sub" );
 }
 
 
