@@ -8,14 +8,18 @@
     var prm = location.search;
   </script>
   </head>
-<frameset framespacing="0" border="0" frameborder="0" cols="*" rows="55,*" name="frame00" class="global">
-<frameset framespacing="0" border="0" frameborder="0" cols="*,36%" rows="*" name="frame0">
-<frame class="global" scrolling="no" src="global.html" name="global">
-<frame class="global" scrolling="no" src="pub.html" name="pub">
-</frameset>
-<frameset framespacing="0" border="0" frameborder="0" cols="25%,*" name="frame1">
-<frame name="local" src="menu.html">
-<frame name="contents" src="system_top.html">
-</frameset>
-</frameset>
-</html>
+
+  <body>
+    <div class="container" id="gridContainer">
+      <div class="container" id="mainContainer">
+        <iframe class="global" scrolling="no" src="global.html" name="global"></iframe>
+        <iframe class="global" scrolling="no" src="pub.html" name="pub"></iframe>
+      </div>
+
+      <div class="container" id="menuContainer">
+        <iframe name="local" src="menu.html"></iframe>
+        <iframe name="contents" src="system_top.html"></iframe>
+      </div>
+    </div>
+  </body>
+  </html>
