@@ -20,6 +20,7 @@ a{
   color:#000000;
   text-decoration:underline
 }
+
 a:link {
 	font-family:Arial;
   font-size:8pt;
@@ -138,6 +139,30 @@ a:hover.sb {
   color:#FF0000;
 }
 
+div.MenuArea > .treeMenu {
+  padding-left: 0px;
+
+}
+
+div.tree > .treeMenu {
+  padding-left: 20px;
+  /* display: block; */
+}
+
+a.treeMenu img {
+  vertical-align: -3px;
+}
+
+a.item {
+  padding-top: 3px;
+  padding-left: 40px;
+}
+
+a.selectedItem {
+  padding-top: 3px;
+  padding-left: 40px;
+  font-weight:bold;
+}
 
 table.data {
   border-style:none;

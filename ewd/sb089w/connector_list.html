@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link REL="STYLESHEET" type="text/css" href="../menu.css"/>
+<link REL="STYLESHEET" href="/tree.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Connector List</title>
-<script language="javaScript">
+
+<script>
 	var imgFile = new Array("img/tree-p.gif", "img/tree-m.gif");
 	var img = new Array(imgFile.length);
 	for(var i = 0; i < (imgFile.length - 1); i++){
@@ -44,15 +46,29 @@
 </script>
 </head>
 
-<body>
-<font size="+1"><b>Connector List</b></font><br/>
-<a class="treeMenu" href="JavaScript:onClick=selectTree('d1');chgImg('img1');"><img id="img1" src="img/tree-p.gif" border="0"/>J</a><br/>
-<div id="d1" class="tree" style="display:none">
-<div class="item"><a id="id1" class="item" href="../connector/FV-JC-10F.pdf" target="PDF_Frame" onClick="selectItem(1)">J80: &nbsp;Junction Connector</a></div>
-</div>
-<a class="treeMenu" href="JavaScript:onClick=selectTree('d2');chgImg('img2');"><img id="img2" src="img/tree-p.gif" border="0"/>T</a><br/>
-<div id="d2" class="tree" style="display:none">
-<div class="item"><a id="id2" class="item" href="../connector/90980-10803.pdf" target="PDF_Frame" onClick="selectItem(2)">T22: &nbsp;TVSS</a></div>
-</div>
+<body class="tree">
+	<div class="MenuArea">
+		<font style="font-size:11pt">
+		<table>
+		<TR><TD nowrap>
+		<span class="TopItem">	
+			<p>CONNECTOR LIST</p>
+			<br/>
+			<br/>
+		</span>
+
+			<a class="treeMenu" href="JavaScript:onClick=selectTree('d1');chgImg('img1');"><img id="img1" src="img/tree-p.gif" border="0"/>J</a><br/>
+			<div id="d1" class="tree" style="display:none">
+			<div class="item"><a id="id1" class="item" href="../connector/FV-JC-10F.pdf" target="PDF_Frame" onClick="selectItem(1)">J80: &nbsp;Junction Connector</a></div>
+			</div>
+			<a class="treeMenu" href="JavaScript:onClick=selectTree('d2');chgImg('img2');"><img id="img2" src="img/tree-p.gif" border="0"/>T</a><br/>
+			<div id="d2" class="tree" style="display:none">
+			<div class="item"><a id="id2" class="item" href="../connector/90980-10803.pdf" target="PDF_Frame" onClick="selectItem(2)">T22: &nbsp;TVSS</a></div>
+			</div>
+	
+		</TD></TR>
+	</table>
+	</font>
+	</div>	
 </body>
 </html>

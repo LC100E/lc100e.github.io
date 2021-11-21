@@ -1,6 +1,3 @@
-
-
-
 BODY, INPUT, TABLE, TH, TD, A { 
 	font-size:			10pt;
 	font-family:		"Verdana" sans-serif;
@@ -25,10 +22,6 @@ div.space2 {
 	height:		40px;
 }
 
-
-
-
-
 td.title {
 	background:#666666;
 	color:#FFFFFF;
@@ -41,9 +34,6 @@ td.title4map {
 	color:#FFFFFF;
 	font-weight:bold;
 }
-
-
-
 
 table.list-item {
 	border:				1px solid #CCCCCC;
@@ -86,9 +76,6 @@ a.list-item-active {
 	color:				#ffffff;
 }
 
-
-
-
 th.titlelist-head {
 	color: #666666;
 	background-color:	#C9C9C9;
@@ -118,11 +105,6 @@ a.titlelist-item {
 a.titlelist-item-hover {
 	color:				#DC883D;
 }
-
-
-
-
-
 
 td.conninfo-caption {
 	color:				#666666;
@@ -161,10 +143,6 @@ a.conninfo-link-item-other:hover {
 	color:				#3B96BF;
 	text-decoration:	none;
 }
-
-
-
-
 
 td.readme-button {
 	background-color: #a82e2e;
