@@ -15,12 +15,17 @@ Factory manual is available at https://lc100e.github.io/manual/
 
 
 ---
-known issues:
-none
+#### known issues:
+- none
 
-The files making up this site are cica 2005 and are slowly being updated to support current browsers (working towards html4 as of Oct-2021).
-- You will see minor alerts re: missing info - these can be ignored and will be progressively fixed
-- all PDF pages should be visible.
+#### still to do
+- combine Javscript files to reduce duplication
+- move javscripts loads to after page load
+
+#### updates
+- all main content updated to HTML5 (some popouts may still use HTML4 framesets)
+- Folder structure updated to cindlue Scipts and Styles folders
+- CSS combined into single file for wiring diagrams
 - tested with Chrome and safari.  Browsers handle PDFs different but both work.
-- if you find any issue you can open an Issue against this repo.
+
 

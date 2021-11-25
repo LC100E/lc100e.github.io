@@ -2,8 +2,8 @@
 <html>
 <head>
 <META http-equiv="Content-Type" content="text/html" charset="iso-8859-1">
-<link rel="stylesheet" href="././_styles/tree.css" type="text/css">
-<SCRIPT language="JavaScript" src="./_scripts/sub.js"></SCRIPT>
+<link rel="stylesheet" href="/_styles/tree.css" type="text/css">
+<SCRIPT language="JavaScript" src="/_scripts/sub.js"></SCRIPT>
 <script type="text/javascript">
 // <!--
 
@@ -27,7 +27,7 @@ async function loadXML(xmlFile) {
 
 async function init(){
   var XmlFile="list.xml"; // �z�[���f�B���N�g���ւ̑��΃p�X
-  var HomePath="./"
+  var HomePath="/_xml/"
   var xmldoc = await loadXML(Homepath + XmlFile);
   var Root=xmldoc.documentElement; // ���[�g�m�[�h�̎擾
   var Len=Root.childNodes.length; // �q�m�[�h���̎擾
