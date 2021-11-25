@@ -3,9 +3,9 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
-<link REL="STYLESHEET" href="/_styles/main.css"/>
+<link REL="STYLESHEET" href="/styles/main.css"/>
 
-<title>Connector List</title>
+<title>Relay / Routing</title>
 
 <script FOR="window" EVENT="onload">
 
@@ -13,7 +13,7 @@
     if( window.location.search != "" ){
       path = getParam(window.location.search, "path");
       console.debug("path: " + path);
-      document.getElementById('menuFrame').src = path + "connector_list.html";
+      document.getElementById('menuFrame').src = path + "seepage_list.html";
     }
   }
 
@@ -38,16 +38,15 @@ function devideParam(str) {
 		str = str.substr(1);
 		return str.split(regExp);
 	}
-</script>
 
+</script>
 </HEAD>
 
 <body onload="document_onload()">
-  <div class="container" id="connList">
+  <div class="container" id="connLocation">
     <iframe id="menuFrame" ></iframe>
-    <iframe id="pdfFrame" name="PDF_Frame" src="loc_main.html"></iframe>
+    <iframe id="pdfFrame" name="PDF_Frame" src="/components/ewd_loc.html"></iframe>
   </div>
 </body>
 </html>
-
 

@@ -10,7 +10,7 @@ function showConnector(){
 		return;
 	}
 	var code = cutExtension(fileName);
-	openSubWnd( "../conn.html?code=" + code, "ewd_sub" );
+	openSubWnd( "./conn.html?code=" + code, "ewd_sub" );
 }
 
 function showRelayLocation(){
@@ -35,12 +35,12 @@ function showLocation(){
 
 function showLocationList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( "loclist.html?path=" + path, "ewd_sub" );
+	openSubWnd( "/components/ewd_loclist.html?path=" + path, "ewd_sub" );
 }
 
 function showConnectorList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( "connlist.html?path=" + path, "ewd_sub" );
+	openSubWnd( "/components/ewd_connlist.html?path=" + path, "ewd_sub" );
 }
 
 
