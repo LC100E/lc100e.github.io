@@ -3,42 +3,8 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <link REL="STYLESHEET" HREF="/styles/main.css"/>
+
 <TITLE>system menu</TITLE>
-
-<!-- <script FOR="window" EVENT="onload">
-
-var xmlList = null;
-
-function loadXML(xmlFile) {
-  var xhttp = new XMLHttpRequest();
-  return new Promise(function(resolve, reject) {
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (xhttp.status >= 300) {
-          reject("Error, status code = " + xhttp.status)
-        } else {
-		  	xmlList = xhttp.responseXML;
-			resolve(xmlList);
-			onload_page();
-        }
-      }
-    };
-
-    xhttp.open("GET", xmlFile, true);
-    xhttp.send();
-  }); 
-}
-
-
-function getPageList() {
-	return xmlList; 
-}
-</SCRIPT> -->
-
-<script type="text/javascript" src="/scripts/relay.js"></script>
-<script type="text/javascript" src="/scripts/lib.js"  ></script>
-<script type="text/javascript" src="/scripts/sub.js"  ></script>
-
 
 <body style="background-color: #D4D0C8;">
 	<table border="0" width="100%">
@@ -52,16 +18,23 @@ function getPageList() {
 							<div id="prevBtn"><input type="button" name="prev_page" value=" &lt; " onclick="page(-1)"></div>
 						</td>
 						<td>
-							<div id="n_page">page 1</div></td>
+							<div id="n_page">page 1</div>
+						</td>
 						<td>
 							<div id="nextBtn"><input type="button" name="next_page" value=" &gt; " onclick="page(1)"></div>
 						</td>
 					</tr>
 				</table>
 			</td>
-			<td width="20%" align="right">
+			<td width="20%">
 					<div id="btn_Inner" style="visibility:hidden"><input type="button" name="inner" value="Inner Circuit" onclick="navigateToInner()"></div>
 			</td>
+		</tr>
 	</table>
+
+	<script type="text/javascript" src="/scripts/relay.js"></script>
+	<script type="text/javascript" src="/scripts/lib.js"  ></script>
+	<script type="text/javascript" src="/scripts/sub.js"  ></script>
+
 </body>
 </HTML>
