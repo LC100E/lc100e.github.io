@@ -26,16 +26,12 @@
 
 <body>
   <div class="container" id="mainContainer">
-    <div class="nav" id="nav">
-      <iframe src="/components/menu_top.html" scrolling="no"></iframe>
-      <iframe name="menu_tree" id="menu_tree" src="/components/menu_tree.html"></iframe> 
-      <iframe name="menu_search" id="menu_search" src="/components/menu_search.html"></iframe>  
-    </div>
-    <div class="content" id="content">
-      <iframe src="/components/top.html"></iframe>
+      <iframe src="/components/menu_top.html" style="grid-area:menuTop" scrolling="no"></iframe>
+      <iframe name="menu_tree" id="menu_tree" src="/components/menu_tree.html" style="grid-area:menuTree"></iframe> 
+      <iframe name="menu_search" id="menu_search" src="/components/menu_search.html" style="grid-area:menuSearch"></iframe>  
+      <iframe src="/components/top.html" style="grid-area:pdfTop"></iframe>
       <iframe name="pdf" id="pdf" src="/components/pdf.html" style="grid-area:pdf"></iframe>
       <iframe name="frameopen" id="frameopen" src="/components/frameopen.html" style="display:none"></iframe></frame>
-    </div>
   </div>
 </body>
 </html>

@@ -12,35 +12,35 @@ html, body {
     box-sizing: border-box;
 
     display: grid;
-
-    grid-template-columns: 20% auto;
-    grid-template-areas:
-        "nav content";
-}
-
-.nav {
-    box-sizing: border-box;
-
-    grid-area: nav;
+    grid-template-rows: 33px auto 33px;
+    grid-template-columns: 300px auto;
     
-    display: grid;
-    grid-template-rows: 33px auto 33px;
-    grid-template-areas:
-        "menuTop"
-        "menuTree"
-        "menuSearch";
 
+    grid-template-areas:
+        "menuTop    pdfTop"
+        "menuTree   pdf"
+        "menuSearch pdf";
 }
 
-.content {
+.popupContainer {
+    width: 100vw;
+    height: 100vh;
     box-sizing: border-box;
 
     display: grid;
-    grid-area: content;
-    grid-template-rows: 33px auto 33px;
+    grid-template-columns: 300px auto;
+    grid-template-rows: auto;
+}
+
+.ewdContainer {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: 33px auto;
+
     grid-template-areas:
-        "pdfTop"
-        "pdf"
+        "controls"
         "pdf";
 }
 

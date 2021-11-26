@@ -13,7 +13,6 @@ async function document_onload(){
 function document_onload_overall(){
 
     if( window.location.search != "" ){
-        // setPDF( getSystemCode(window.location.search) );
         code = getParam(window.location.search, "code");
         path = getParam(window.location.search, "path");
         setPDF( path + "overall/" + code );
