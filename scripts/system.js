@@ -30,17 +30,16 @@ function showLocation(){
 	var code = cutExtension(fileName);
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
 	openSubWnd( path + "location.html?code=" + code, "ewd_sub" );
-	// openSubWnd( "../location.html?code=" + code, "ewd_sub" );
 }
 
 function showLocationList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( "./components/ewd_loclist.html?path=" + path, "ewd_sub" );
+	openSubWnd( "/components/ewd_loclist.html?path=" + path, "ewd_sub" );
 }
 
 function showConnectorList(){
 	const path = getFilePath(getCurrentPDFName(), 3); // levels up from m_overall/overall/
-	openSubWnd( "./components/ewd_connlist.html?path=" + path, "ewd_sub" );
+	openSubWnd( "/components/ewd_connlist.html?path=" + path, "ewd_sub" );
 }
 
 
