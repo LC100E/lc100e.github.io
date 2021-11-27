@@ -189,7 +189,7 @@ function navigateToInner()
 
 	var param = makePageParam( path, arrayPage );
 
-	openSubWnd( "./components/ewd_inner.html" + param, "ewd_inner");
+	openSubWnd( "/components/ewd_inner.html" + param, "ewd_inner");
 }
 
 function makePageParam( path, arrayPage )
