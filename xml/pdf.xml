@@ -7852,18 +7852,18 @@
 	</menu>
 	<menu>
 		<title>Service Data Sheet</title><color>5</color>
-		<item><title>Gasoline ( 2000 )</title><url>/sds/sds425e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2001 )</title><url>/sds/sds440e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2002 )</title><url>/sds/sds458e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2003 )</title><url>/sds/sds468e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2004 )</title><url>/sds/sds478e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2005 )</title><url>/sds/sds484e/land cruiser 100_gasoline.pdf</url></item>
-		<item><title>Diesel ( 2000 )</title><url>/sds/sds427e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2001 )</title><url>/sds/sds441e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2002 )</title><url>/sds/sds460e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2003 )</title><url>/sds/sds469e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2004 )</title><url>/sds/sds480e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2005 )</title><url>/sds/sds486e/land cruiser 100_diesel.pdf</url></item>
+		<item><title>Gasoline ( 2000 )</title><url>/pdf/sds/sds425e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2001 )</title><url>/pdf/sds/sds440e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2002 )</title><url>/pdf/sds/sds458e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2003 )</title><url>/pdf/sds/sds468e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2004 )</title><url>/pdf/sds/sds478e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2005 )</title><url>/pdf/sds/sds484e/land cruiser 100_gasoline.pdf</url></item>
+		<item><title>Diesel ( 2000 )</title><url>/pdf/sds/sds427e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2001 )</title><url>/pdf/sds/sds441e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2002 )</title><url>/pdf/sds/sds460e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2003 )</title><url>/pdf/sds/sds469e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2004 )</title><url>/pdf/sds/sds480e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2005 )</title><url>/pdf/sds/sds486e/land cruiser 100_diesel.pdf</url></item>
 	</menu>
 	<menu>
 		<title>New Car Features Supplement</title><color>1</color>
@@ -7875,6 +7875,6 @@
 	</menu>
 	<menu>
 		<title>Electrical Wiring Diagram Supplement</title><color>2</color>
-		<item><title>From May 2005</title><url>/em0020e/sias_2.html</url></item>
+		<item><title>From May 2005</title><url>/pdf/em0020e/sias_2.html</url></item>
 	</menu>
 </pdf>
