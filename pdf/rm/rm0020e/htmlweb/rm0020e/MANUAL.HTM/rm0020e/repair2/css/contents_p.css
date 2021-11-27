@@ -1,0 +1,21 @@
+img.half {
+	width: 270px;
+	border: solid 1px #333333;
+	margin: 8px 0px 8px 8px;
+	position: relative;
+	float: none;
+}
+
+img.full {
+		width: 100%;
+		border: solid 1px #333333;
+		margin: 8px 0px 5px 8px;
+}
+
+div.full {
+/*  text-align: center;*/
+  text-align: left;
+  width: 100%;
+  float: none;
+  position: relative;
+}
