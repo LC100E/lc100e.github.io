@@ -6,7 +6,7 @@ async function GetTitleName(id) {
 }
 
 async function L_GetModelName() {
-  var xmlFile="/xml/model.xml";
+  var xmlFile="../xml/model.xml";
   try {
     let xmlRoot = await loadXML(xmlFile);
     model = xmlRoot.getElementsByTagName("modelname")[0].textContent;
@@ -49,7 +49,7 @@ async function GetModelName(id) {
 }
 
 async function GetModelCodes(id) {
-  var xmlFile="/xml/model.xml";
+  var xmlFile="../xml/model.xml";
   try {
     let XMLroot = await loadXML(xmlFile);
     codes = getCodes(XMLroot);
@@ -75,7 +75,7 @@ async function GetModelCodes(id) {
 
 
 async function GetCopyrightYear(id) {
-  var xmlFile="/xml/model.xml";
+  var xmlFile="../xml/model.xml";
   try {
     let XMLroot = await loadXML(xmlFile);
     document.getElementById(id).innerHTML = getCopyright(XMLroot);

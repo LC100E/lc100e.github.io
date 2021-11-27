@@ -4,18 +4,18 @@ async function init(){
     openFlag=new Array;
     ColorFlag=new Array;
     gNoArray=new Array;
-    pImg=new Array("/images/plas1.gif","/images/plas2.gif");
-    mImg=new Array("/images/minas1.gif","/images/minas2.gif");
+    pImg=new Array("../images/plas1.gif","../images/plas2.gif");
+    mImg=new Array("../images/minas1.gif","../images/minas2.gif");
   
-    fImg=new Array("/images/close_g.gif","/images/open_g.gif",
-                   "/images/close_y.gif","/images/open_y.gif",
-                   "/images/close_r.gif","/images/open_r.gif",
-                   "/images/close_p.gif","/images/open_p.gif",
-                   "/images/close_b.gif","/images/open_b.gif",
-                   "/images/close_lb.gif","/images/open_lb.gif");
+    fImg=new Array("../images/close_g.gif","../images/open_g.gif",
+                   "../images/close_y.gif","../images/open_y.gif",
+                   "../images/close_r.gif","../images/open_r.gif",
+                   "../images/close_p.gif","../images/open_p.gif",
+                   "../images/close_b.gif","../images/open_b.gif",
+                   "../images/close_lb.gif","../images/open_lb.gif");
   
-    dImg=new Array("/images/tg3.gif","/images/tg4.gif");
-    rImg=new Array("/images/tg1.gif","/images/tg2.gif");
+    dImg=new Array("../images/tg3.gif","../images/tg4.gif");
+    rImg=new Array("../images/tg1.gif","../images/tg2.gif");
     
     document.write("<span class='TopItem' onclick='AllClose()'><font style='font-size:11pt;'>");
     document.write("<p id='Ttree'></p><br>");
@@ -38,48 +38,7 @@ async function init(){
     }
     
   }
-  
-  // function loadPDFxml(xmlFile, id) {
-  //   var xhttp = new XMLHttpRequest();
-  //   return new Promise(function(resolve, reject) {
-  //     xhttp.onreadystatechange = function() {
-  //       if (this.readyState == 4) {
-  //         if (xhttp.status >= 300) {
-  //           reject("Error, status code = " + xhttp.status)
-  //         } else {
-  //           resolve (xhttp.responseXML);
-            // xmlDoc = xhttp.responseXML;
-            // xmlDoc = xmlDoc.getElementsByTagName("pdf");
-            // xmlDoc = xmlDoc[0];
-            // document.getElementById(id).innerHTML = ParseTree(xmlDoc,"");
-      //     }
-      //   }
-      // };
-  
-  //     xhttp.open("GET", xmlFile, true);
-  //     xhttp.send();
-  //     return;
-  //   });
-  // }
-  
-  // function loadPDFxml(xmlFile, id) {
-  //   var xhttp = new XMLHttpRequest();
-  //   return new Promise(function(resolve, reject) {
-  //     xhttp.onreadystatechange = function() {
-  //       if (this.readyState == 4) {
-  //         if (xhttp.status >= 300) {
-  //           reject ("Error, status code = " + xhttp.status)
-  //         } else {
-  //           resolve (xhttp.responseXML);
-  //         }
-  //       }
-  //     };
-  
-  //     xhttp.open("GET", xmlFile, true);
-  //     xhttp.send();
-  //   });
-  // }
-  
+    
   function ParseTree(poNode, PsTree) {
     var gNo;
     var ItemCnt = 0;
@@ -91,7 +50,6 @@ async function init(){
     if(id>0) BeforeBuf+=" style='display:none'"; // �ŏ��̃m�[�h�ȊO�͑S�ĕ�����Ԃɂ���
     BeforeBuf+=">";
   
-    
     for(var i=0;i < Len;i++) {
       nodename = poNode.childNodes[i].nodeName;
       
