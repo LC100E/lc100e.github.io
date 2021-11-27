@@ -27,7 +27,7 @@ async function init(){
   
     var xmlFile="/xml/pdf.xml";
     let xmlDoc = await loadXML(xmlFile);
-    HomePath="";
+    HomePath="/manual";
     try {
       xmlDoc = xmlDoc.getElementsByTagName("pdf");
       xmlDoc = xmlDoc[0];
@@ -215,10 +215,10 @@ async function init(){
     }
   }
   
-  function finddisp()
-  {
-    parent.location.href = "./menu2.html"
-  }
+  // function finddisp()
+  // {
+  //   parent.location.href = "./menu2.html"
+  // }
   
   function getParamValue(sGetString, sParamName) {
     var sValue = "";
