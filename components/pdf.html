@@ -4,9 +4,10 @@
   <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
   <META http-equiv="Content-Style-Type" content="text/css">
   <link rel=stylesheet type="text/css" href="/styles/disp.css">
-  <SCRIPT language="JavaScript" src="/scripts/sub.js"></SCRIPT>
+  <script src="/scripts/xml.js"></script>
+
   <TITLE id="pdfhtml"></TITLE>
-  <script type="text/javascript">
+  <script>
     GetTitleName("pdfhtml");
   </script>
 </HEAD>
@@ -29,12 +30,12 @@
               <TBODY>
                 <TR>
                   <TD>
-                  <FONT class="cartitle"><B>
-                    <p id="pdfManual"></p>
-                    <script type="text/javascript">                    
+                  <FONT class="cartitle">
+                    <b><p id="pdfManual"></p></b>
+                    <script>                    
                       GetModelName("pdfManual");
                     </script>
-                    PDF Manual</B>
+                    <p><b>FACTORY WORKSHOP MANUAL</b></p>
                   </FONT>
                  </TD>
                 </TR>
@@ -50,10 +51,8 @@
                   <TD valign="top"><FONT face="arial">Applicable models</FONT></TD>
                   <TD align="center" valign="top"><FONT face="arial"><B>:</B></FONT></TD>
                   <TD><FONT face="arial" id="codes">
-                    <script type="text/javascript">
-                    // <!--
-                    GetModelCodes("codes");
-                    //-->
+                    <script>
+                      GetModelCodes("codes");
                     </script>
                   </FONT></TD>
                 </TR>
@@ -103,8 +102,8 @@
           <TR>
             <TD width="10"></TD>
             <TD><FONT class="footer">Copyright (C) <span id="copyright"></span> Toyota Motor Corporation. All rights reserved.</FONT></TD>
-              <script type="text/javascript">
-              GetCopyrightYear("copyright");
+              <script>
+                GetCopyrightYear("copyright");
               </script>          
           </TR>
         </TBODY>

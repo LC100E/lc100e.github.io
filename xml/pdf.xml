@@ -257,7 +257,7 @@
 		<title>New Car Features ( 2002.8 - )</title><color>1</color>
 		<menu>
 			<title>GENERAL FEATURES</title><color>-1</color>
-			<item><title>DESCRIPTION</title><url>/pdf/ncf/ncf229e/m_01_0002.pdf</url></item>
+			<item><title>DEscriptION</title><url>/pdf/ncf/ncf229e/m_01_0002.pdf</url></item>
 		</menu>
 		<item><title>OUTLINE OF NEW FEATURES</title><url>/pdf/ncf/ncf229e/m_06_0136.pdf</url></item>
 		<item><title>MODEL CODE</title><url>/pdf/ncf/ncf229e/m_06_0142.pdf</url></item>
@@ -1893,7 +1893,7 @@
 			</menu>
 			<menu>
 				<title>REAR VIEW MONITOR SYSTEM ( 2003.8 - )</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm1072e/m_di_0280.pdf</url><datatype>sup</datatype></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm1072e/m_di_0280.pdf</url><datatype>sup</datatype></item>
 				<item><title>HOW TO PROCEED WITH TROUBLESHOOTING</title><url>/pdf/rm/rm1072e/m_di_0283.pdf</url><datatype>sup</datatype></item>
 				<item><title>CUSTOMER PROBLEM ANALYSIS CHECK</title><url>/pdf/rm/rm1072e/m_di_0284.pdf</url><datatype>sup</datatype></item>
 				<item><title>PRE-CHECK</title><url>/pdf/rm/rm1072e/m_di_0285.pdf</url><datatype>sup</datatype></item>
@@ -2817,7 +2817,7 @@
 			<title>BRAKE</title><color>-1</color>
 			<menu>
 				<title>BRAKE SYSTEM</title><color>-1</color>
-				<item><title>GENERAL DESCRIPTION</title><url>/pdf/rm/rm616e/m_br_0001.pdf</url></item>
+				<item><title>GENERAL DEscriptION</title><url>/pdf/rm/rm616e/m_br_0001.pdf</url></item>
 			</menu>
 			<menu>
 				<title>TROUBLESHOOTING</title><color>-1</color>
@@ -3413,8 +3413,8 @@
 			</menu>
 			<menu>
 				<title>AUDIO SYSTEM</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm616e/m_be_0139.pdf</url></item>
-				<item><title>DESCRIPTION ( 2000.8 - )</title><url>/pdf/rm/rm793e/m_be_0026.pdf</url><datatype>sup</datatype></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm616e/m_be_0139.pdf</url></item>
+				<item><title>DEscriptION ( 2000.8 - )</title><url>/pdf/rm/rm793e/m_be_0026.pdf</url><datatype>sup</datatype></item>
 				<item><title>TROUBLESHOOTING</title><url>/pdf/rm/rm616e/m_be_0142.pdf</url></item>
 				<item><title>TROUBLESHOOTING ( 2000.8 - )</title><url>/pdf/rm/rm793e/m_be_0030.pdf</url><datatype>sup</datatype></item>
 				<item><title>TROUBLESHOOTING ( 2002.8 - )</title><url>/pdf/rm/rm970e/m_be_0070.pdf</url><datatype>sup</datatype></item>
@@ -4908,7 +4908,7 @@
 			<title>ENGINE</title><color>-1</color>
 			<menu>
 				<title>ENGINE MECHANICAL</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_eg_0002.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_eg_0002.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_eg_0004.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm436e/m_eg_0002.pdf</url><datatype>sup</datatype></item>
 				<item><title>TROUBLESHOOTING</title><url>/pdf/rm/rm321e/m_eg_0008.pdf</url></item>
@@ -4928,7 +4928,7 @@
 			</menu>
 			<menu>
 				<title>EFI SYSTEM</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_eg_0177.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_eg_0177.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_eg_0180.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm436e/m_eg_0013.pdf</url><datatype>sup</datatype></item>
 				<item><title>PRECAUTION</title><url>/pdf/rm/rm321e/m_eg_0182.pdf</url></item>
@@ -4968,7 +4968,7 @@
 			</menu>
 			<menu>
 				<title>FUEL SYSTEM</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_eg_0300.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_eg_0300.pdf</url></item>
 				<item><title>PRECAUTION</title><url>/pdf/rm/rm321e/m_eg_0303.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_eg_0304.pdf</url></item>
 				<item><title>ON-VEHICLE INSPECTION</title><url>/pdf/rm/rm321e/m_eg_0305.pdf</url></item>
@@ -4978,7 +4978,7 @@
 			</menu>
 			<menu>
 				<title>COOLING SYSTEM</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_eg_0345.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_eg_0345.pdf</url></item>
 				<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_eg_0345.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_eg_0349.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm436e/m_eg_0062.pdf</url><datatype>sup</datatype></item>
@@ -4992,7 +4992,7 @@
 			</menu>
 			<menu>
 				<title>LUBRICATION SYSTEM</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_eg_0361.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_eg_0361.pdf</url></item>
 				<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_eg_0361.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_eg_0363.pdf</url></item>
 				<item><title>PREPARATION</title><url>/pdf/rm/rm436e/m_eg_0069.pdf</url><datatype>sup</datatype></item>
@@ -5009,7 +5009,7 @@
 			<title>IGNITION SYSTEM</title><color>-1</color>
 			<menu>
 				<title>(1FZ-FE)</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_ig_0002.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_ig_0002.pdf</url></item>
 				<item><title>PRECAUTION</title><url>/pdf/rm/rm321e/m_ig_0003.pdf</url></item>
 				<item><title>SYSTEM CIRCUIT</title><url>/pdf/rm/rm321e/m_ig_0004.pdf</url></item>
 				<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_ig_0004.pdf</url></item>
@@ -5020,7 +5020,7 @@
 			</menu>
 			<menu>
 				<title>(1FZ-F)</title><color>-1</color>
-				<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_ig_0021.pdf</url></item>
+				<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_ig_0021.pdf</url></item>
 				<item><title>PRECAUTION</title><url>/pdf/rm/rm321e/m_ig_0022.pdf</url></item>
 				<item><title>SYSTEM CIRCUIT</title><url>/pdf/rm/rm321e/m_ig_0023.pdf</url></item>
 				<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_ig_0024.pdf</url></item>
@@ -5032,7 +5032,7 @@
 		</menu>
 		<menu>
 			<title>STARTING SYSTEM</title><color>-1</color>
-			<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_st_0002.pdf</url></item>
+			<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_st_0002.pdf</url></item>
 			<item><title>SYSTEM CIRCUIT</title><url>/pdf/rm/rm321e/m_st_0002.pdf</url></item>
 			<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_st_0003.pdf</url></item>
 			<item><title>PREPARATION</title><url>/pdf/rm/rm321e/m_st_0003.pdf</url></item>
@@ -5048,7 +5048,7 @@
 		</menu>
 		<menu>
 			<title>CHARGING SYSTEM</title><color>-1</color>
-			<item><title>DESCRIPTION</title><url>/pdf/rm/rm321e/m_ch_0002.pdf</url></item>
+			<item><title>DEscriptION</title><url>/pdf/rm/rm321e/m_ch_0002.pdf</url></item>
 			<item><title>PRECAUTIONS</title><url>/pdf/rm/rm321e/m_ch_0002.pdf</url></item>
 			<item><title>SYSTEM CIRCUIT</title><url>/pdf/rm/rm321e/m_ch_0003.pdf</url></item>
 			<item><title>OPERATION</title><url>/pdf/rm/rm321e/m_ch_0004.pdf</url></item>
@@ -6140,7 +6140,7 @@
 		</menu>
 		<menu>
 			<title>AUTOMATIC TRANSMISSION</title><color>-1</color>
-			<item><title>DESCRIPTION</title><url>/pdf/rm/rm314e/m_at_0002.pdf</url></item>
+			<item><title>DEscriptION</title><url>/pdf/rm/rm314e/m_at_0002.pdf</url></item>
 			<item><title>OPERATION</title><url>/pdf/rm/rm314e/m_at_0004.pdf</url></item>
 			<item><title>PREPARATION</title><url>/pdf/rm/rm314e/m_at_0010.pdf</url></item>
 			<item><title>COMPONENT PARTS REMOVAL</title><url>/pdf/rm/rm314e/m_at_0013.pdf</url></item>
@@ -6264,14 +6264,14 @@
 	</menu>
 	<menu>
 		<title>Electrical Wiring Diagram</title><color>2</color>
-		<item><title>INTRODUCTION</title><url>/pdf/ewd/ewd342e/a_intro/a_intro.pdf</url></item>
-		<item><title>HOW TO USE THIS MANUAL</title><url>/pdf/ewd/ewd342e/b_howto/b_howto.pdf</url></item>
+		<item><title>INTRODUCTION</title><url>/pdf/ewd/ewd342e/a_intro/a_intro.pdf</url>/pdf/ewd</item>
+		<item><title>HOW TO USE THIS MANUAL</title><url>/pdf/ewd/ewd342e/b_howto/b_howto.pdf</url>/pdf/ewd</item>
 		<menu>
 			<title>ABBREVIATIONS</title><color>-1</color>
-			<item><title>1998.1 - 2002.7</title><url>/pdf/ewd/ewd342e/d_abbrevi/d_abbrevi.pdf</url></item>
-			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/d_abbrevi/d_abbrevi.pdf</url><datatype>sup</datatype></item>
+			<item><title>1998.1 - 2002.7</title><url>/pdf/ewd/ewd342e/d_abbrevi/d_abbrevi.pdf</url>/pdf/ewd</item>
+			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/d_abbrevi/d_abbrevi.pdf</url>/pdf/ewd<datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/d_abbrevi/d_abbrevi.pdf</url>/pdf/ewd<datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/d_abbrevi/d_abbrevi.pdf</url>/pdf/ewd<datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>RELAY LOCATIONS</title><color>-1</color>
@@ -6330,10 +6330,8 @@
 			</menu>
 			<menu>
 				<title>Cowl Side J/B RH</title><color>-1</color>
-				<!-- <item><title>1998.1 - 2002.7</title><url>/pdf/ewd/ewd342e/f_relay/relay.html?page=42</url></item> -->
 				<item><title>1998.1 - 2002.7</title><url>/ewd_main.html?path=/pdf/ewd/ewd342e/f_relay/&amp;page=42</url></item>
 				<item><title>2002.8 - 2003.7</title><url>/ewd_main.html?path=/pdf/ewd/ewd512e/f_relay/&amp;page=30</url><datatype>sup</datatype></item>
-				<!-- <item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/f_relay/relay.html?page=30</url><datatype>sup</datatype></item> -->
 				<item><title>2003.8 - 2004.7</title><url>/ewd_main.html?path=/pdf/ewd/ewd575e/f_relay/&amp;page=30</url><datatype>sup</datatype></item>
 				<item><title>2004.8 -</title><url>/ewd_main.html?path=/pdf/ewd/ewd602e/f_relay/&amp;page=30</url><datatype>sup</datatype></item>
 			</menu>
@@ -6572,21 +6570,21 @@
 		</menu>
 		<menu>
 			<title>CONNECTOR LIST</title><color>-1</color>
-			<item><title>BE-2011: 1999.7 - 1999.7</title><url>/pdf/ewd/sb089w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-9016: 1999.8 - 2000.7</title><url>/pdf/ewd/sb023w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-031: 2000.8 - 2000.9</title><url>/pdf/ewd/sb039w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-0049: 2000.10 - 2001.7</title><url>/pdf/ewd/sb046w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-1023: 2001.8 - 2002.7</title><url>/pdf/ewd/sb059w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>BE-2011: 1999.7 - 1999.7</title><url>/sb089w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-9016: 1999.8 - 2000.7</title><url>/sb023w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-031: 2000.8 - 2000.9</title><url>/sb039w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-0049: 2000.10 - 2001.7</title><url>/sb046w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-1023: 2001.8 - 2002.7</title><url>/sb059w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>2002.8 - 2003.7</title><url>/ewd512e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>/ewd575e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>/ewd602e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>PART NUMBER OF CONNECTORS</title><color>-1</color>
-			<item><title>1998.1 - 2002.7</title><url>/pdf/ewd/ewd342e/l_partno/l_partno.pdf</url></item>
-			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>1998.1 - 2002.7</title><url>/ewd342e/l_partno/l_partno.pdf</url></item>
+			<item><title>2002.8 - 2003.7</title><url>/ewd512e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>/ewd575e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>/ewd602e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>OVERALL ELECTRICAL WIRING DIAGRAM [LHD]</title><color>-1</color>
@@ -7854,18 +7852,18 @@
 	</menu>
 	<menu>
 		<title>Service Data Sheet</title><color>5</color>
-		<item><title>Gasoline ( 2000 )</title><url>/pdf/ewd/sds/sds425e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2001 )</title><url>/pdf/ewd/sds/sds440e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2002 )</title><url>/pdf/ewd/sds/sds458e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2003 )</title><url>/pdf/ewd/sds/sds468e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2004 )</title><url>/pdf/ewd/sds/sds478e/lancru_fzj100_gasoline.pdf</url></item>
-		<item><title>Gasoline ( 2005 )</title><url>/pdf/ewd/sds/sds484e/land cruiser 100_gasoline.pdf</url></item>
-		<item><title>Diesel ( 2000 )</title><url>/pdf/ewd/sds/sds427e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2001 )</title><url>/pdf/ewd/sds/sds441e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2002 )</title><url>/pdf/ewd/sds/sds460e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2003 )</title><url>/pdf/ewd/sds/sds469e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2004 )</title><url>/pdf/ewd/sds/sds480e/lancru_hzj105_diesel.pdf</url></item>
-		<item><title>Diesel ( 2005 )</title><url>/pdf/ewd/sds/sds486e/land cruiser 100_diesel.pdf</url></item>
+		<item><title>Gasoline ( 2000 )</title><url>/sds/sds425e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2001 )</title><url>/sds/sds440e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2002 )</title><url>/sds/sds458e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2003 )</title><url>/sds/sds468e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2004 )</title><url>/sds/sds478e/lancru_fzj100_gasoline.pdf</url></item>
+		<item><title>Gasoline ( 2005 )</title><url>/sds/sds484e/land cruiser 100_gasoline.pdf</url></item>
+		<item><title>Diesel ( 2000 )</title><url>/sds/sds427e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2001 )</title><url>/sds/sds441e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2002 )</title><url>/sds/sds460e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2003 )</title><url>/sds/sds469e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2004 )</title><url>/sds/sds480e/lancru_hzj105_diesel.pdf</url></item>
+		<item><title>Diesel ( 2005 )</title><url>/sds/sds486e/land cruiser 100_diesel.pdf</url></item>
 	</menu>
 	<menu>
 		<title>New Car Features Supplement</title><color>1</color>
@@ -7877,6 +7875,6 @@
 	</menu>
 	<menu>
 		<title>Electrical Wiring Diagram Supplement</title><color>2</color>
-		<item><title>From May 2005</title><url>/pdf/ewd/em0020e/sias_2.html</url></item>
+		<item><title>From May 2005</title><url>/em0020e/sias_2.html</url></item>
 	</menu>
 </pdf>

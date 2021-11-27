@@ -1,7 +1,8 @@
+
+
 async function GetTitleName(id) {
-  title = await L_GetModelName(id);
+  title = await L_GetModelName();
   document.getElementById(id).innerHTML = title;
-  return;
 }
 
 async function L_GetModelName() {
@@ -34,7 +35,6 @@ function loadXML(xmlFile) {
     };
     xhttp.open("GET", xmlFile, true);
     xhttp.send();
-    return;
   }); 
 }
 

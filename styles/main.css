@@ -12,6 +12,14 @@ html, body {
     box-sizing: border-box;
 
     display: grid;
+    grid-template-columns: 300px auto;
+    
+/* 
+    grid-template-areas:
+        "nav    content";
+
+         */
+    /* display: grid;
     grid-template-rows: 33px auto 33px;
     grid-template-columns: 300px auto;
     
@@ -19,8 +27,37 @@ html, body {
     grid-template-areas:
         "menuTop    pdfTop"
         "menuTree   pdf"
-        "menuSearch pdf";
+        "menuSearch pdf"; */
 }
+
+#nav {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-rows: 33px auto 33px;
+
+    grid-template-areas:
+        "menuTop"
+        "menuTree"
+        "menuSearch";
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-rows: 33px auto 33px;
+
+    grid-template-areas:
+        "pdfTop"
+        "pdf"
+        "pdf";
+}
+
 
 .popupContainer {
     width: 100vw;
