@@ -25,7 +25,7 @@ async function init(){
   
     GetModelName("Ttree");
   
-    var xmlFile="/xml/pdf.xml";
+    var xmlFile="../xml/pdf.xml";
     let xmlDoc = await loadXML(xmlFile);
     HomePath="/manual";
     try {
