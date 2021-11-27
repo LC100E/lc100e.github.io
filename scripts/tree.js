@@ -27,7 +27,7 @@ async function init(){
   
     var xmlFile="../xml/pdf.xml";
     let xmlDoc = await loadXML(xmlFile);
-    HomePath="/manual";
+    HomePath="";
     try {
       xmlDoc = xmlDoc.getElementsByTagName("pdf");
       xmlDoc = xmlDoc[0];
