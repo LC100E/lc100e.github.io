@@ -4,18 +4,18 @@ async function init(){
     openFlag=new Array;
     ColorFlag=new Array;
     gNoArray=new Array;
-    pImg=new Array("../images/plas1.gif","../images/plas2.gif");
-    mImg=new Array("../images/minas1.gif","../images/minas2.gif");
+    pImg=new Array("/images/plas1.gif","/images/plas2.gif");
+    mImg=new Array("/images/minas1.gif","/images/minas2.gif");
   
-    fImg=new Array("../images/close_g.gif","../images/open_g.gif",
-                   "../images/close_y.gif","../images/open_y.gif",
-                   "../images/close_r.gif","../images/open_r.gif",
-                   "../images/close_p.gif","../images/open_p.gif",
-                   "../images/close_b.gif","../images/open_b.gif",
-                   "../images/close_lb.gif","../images/open_lb.gif");
+    fImg=new Array("/images/close_g.gif","/images/open_g.gif",
+                   "/images/close_y.gif","/images/open_y.gif",
+                   "/images/close_r.gif","/images/open_r.gif",
+                   "/images/close_p.gif","/images/open_p.gif",
+                   "/images/close_b.gif","/images/open_b.gif",
+                   "/images/close_lb.gif","/images/open_lb.gif");
   
-    dImg=new Array("../images/tg3.gif","../images/tg4.gif");
-    rImg=new Array("../images/tg1.gif","../images/tg2.gif");
+    dImg=new Array("/images/tg3.gif","/images/tg4.gif");
+    rImg=new Array("/images/tg1.gif","/images/tg2.gif");
     
     document.write("<span class='TopItem' onclick='AllClose()'><font style='font-size:11pt;'>");
     document.write("<p id='Ttree'></p><br>");
@@ -25,7 +25,7 @@ async function init(){
   
     GetModelName("Ttree");
   
-    var xmlFile="../xml/pdf.xml";
+    var xmlFile="/xml/pdf.xml";
     let xmlDoc = await loadXML(xmlFile);
     HomePath="";
     try {
@@ -172,12 +172,7 @@ async function init(){
       }
     }
   }
-  
-  // function finddisp()
-  // {
-  //   parent.location.href = "./menu2.html"
-  // }
-  
+    
   function getParamValue(sGetString, sParamName) {
     var sValue = "";
     

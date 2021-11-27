@@ -1,10 +1,10 @@
 function setbtnimage(status, PsBaseFile, PoObj){
     if (status==0) {
-      document.images[PoObj].src='../images/' + PsBaseFile + '1.gif';
+      document.images[PoObj].src='/images/' + PsBaseFile + '1.gif';
     }else if (status==1){
-      document.images[PoObj].src='../images/' + PsBaseFile + '2.gif';
+      document.images[PoObj].src='/images/' + PsBaseFile + '2.gif';
     }else{
-      document.images[PoObj].src='../images/' + PsBaseFile + '3.gif';
+      document.images[PoObj].src='/images/' + PsBaseFile + '3.gif';
     }
   }
 
