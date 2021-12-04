@@ -18,14 +18,12 @@ Factory manual is available at https://lc100e.github.io/
 #### known issues:
 - none
 
-#### still to do
-- combine Javscript files to reduce duplication
-- move javscripts loads to after page load
 
 #### updates
+- site url changed to https://lc100e.github.io/
 - all main content updated to HTML5 (some popouts may still use HTML4 framesets)
-- Folder structure updated to cindlue Scipts and Styles folders
-- CSS combined into single file for wiring diagrams
+- Folder structure updated to include Scipts and Styles folders
+- many CSS files combined to cimplify ongoing maintenance
 - tested with Chrome and safari.  Browsers handle PDFs different but both work.
 
 
