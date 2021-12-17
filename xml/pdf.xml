@@ -6570,21 +6570,21 @@
 		</menu>
 		<menu>
 			<title>CONNECTOR LIST</title><color>-1</color>
-			<item><title>BE-2011: 1999.7 - 1999.7</title><url>/sb089w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-9016: 1999.8 - 2000.7</title><url>/sb023w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-031: 2000.8 - 2000.9</title><url>/sb039w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-0049: 2000.10 - 2001.7</title><url>/sb046w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>BE-1023: 2001.8 - 2002.7</title><url>/sb059w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
-			<item><title>2002.8 - 2003.7</title><url>/ewd512e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>/ewd575e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>/ewd602e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>BE-2011: 1999.7 - 1999.7</title><url>/pdf/ewd/sb089w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-9016: 1999.8 - 2000.7</title><url>/pdf/ewd/sb023w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-031: 2000.8 - 2000.9</title><url>/pdf/ewd/sb039w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-0049: 2000.10 - 2001.7</title><url>/pdf/ewd/sb046w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>BE-1023: 2001.8 - 2002.7</title><url>/pdf/ewd/sb059w/k_connector/k_connector.pdf</url><datatype>sb</datatype></item>
+			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/k_connector/k_connector.pdf</url><datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>PART NUMBER OF CONNECTORS</title><color>-1</color>
-			<item><title>1998.1 - 2002.7</title><url>/ewd342e/l_partno/l_partno.pdf</url></item>
-			<item><title>2002.8 - 2003.7</title><url>/ewd512e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
-			<item><title>2003.8 - 2004.7</title><url>/ewd575e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
-			<item><title>2004.8 -</title><url>/ewd602e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>1998.1 - 2002.7</title><url>/pdf/ewd/ewd342e/l_partno/l_partno.pdf</url></item>
+			<item><title>2002.8 - 2003.7</title><url>/pdf/ewd/ewd512e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>2003.8 - 2004.7</title><url>/pdf/ewd/ewd575e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
+			<item><title>2004.8 -</title><url>/pdf/ewd/ewd602e/l_partno/l_partno.pdf</url><datatype>sup</datatype></item>
 		</menu>
 		<menu>
 			<title>OVERALL ELECTRICAL WIRING DIAGRAM [LHD]</title><color>-1</color>
