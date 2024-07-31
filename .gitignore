@@ -1,0 +1,10 @@
+# ignore ALL files in ANY directory named ...
+.vscode/
+.venv/
+
+# backup directories
+
+
+# ignore these files
+*.bak
+.DS_Store
