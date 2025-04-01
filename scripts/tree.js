@@ -140,7 +140,50 @@ async function init(){
     if (sBefore != psObj && sBefore != "") document.all(sBefore).style.fontWeight = "normal";
     document.all(psObj).style.fontWeight = "bold";
     sBefore = psObj;
+
+    // change page URL.  added 1-Apr-2025 for page indexing
+    setPageURL(psObj);
+
   }
+
+function setPageURL(linkId) {
+  // updpates the browser URL to the current page.  This helps google indexing.
+
+  var pdfUrl = document.getElementById(linkId).getAttribute('href');
+  var title = document.getElementById(linkId).getAttribute('title');
+  console.log("pdfUrl ", pdfUrl);
+  console.log("title ", title);
+
+  // Update the browser's URL
+  if (title == "HOME") { // reload the homepage rather than display the dummy index.pdf
+    console.log("title2 ", title);
+    window.parent.location.href = '/index.html'
+  } else {
+    window.parent.history.pushState({ path: pdfUrl }, title, pdfUrl);
+  }
+
+  // Optionally update the document title
+  // document.title = title;
+
+  updateCanonicalLink(pdfUrl);
+}
+
+
+function updateCanonicalLink(pdfUrl) {
+  // updates the parent page canonical URL to the current page.  This helps google indexing.
+
+  var parentDocument = window.parent.document;
+  var existingLink = parentDocument.querySelector("link[rel='canonical']");
+
+  if (existingLink) {
+      existingLink.setAttribute('href', pdfUrl);
+  } else {
+      var newLink = parentDocument.createElement('link');
+      newLink.setAttribute('rel', 'canonical');
+      newLink.setAttribute('href', pdfUrl);
+      parentDocument.head.appendChild(newLink);
+  }
+}
   
   function ViewTree(id,n) {
     if(document.getElementById(id)){
