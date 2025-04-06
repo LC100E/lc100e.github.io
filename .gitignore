@@ -1,6 +1,9 @@
 # ignore ALL files in ANY directory named ...
 .vscode/
 .venv/
+python/
+PdfFontReplacer/
+original/
 
 # backup directories
 
