@@ -134,56 +134,74 @@ async function init(){
     }
   }
   
-  var sBefore = "";
-  
-  function linkclick(psObj) {
-    if (sBefore != psObj && sBefore != "") document.all(sBefore).style.fontWeight = "normal";
-    document.all(psObj).style.fontWeight = "bold";
-    sBefore = psObj;
+let sBefore = ""; // Global variable to track the previously selected link
 
-    // change page URL.  added 1-Apr-2025 for page indexing
-    setPageURL(psObj);
+function linkclick(psObj) {
+  // Update menu styling
+  if (sBefore != psObj && sBefore != "") document.all(sBefore).style.fontWeight = "normal";
+  document.all(psObj).style.fontWeight = "bold";
+  sBefore = psObj;
 
-  }
+  // Get the PDF URL and title from the clicked link
+  var pdfUrl = document.getElementById(psObj).getAttribute('href');
+  var title = document.getElementById(psObj).getAttribute('title');
 
-function setPageURL(linkId) {
-  // updpates the browser URL to the current page.  This helps google indexing.
-
-  var pdfUrl = document.getElementById(linkId).getAttribute('href');
-  var title = document.getElementById(linkId).getAttribute('title');
-  console.log("pdfUrl ", pdfUrl);
-  console.log("title ", title);
-
-  // Update the browser's URL
-  if (title == "HOME") { // reload the homepage rather than display the dummy index.pdf
-    console.log("title2 ", title);
-    window.parent.location.href = '/index.html'
-  } else {
-    window.parent.history.pushState({ path: pdfUrl }, title, pdfUrl);
-  }
-
-  // Optionally update the document title
-  // document.title = title;
-
-  updateCanonicalLink(pdfUrl);
+  // The iframe updates automatically via target="pdf", so we just need to update the URL
+  setPageURL(pdfUrl, title);
 }
 
+function setPageURL(pdfUrl, title) {
+  var baseUrl = '/index.html';
+  var newUrl;
 
-function updateCanonicalLink(pdfUrl) {
-  // updates the parent page canonical URL to the current page.  This helps google indexing.
+  if (title === "HOME") {
+    // For HOME, reload the base page
+    newUrl = baseUrl;
+    window.parent.location.href = newUrl; // Full reload
+  } else {
+    // Use a URL parameter 'page' instead of 'pdf'
+    // newUrl = `${baseUrl}?page=${encodeURIComponent(pdfUrl)}`;
+    newUrl = `${baseUrl}?page=${pdfUrl}`; // No encoding
+    window.parent.history.pushState({ path: newUrl }, title, newUrl);
+  }
 
+  // Update canonical link for SEO
+  updateCanonicalLink(newUrl);
+}
+
+function updateCanonicalLink(url) {
   var parentDocument = window.parent.document;
   var existingLink = parentDocument.querySelector("link[rel='canonical']");
 
   if (existingLink) {
-      existingLink.setAttribute('href', pdfUrl);
+    existingLink.setAttribute('href', url);
   } else {
-      var newLink = parentDocument.createElement('link');
-      newLink.setAttribute('rel', 'canonical');
-      newLink.setAttribute('href', pdfUrl);
-      parentDocument.head.appendChild(newLink);
+    var newLink = parentDocument.createElement('link');
+    newLink.setAttribute('rel', 'canonical');
+    newLink.setAttribute('href', url);
+    parentDocument.head.appendChild(newLink);
   }
 }
+
+// Load PDF from URL parameter on page load
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  const pdf = params.get('pdf');
+  if (pdf && document.getElementsByName('pdf')[0]) {
+    // Set the iframe src to the PDF from the URL parameter
+    document.getElementsByName('pdf')[0].src = pdf;
+    // Highlight the corresponding menu item
+    const links = document.getElementsByTagName('a');
+    for (let link of links) {
+      if (link.getAttribute('href') === pdf) {
+        if (sBefore && sBefore !== link.id) document.all(sBefore).style.fontWeight = "normal";
+        document.all(link.id).style.fontWeight = "bold";
+        sBefore = link.id;
+        break;
+      }
+    }
+  }
+};
   
   function ViewTree(id,n) {
     if(document.getElementById(id)){

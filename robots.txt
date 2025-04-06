@@ -7,3 +7,4 @@ Disallow: /*.xsd$
 Disallow: /*.xslt$
 Disallow: /xml/
 Disallow: /components/
+Disallow: /pdf/  # Block all PDFs in the /pdf/ directory
