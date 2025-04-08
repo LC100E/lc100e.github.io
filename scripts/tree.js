@@ -150,22 +150,19 @@ function linkclick(psObj) {
   setPageURL(pdfUrl, title);
 }
 
-function setPageURL(pdfUrl, title) {
+function setPageURL(page, subhtml, title) {
   var baseUrl = '/index.html';
   var newUrl;
 
   if (title === "HOME") {
-    // For HOME, reload the base page
     newUrl = baseUrl;
-    window.parent.location.href = newUrl; // Full reload
+    window.parent.location.href = newUrl;
   } else {
-    // Use a URL parameter 'page' instead of 'pdf'
-    // newUrl = `${baseUrl}?page=${encodeURIComponent(pdfUrl)}`;
-    newUrl = `${baseUrl}?page=${pdfUrl}`; // No encoding
+    // Encode the page parameter to handle nested query strings
+    newUrl = `${baseUrl}?page=${encodeURIComponent(page)}` + (subhtml ? `&subhtml=${encodeURIComponent(subhtml)}` : '');
     window.parent.history.pushState({ path: newUrl }, title, newUrl);
   }
 
-  // Update canonical link for SEO
   updateCanonicalLink(newUrl);
 }
 
