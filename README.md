@@ -1,3 +1,10 @@
+## License
+
+This repository is **not open source** and is provided for reference purposes only.
+
+All rights reserved © 2025 Chris Cullin.
+
+You may not reuse, copy, modify, or distribute any part of this code without prior written permission.
 
 ## LAND CRUISER STATION WAGON
 #### CD Factory Maintenance Manual (SC0020E)
