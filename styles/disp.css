@@ -100,3 +100,38 @@ font.wait{
   font-family:Arial;
   font-size: large;
 }
+
+#openPdfInNewTabButton {
+  /* Basic Button Styling */
+  display: inline-block; /* Allows padding, margin, width/height */
+  padding: 3, 6, 3, 6px; /* Adjust padding as needed for button size */
+  border: none; /* No default border */
+  border-radius: 4px; /* Slight rounding for a "raised" look */
+  cursor: pointer; /* Indicates clickable element */
+  text-align: center;
+  text-decoration: none; /* Remove underline if it were an <a> tag */
+  white-space: nowrap; /* Keep text on one line */
+
+  /* Font Styling */
+  font-family: Arial, sans-serif; /* Specified font */
+  font-size: 14px; /* Adjust as needed */
+  font-weight: normal;
+  text-transform: uppercase; /* All caps */
+
+  /* Colors */
+  background-color: rgb(180, 183, 185); /* Example background blue - adjust as desired */
+  color: #FFFFFF; /* White text */
+
+  /* Shadow to bottom right */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); /* Horizontal offset, Vertical offset, Blur, Color */
+
+  /* Transitions for smooth hover effects */
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+#openPdfInNewTabButton:hover {
+  color: #FFFF00; /* Yellow text on hover */
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5); /* Slightly larger/darker shadow on hover */
+  transform: translate(-1px, -1px); /* Slight lift effect on hover (moves away from shadow) */
+}
+
