@@ -154,6 +154,9 @@ function setPageURL(page, subhtml, title) {
   var baseUrl = '/index.html';
   var newUrl;
 
+  // update the iFrame src so it can be referenced elsewhere
+  window.top.document.getElementById('pdf').src = page; 
+  
   if (title === "HOME") {
     newUrl = baseUrl;
     window.parent.location.href = newUrl;
