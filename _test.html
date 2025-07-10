@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History API Debugger - Iframe PDF (Strategy v6)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f0f4f8;
+    }
+
+    .container {
+      display: flex;
+      flex-grow: 1;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .sidebar {
+      flex: 0 0 200px;
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .content {
+      flex-grow: 1;
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      /* Ensure iframe fits */
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #3b82f6;
+      /* blue-500 */
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #2563eb;
+      /* blue-600 */
+    }
+
+    .btn-secondary {
+      background-color: #6b7280;
+      /* gray-500 */
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #4b5563;
+      /* gray-600 */
+    }
+
+    .log-area {
+      background-color: #1f2937;
+      /* gray-800 */
+      color: #e5e7eb;
+      /* gray-200 */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem;
+      font-family: 'monospace';
+      font-size: 0.875rem;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2 class="text-lg font-bold mb-2">Menu</h2>
+      <!-- ORIGINAL PDF URLs as provided by user -->
+      <a href="#" class="item-link text-blue-600 hover:underline" data-pdf-url="/pdf/ncf/ncf147e/m_in_0002.pdf" data-title="0002.pdf PDF 1">0002 Sample PDF 1</a>
+      <a href="#" class="item-link text-blue-600 hover:underline" data-pdf-url="/pdf/ncf/ncf147e/m_in_0004.pdf" data-title="0004.pdf PDF 2">0004 Dummy PDF 2</a>
+      <a href="#" class="item-link text-blue-600 hover:underline" data-pdf-url="pdf/ncf/ncf147e/m_in_0005.pdf" data-title="0005.pdf PDF 3">0005 Test PDF 3</a>
+      <a href="#" class="item-link text-blue-600 hover:underline" data-pdf-url="/pdf/ncf/ncf147e/m_mo_0008.pdf" data-title="0008.pdf PDF 4">0008 Sample PDF 4</a>
+      <a href="#" class="item-link text-blue-600 hover:underline" data-pdf-url="/pdf/ncf/ncf147e/m_mo_0010.pdf" data-title="0010.pdf PDF 5">0010 Sample PDF 5</a>
+
+      <div class="btn-group mt-4">
+        <button id="backBtn" class="btn-secondary">Back</button>
+        <button id="forwardBtn" class="btn-secondary">Forward</button>
+      </div>
+      <button id="clearLogsBtn" class="btn-secondary mt-2">Clear Logs</button>
+    </div>
+    <div class="content">
+      <h1 id="pageTitle" class="text-xl font-bold p-4">Home Page</h1>
+      <iframe id="pdfViewerIframe"></iframe>
+    </div>
+  </div>
+
+  <div class="log-area" id="logOutput">
+    <pre id="logPre"></pre>
+  </div>
+
+  <script>
+    const pdfViewerIframe = document.getElementById('pdfViewerIframe');
+    const pageTitleElement = document.getElementById('pageTitle');
+    const logPre = document.getElementById('logPre');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    const clearLogsBtn = document.getElementById('clearLogsBtn');
+
+    // --- Debugging Log Function ---
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEntry = document.createElement('div');
+      logEntry.textContent = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+      if (type === 'warn') logEntry.style.color = '#fbbf24'; // amber-400
+      if (type === 'error') logEntry.style.color = '#ef4444'; // red-500
+      if (type === 'popstate') logEntry.style.color = '#60a5fa'; // blue-400
+      if (type === 'iframe-load') logEntry.style.color = '#34d399'; // emerald-400
+      if (type === 'strategy-v6') logEntry.style.color = '#8b5cf6'; // violet-500 (New strategy color)
+      logPre.appendChild(logEntry);
+      logPre.scrollTop = logPre.scrollHeight; // Auto-scroll to bottom
+      console.log(message); // Also log to browser console
+    }
+
+    // --- Global Menu Data (Simulated) ---
+    // This MUST match the data-pdf-url attributes in the HTML
+    // URLs are now hash fragments for local testing
+    const menuJsonData = {
+      children: [
+        { page: 'home', title: 'Home Page', pdfUrl: 'about:blank', url: '' }, // Empty string for home URL (no hash)
+        { page: '0002-sample-pdf-1', title: '0002 Sample PDF 1', pdfUrl: '/pdf/ncf/ncf147e/m_in_0002.pdf', url: '#0002-sample-pdf-1' },
+        { page: '0004-dummy-pdf-2', title: '0004 Dummy PDF 2', pdfUrl: '/pdf/ncf/ncf147e/m_in_0004.pdf', url: '#0004-dummy-pdf-2' },
+        { page: '0005-test-pdf-3', title: '0005 Test PDF 3', pdfUrl: 'pdf/ncf/ncf147e/m_in_0005.pdf', url: '#0005-test-pdf-3' },
+        { page: '0008-sample-pdf-4', title: '0008 Sample PDF 4', pdfUrl: '/pdf/ncf/ncf147e/m_mo_0008.pdf', url: '#0008-sample-pdf-4' },
+        { page: '0010-sample-pdf-5', title: '0010 Sample PDF 5', pdfUrl: '/pdf/ncf/ncf147e/m_mo_0010.pdf', url: '#0010-sample-pdf-5' }
+      ]
+    };
+    log('Menu JSON Data:', JSON.stringify(menuJsonData));
+
+    // --- Utility to find node by URL or PDF URL ---
+    // Now explicitly compares based on the hash part of the URL
+    function findNodeByUrl(nodes, targetHash) {
+      if (!nodes || !Array.isArray(nodes)) return null;
+      // Ensure targetHash starts with '#' or is an empty string for home
+      const normalizedTargetHash = targetHash.startsWith('#') ? targetHash : (targetHash === '' ? '' : `#${targetHash}`);
+
+      for (const node of nodes) {
+        const nodeHash = node.url; // node.url is already a hash fragment in menuJsonData
+        if (nodeHash === normalizedTargetHash) {
+          return node;
+        }
+        if (node.children && node.children.length > 0) {
+          const foundChild = findNodeByUrl(node.children, targetHash); // Pass original targetHash
+          if (foundChild) return foundChild;
+        }
+      }
+      return null;
+    }
+
+    // Normalizes PDF URLs for consistent comparison
+    function findNodeByPdfUrl(nodes, targetPdfUrl) {
+      if (!nodes || !Array.isArray(nodes)) return null;
+      const resolvedTargetPdfUrl = new URL(targetPdfUrl, window.location.href);
+      const normalizedTargetPdf = resolvedTargetPdfUrl.pathname + resolvedTargetPdfUrl.search;
+
+      for (const node of nodes) {
+        if (node.pdfUrl) {
+          const resolvedNodePdfUrl = new URL(node.pdfUrl, window.location.href);
+          const normalizedNodePdf = resolvedNodePdfUrl.pathname + resolvedNodePdfUrl.search;
+
+          if (normalizedNodePdf === normalizedTargetPdf) {
+            return node;
+          }
+        }
+        if (node.children && node.children.length > 0) {
+          const foundChild = findNodeByPdfUrl(node.children, targetPdfUrl);
+          if (foundChild) return foundChild;
+        }
+      }
+      return null;
+    }
+
+    // --- Initial Page Load Handling ---
+    function handleInitialLoad() {
+      log(`Initial page load. Current URL: ${window.location.href}`, 'info');
+      log(`Initial history.length: ${window.history.length}`, 'info');
+
+      const currentHash = window.location.hash; // Get current hash directly (e.g., "#sample-pdf-1" or "")
+      let initialMenuItem = null;
+      if (currentHash) {
+        initialMenuItem = findNodeByUrl(menuJsonData.children, currentHash);
+      }
+      if (!initialMenuItem) {
+        initialMenuItem = menuJsonData.children.find(item => item.page === 'home');
+        if (!initialMenuItem) {
+          initialMenuItem = { page: 'default', title: 'Home Page', pdfUrl: 'about:blank', url: '' }; // Default home with empty hash
+        }
+      }
+
+      // Set initial state using replaceState. This ensures the initial URL matches the loaded content.
+      // This is the only history manipulation on initial load.
+      // window.history.replaceState(initialMenuItem, initialMenuItem.title, initialMenuItem.url);
+      // log(`Replaced initial history state. New history.length: ${window.history.length}`, 'strategy-v6');
+
+      pageTitleElement.textContent = initialMenuItem.title;
+      pdfViewerIframe.src = initialMenuItem.pdfUrl;
+      log(`Initial iframe src set to: ${initialMenuItem.pdfUrl}`, 'strategy-v6');
+    }
+
+    // --- Link Click Handler (Strategy v6) ---
+    function handleLinkClick(event) {
+      event.preventDefault(); // Prevent default link behavior
+      const link = event.currentTarget;
+      const pdfUrl = link.dataset.pdfUrl;
+      const title = link.dataset.title;
+      // Generate vanitySlug from the link's text content to match menuJsonData url format
+      const vanitySlug = link.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-*|-*$/g, '');
+      log(`Link clicked: ${title} with vanity slug: ${vanitySlug}`, 'info');
+
+      // Find the menu item based on the desired hash for the URL
+      const clickedMenuItem = findNodeByUrl(menuJsonData.children, `#${vanitySlug}`);
+
+      if (clickedMenuItem) {
+        log('history.length before any changes: ' + window.history.length, 'strategy-v6');
+
+        // ONLY set iframe src and page title immediately.
+        // History manipulation is now solely within iframe.onload.
+        pdfViewerIframe.src = pdfUrl;
+        pageTitleElement.textContent = title;
+        log(`Iframe src set to: ${pdfUrl}`, 'info');
+        log(`History manipulation delegated to iframe.onload.`, 'strategy-v6');
+
+      } else {
+        log(`Error: Could not find menu item for vanity slug: ${vanitySlug}`, 'error');
+      }
+    }
+
+    // --- Iframe Load Listener (THE PRIMARY ROUTER - Strategy v6) ---
+    pdfViewerIframe.addEventListener('load', () => {
+      log(`--- Iframe LOADED ---`, 'iframe-load');
+      log(`Current URL: ${window.location.href} `, 'iframe-load');
+      log(`Current history.length: ${window.history.length} `, 'iframe-load');
+      log('history.state: ' + JSON.stringify(window.history.state), 'iframe-load');
+
+      // CRITICAL: Get the *actual* loaded PDF URL from inside the iframe's content
+      let actualLoadedPdfUrl = '';
+      try {
+        // Attempt to access contentWindow.location.href first (most direct for iframes)
+        if (pdfViewerIframe.contentWindow && pdfViewerIframe.contentWindow.location.href) {
+          actualLoadedPdfUrl = pdfViewerIframe.contentWindow.location.href;
+          log(`Iframe content loaded from contentWindow.location.href: ${actualLoadedPdfUrl}`, 'iframe-load');
+        } else {
+          // Fallback: Check for embed/object tags within the iframe's document
+          const embedElement = pdfViewerIframe.contentDocument?.querySelector('embed, object');
+          if (embedElement && embedElement.src) {
+            actualLoadedPdfUrl = embedElement.src;
+            log(`Iframe content loaded from <embed/object> src: ${actualLoadedPdfUrl}`, 'iframe-load');
+          } else {
+            // Final fallback: Use the iframe's own src attribute
+            actualLoadedPdfUrl = pdfViewerIframe.src;
+            log(`Iframe content loaded from iframe.src (fallback): ${actualLoadedPdfUrl}`, 'iframe-load');
+          }
+        }
+      } catch (e) {
+        log(`Error accessing iframe content (cross-origin or timing issue): ${e.message}. Falling back to iframe.src.`, 'error');
+        actualLoadedPdfUrl = pdfViewerIframe.src;
+      }
+
+      const currentMenuItem = findNodeByPdfUrl(menuJsonData.children, actualLoadedPdfUrl);
+      log('currentMenuItem (from actual PDF src lookup): ' + JSON.stringify(currentMenuItem), 'iframe-load');
+
+      if (currentMenuItem) {
+        log(`Matching menu item found: ${currentMenuItem.title}`, 'iframe-load');
+
+        // Always push a new history entry with the correct semantic state and URL.
+        // This ensures that every distinct PDF load creates a unique, navigable history entry.
+        // The browser's implicit entry for the iframe load will be followed by our explicit push.
+        if (window.location.hash !== currentMenuItem.url) { // Only push if the URL will actually change
+          window.history.replaceState(currentMenuItem, currentMenuItem.title, currentMenuItem.url);
+          log(`Strategy v6: History.replaceState called. New URL: ${window.location.href}`, 'strategy-v6');
+          log(`History.length after replaceState: ${window.history.length}`, 'strategy-v6');
+        } else {
+          log(`Strategy v6: URL already matches. No replaceState needed.`, 'strategy-v6');
+        }
+
+        // Ensure page title is updated (important for popstate cases)
+        pageTitleElement.textContent = currentMenuItem.title;
+      } else {
+        log(`WARN: No matching menu item found for loaded PDF src: ${actualLoadedPdfUrl}. History not updated.`, 'warn');
+        pageTitleElement.textContent = `Unknown PDF Loaded`;
+        // If an unknown PDF is loaded, we might still want to push a unique URL to keep history distinct
+        // For example, a generic "unknown-pdf-timestamp" URL
+        const unknownPdfHash = `#unknown-pdf-${Date.now()}`;
+        // if (window.location.hash !== unknownPdfHash) {
+        //   window.history.pushState({ page: 'unknown', title: 'Unknown PDF', pdfUrl: actualLoadedPdfUrl, url: unknownPdfHash }, 'Unknown PDF', unknownPdfHash);
+        //   log(`Strategy v6: Pushed unknown PDF URL: ${unknownPdfHash}`, 'strategy-v6');
+        // }
+      }
+    });
+
+    // --- Popstate Listener (Strategy v6) ---
+    window.addEventListener('popstate', (event) => {
+      log(`--- POPSTATE FIRED !!! ---`, 'popstate');
+      log(`Event State: ${JSON.parse(JSON.stringify(event.state))}`, 'popstate');
+      log(`window.location.href: ${window.location.href}`, 'popstate');
+      log(`window.history.length: ${window.history.length}`, 'popstate');
+      log('do nothing in popstate');
+
+      // const state = event.state;
+      // // The state object should now always be one of our meaningful menu items
+      // if (state && state.url && state.pdfUrl) {
+      //   log(`POPSTATE: State valid. Navigating to: ${state.title || state.url}`, 'popstate');
+      //   // Set iframe src based on the state. This will trigger iframe.onload,
+      //   // which will then confirm the URL.
+      //   pdfViewerIframe.src = state.pdfUrl;
+      //   pageTitleElement.textContent = state.title || 'Unknown Page'; // Update title immediately
+      // } else {
+      //   log(`POPSTATE: State is null or malformed/unrecognized. Falling back to URL hash.`, 'warn');
+      //   const currentHash = window.location.hash; // Get current hash including '#'
+      //   const targetMenuItem = findNodeByUrl(menuJsonData.children, currentHash);
+      //   if (targetMenuItem) {
+      //     log(`POPSTATE: Found item via hash: ${targetMenuItem.title}`, 'popstate');
+      //     pdfViewerIframe.src = targetMenuItem.pdfUrl;
+      //     pageTitleElement.textContent = targetMenuItem.title;
+      //   } else {
+      //     // If popstate leads to an unrecognized hash (e.g., manually typed in),
+      //     // load about:blank and update title.
+      //     log(`POPSTATE: No semantic item found for hash: '${currentHash}'. Loading about:blank.`, 'error');
+      //     pageTitleElement.textContent = `Page: ${currentHash || 'Home'}`;
+      //     pdfViewerIframe.src = 'about:blank';
+      //   }
+      // }
+    });
+
+    // --- Event Listeners for Buttons and Links ---
+    document.querySelectorAll('.item-link').forEach(link => {
+      link.addEventListener('click', handleLinkClick);
+    });
+
+    backBtn.addEventListener('click', () => {
+      log(`--- Programmatic Back Button Click ---`, 'info');
+      history.back();
+    });
+
+    forwardBtn.addEventListener('click', () => {
+      log(`--- Programmatic Forward Button Click ---`, 'info');
+      history.forward();
+    });
+
+    clearLogsBtn.addEventListener('click', () => {
+      logPre.innerHTML = '';
+      log(`Logs cleared.`, 'info');
+    });
+
+    // --- Initialize on DOMContentLoaded ---
+    document.addEventListener('DOMContentLoaded', handleInitialLoad);
+  </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <pdf>
-	<item><title>HOME</title><url>/images/index.pdf</url></item>
+	<item><title>HOME</title><url>/components/home.html</url></item>
 	<menu>
 		<title>New Car Features</title><color>1</color>
 		<menu>

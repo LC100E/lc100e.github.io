@@ -4,10 +4,10 @@
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>Sub</TITLE>
 
-<link REL="STYLESHEET" HREF="/styles/main.css"/>
+<link REL="STYLESHEET" HREF="/styles/ewd.css" />
 
-<script src="/scripts/inner.js"></script>
-<script src="/scripts/lib.js"></script>
+<script src="/scripts/ewd_inner.js"></script>
+<script src="/scripts/ewd_lib.js"></script>
 
 <body style="background-color: #D4D0C8;">
 	<table border="0" width="100%">
@@ -20,7 +20,9 @@
 						<td>
 							<div id="prevBtn"><input type="button" name="prev_page" value=" &lt; " onclick="page(-1)"></div>
 						</td>
-						<td><div id="n_page">&nbsp;&nbsp;&nbsp;&nbsp;</div></td>
+						<td>
+							<div id="n_page">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+						</td>
 						<td>
 							<div id="nextBtn"><input type="button" name="next_page" value=" &gt; " onclick="page(1)"></div>
 						</td>
@@ -28,8 +30,9 @@
 				</table>
 			</td>
 			<td width="20%" align="right">
-					<div id="btn_Inner" style="visibility:hidden"><input type="button" name="inner" value="Inner Circuit" onclick="navigateToInner()"></div>
+				<div id="btn_Inner" style="visibility:hidden"><input type="button" name="inner" value="Inner Circuit" onclick="navigateToInner()"></div>
 			</td>
 	</table>
 </body>
+
 </HTML>
