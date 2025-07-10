@@ -5,6 +5,7 @@ This repository is **not open source** and is provided for reference purposes on
 All rights reserved © 2025 Chris Cullin.
 
 You may not reuse, copy, modify, or distribute any part of this code without prior written permission.
+This is Toyota property and I am lending it to you in the same way I would lend a physical copy.
 
 ## LAND CRUISER STATION WAGON
 #### CD Factory Maintenance Manual (SC0020E)
