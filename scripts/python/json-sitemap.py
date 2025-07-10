@@ -9,7 +9,7 @@ from urllib.parse import urljoin # For safely joining base URL with relative cle
 BASE_URL = "https://lc100e.github.io/"
 
 # Path to your generated menu_data.json file
-MENU_DATA_PATH = 'xml/menu_data.json'
+MENU_DATA_PATH = 'xml/index.json'
 # Output sitemap file name
 SITEMAP_OUTPUT_PATH = 'sitemap.xml'
 

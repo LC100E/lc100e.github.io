@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title id="pageTitle">LC100 Factory Service Manual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Crucial for responsive design -->
+  <link rel="canonical" href="https://lc100e.github.io/index.html" />
+
+  <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LC100 Factory Service Manual",
+        "url": "https://lc100e.github.io/",
+        "description": "Comprehensive service manuals for LC100 vehicles with 4875 PDF documents covering repair, maintenance, and features."
+    } 
+    </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156919145-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-156919145-1');
+  </script>
+
+  <meta name="description" content="Landcruiser 100 Series Factory Workshop Manual">
+  <link rel="stylesheet" href="/styles/index.css">
+  <link rel="stylesheet" href="/styles/menu.css">
+  <script src="/scripts/grid.js"></script>
+  <script src="/scripts/updatePageData.js"></script>
+  <script src="/scripts/loadPageFromUrl.js"></script>
+  <script src="/scripts/menu.js"></script>
+
+</head>
+
+<body>
+  <div id="app-wrapper"> <!-- Main container for the entire application -->
+
+    <header id="app-header">
+      <button id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+      <img id="app-header-image" src="/images/logo.gif">
+      <span id="app-header-title" class="footer">OVERSEAS CUSTOMER SERVICE TECHNICAL DIVISION</span>
+    </header>
+
+    <main id="main-content-area"> <!-- Flex or Grid container for sidebar and main viewer -->
+      <aside id="nav-sidebar">
+        <nav id="menu-tree-container">
+          <p id="menu-heading" onclick="collapseAllMenus()">LAND CRUISER STATION WAGON</p><br> <!-- was id=Ttree -->
+          <p id="menu-tree">Loading menu...</p> <!-- Placeholder for the main menu. was Ttree2 -->
+        </nav>
+
+        <!-- <div id="menu-search-container">
+          <h3>Search Manual</h3>
+          <input type="search" id="manual-search-input" placeholder="Enter keywords...">
+        </div> -->
+      </aside>
+
+      <div class="splitter"></div> <!-- draggable splitter for user resizing -->
+
+      <section id="pdf-viewer-section"> <!-- Main PDF viewer and related controls -->
+        <div id="dynamic-pdf-area">
+
+          <button id="open-pdf-new-tab">Open PDF in New Tab</button>
+
+          <!-- <div class="ewd-main-controls">
+              <button id="prev-page-btn" onclick="page(-1)"> &lt; Previous Page</button>
+              <span id="current-page">Page 1</span>
+              <button id="next-page-btn" onclick="page(1)">Next Page &gt;</button>
+              <button id="inner-circuit-btn" onclick="navigateToInner()">Inner Circuit</button>
+            </div>
+
+            <div class="ewd-overall-controls">
+              <button id="connector-btn" onclick="showConnectorList()">Connector</button>
+              <button id="routing-btn" onclick="showLocationList()">Relay / Routing</button>
+              <button id="print-btn" onclick="printPDF()">PRINT</button>
+            </div> -->
+
+          <h2 id="pdf-filename-heading"></h2> <!-- populate this with js base don current pdf document -->
+        </div>
+
+        <!-- The main PDF viewer iframe -->
+        <iframe id="pdf-viewer-iframe" name="pdf" src="" title="PDF Document Viewer"></iframe>
+      </section>
+
+    </main>
+
+    <!-- This div replaces frameopen.html for dynamic/overlay content, hidden by default -->
+    <div id="dynamic-overlay-content" style="display:none;">
+      <!-- Content for pop-ups, modals, or other temporary displays will be loaded here by JavaScript -->
+    </div>
+
+  </div>
+</body>
+
+</html>
