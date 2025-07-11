@@ -1,5 +1,6 @@
 User-agent: *
 
+Sitemap: https://lc100e.github.io/sitemap.xml
 Allow: /sitemap.xml
 
 # disallow file and folders
