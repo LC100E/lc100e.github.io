@@ -6,7 +6,7 @@ function enableUserGridResize() {
   // 2. ENABLE USER GRID RESIZE.
   const mainLayout = document.getElementById('main-content-area');
   const menuSidebar = document.getElementById('nav-sidebar');
-  const splitter = document.querySelector('.splitter');
+  const splitter = document.getElementById('splitter-bar');
 
   let isDragging = false;
   let initialMouseX; // Stores the mouse X position when drag starts

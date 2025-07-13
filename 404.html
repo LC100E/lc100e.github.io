@@ -41,7 +41,7 @@
   <div id="app-wrapper"> <!-- Main container for the entire application -->
 
     <header id="app-header">
-      <button id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+      <button id="mobile-menu-toggle" onclick="handleMobileMenuClick()" aria-label="Toggle Navigation Menu">☰</button>
       <img id="app-header-image" src="/images/logo.gif">
       <span id="app-header-title" class="footer">OVERSEAS CUSTOMER SERVICE TECHNICAL DIVISION</span>
     </header>
@@ -52,33 +52,13 @@
           <p id="menu-heading" onclick="collapseAllMenus()">LAND CRUISER STATION WAGON</p><br> <!-- was id=Ttree -->
           <p id="menu-tree">Loading menu...</p> <!-- Placeholder for the main menu. was Ttree2 -->
         </nav>
-
-        <!-- <div id="menu-search-container">
-          <h3>Search Manual</h3>
-          <input type="search" id="manual-search-input" placeholder="Enter keywords...">
-        </div> -->
       </aside>
 
-      <div class="splitter"></div> <!-- draggable splitter for user resizing -->
+      <div id="splitter-bar"></div> <!-- draggable splitter for user resizing -->
 
       <section id="pdf-viewer-section"> <!-- Main PDF viewer and related controls -->
         <div id="dynamic-pdf-area">
-
           <button id="open-pdf-new-tab">Open PDF in New Tab</button>
-
-          <!-- <div class="ewd-main-controls">
-              <button id="prev-page-btn" onclick="page(-1)"> &lt; Previous Page</button>
-              <span id="current-page">Page 1</span>
-              <button id="next-page-btn" onclick="page(1)">Next Page &gt;</button>
-              <button id="inner-circuit-btn" onclick="navigateToInner()">Inner Circuit</button>
-            </div>
-
-            <div class="ewd-overall-controls">
-              <button id="connector-btn" onclick="showConnectorList()">Connector</button>
-              <button id="routing-btn" onclick="showLocationList()">Relay / Routing</button>
-              <button id="print-btn" onclick="printPDF()">PRINT</button>
-            </div> -->
-
           <h2 id="pdf-filename-heading"></h2> <!-- populate this with js base don current pdf document -->
         </div>
 
