@@ -1,9 +1,3 @@
-// Dependencies that need to be globally accessible or imported:
-// - menuJsonData (will be passed to handleInitialPageLoad)
-// - linkClick(itemData)
-// - collapseAllMenus()
-// - ViewTree(nodeId)
-
 // Helper function to find a node by its vanity URL slug
 function findNodeByVanityUrl(nodes, vanitySlug) {
   for (const node of nodes) {

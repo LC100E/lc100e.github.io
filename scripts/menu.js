@@ -51,22 +51,32 @@ function ViewTree(nodeId) {
 function updateDynamicPdfArea(itemData) {
   const dynamicPdfArea = document.getElementById('dynamic-pdf-area');
   const openPdfNewTabButton = document.getElementById('open-pdf-new-tab');
-  const pdfFilenameHeadingTag = document.getElementById('pdf-filename-heading');
-  const fileOpened = itemData.iframesrc;
+  const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
+  const fileOpened = itemData.file;
+  const isMobileScreen = window.innerWidth <= 1024;
+  const fileOpenedIsPdf = fileOpened.endsWith('pdf');
 
-  if (openPdfNewTabButton && fileOpened.endsWith('.pdf')) {
-    openPdfNewTabButton.onclick = () => {
-      window.open(itemData.file, '_blank');
-    }
+  // Crucial: Clear any previous inline styles first for all elements
+  // This allows your CSS media queries to then take control.
+  if (dynamicPdfArea) dynamicPdfArea.style.display = '';
+  if (openPdfNewTabButton) openPdfNewTabButton.style.display = '';
+  if (pdfFilenameHeading) pdfFilenameHeading.style.display = '';
 
+  // Only show these elements if on a mobile screen AND a PDF is available
+  if (fileOpenedIsPdf) {
     dynamicPdfArea.style.display = 'flex';
-    openPdfNewTabButton.style.display = 'inline-block';
-    pdfFilenameHeadingTag.textContent = `PDF: ${itemData.file}`; // Display the filename in the heading
-    pdfFilenameHeadingTag.style.display = 'block';  
+    pdfFilenameHeading.style.display = 'inline-block';
+    pdfFilenameHeading.textContent = `PDF: ${itemData.file}`;
+    if (isMobileScreen) {
+      pdfFilenameHeading.style.display = 'none';
+      openPdfNewTabButton.style.display = 'inline-block';
+      openPdfNewTabButton.onclick = () => {
+        window.open(itemData.file, '_blank');
+      }
+    }
   } else {
     dynamicPdfArea.style.display = 'none';
-    openPdfNewTabButton.style.display = 'none';
-    pdfFilenameHeadingTag.style.display = 'none';
+    pdfFilenameHeading.style.display = 'none';
   }
 }
 
@@ -100,13 +110,17 @@ function linkClick(itemData) {
   }
   pdfViewerIframe.src = itemData.iframesrc; // Ensure this points to your iframe element
 
+
   // 2. remove previous menu highlight and add new highlight
   highlightMenuItem(itemData.id);
   
   // 3. update browser history, connical url and SEO data.
   updatePageData(itemData);
 
-  // 4. end Google Analytics pageview hit (desirable for both menu clicks and URL loads)
+  // 4. close sidebar menue if mobile
+  closeSidebarMenu();
+
+  // 5. end Google Analytics pageview hit (desirable for both menu clicks and URL loads)
   if (typeof gtag === 'function') {
     const newPath = `/${itemData.cleanurlslug}`; 
     gtag('event', 'page_view', {
@@ -286,16 +300,81 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("handlePageLoadFromUrl function not found. Ensure loadPageFromUrl.js is loaded.");
   }
 
-  // 3. ADD EVENT LISTENERS TO MENU ITEMS for grid resize
+  // 3. HANDLE INITIAL MOBILE MENU AND GRID STATE
+  handleInitialMobileMenuSetup();
+
+  // 4. ADD EVENT LISTENERS TO MENU ITEMS for grid resize
   enableUserGridResize();
 
-  // 4. ADD EVENT LISTENER FOR PDF VIEWER IFRAME
+  // 5. ADD EVENT LISTENER FOR PDF VIEWER IFRAME
   const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
   if (pdfViewerIframe) {
     pdfViewerIframe.onload = handlePdfViewerLoad;
   } else {
     console.error("No iframe with id 'pdf-viewer-iframe' found.");
   }
+
 });
 
+// GLOBALS FOR MOBILE MENU AND GRID SETUP
+const desktopBreakpoint = 1025; // Match your CSS @media (min-width)
 
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+
+  
+function handleInitialMobileMenuSetup() {
+  const isMobileView = window.innerWidth < desktopBreakpoint;
+  const mainContentArea = document.getElementById('main-content-area'); // Reference to the main grid container
+  const navSidebar = document.getElementById('nav-sidebar');
+  const appWrapper = document.getElementById('app-wrapper');
+
+  if (isMobileView) {
+      // On mobile view:
+      // Ensure desktop-specific class is removed
+      mainContentArea.classList.remove('sidebar-closed');
+      // Ensure mobile overlay is hidden by default (CSS handles this, but remove 'menu-open' if present)
+      navSidebar.classList.remove('menu-open');
+      appWrapper.classList.remove('mobile-menu-active'); // Remove global mobile overlay class
+  } else {
+      // On desktop view:
+      // Ensure mobile-specific overlay classes are removed
+      navSidebar.classList.remove('menu-open');
+      appWrapper.classList.remove('mobile-menu-active');
+      // Ensure desktop sidebar is open by default (add 'sidebar-closed' to toggle OFF)
+      // It starts open, so we DON'T add 'sidebar-closed' here initially.
+      // mainContentArea.classList.add('sidebar-open'); // You could use an 'open' class if preferred
+  }
+}
+
+function handleMobileMenuClick() {
+  console.log('Mobile menu toggled!');
+  const isMobileView = window.innerWidth < desktopBreakpoint;
+  const navSidebar = document.getElementById('nav-sidebar');
+  const appWrapper = document.getElementById('app-wrapper');
+  const mainContentArea = document.getElementById('main-content-area'); // Reference to the main grid container
+  
+
+  if (isMobileView) {
+    // Mobile behavior: Toggle the overlay class on nav-sidebar
+    navSidebar.classList.toggle('menu-open');
+    appWrapper.classList.toggle('mobile-menu-active'); // For global effects like overflow: hidden
+  } else {
+    // Desktop behavior: Toggle the 'sidebar-closed' class on the main grid container
+    mainContentArea.classList.toggle('sidebar-closed');
+  }
+}
+
+function closeSidebarMenu() {
+    const navSidebar = document.getElementById('nav-sidebar');
+    const appWrapper = document.getElementById('app-wrapper');
+    const desktopBreakpoint = 1025; // Ensure this matches your CSS breakpoint and other JS uses
+    const isMobileView = window.innerWidth < desktopBreakpoint;
+
+    // Only attempt to close if it's a mobile view AND the menu is currently open
+    if (isMobileView && navSidebar && navSidebar.classList.contains('menu-open')) {
+        navSidebar.classList.remove('menu-open');
+        appWrapper.classList.remove('mobile-menu-active');
+        console.log('Mobile menu closed due to item click.');
+    }
+}
