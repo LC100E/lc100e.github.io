@@ -4,6 +4,7 @@ Sitemap: https://lc100e.github.io/sitemap.xml
 Allow: /sitemap.xml
 
 # disallow file and folders
+Disallow: /*.pdf?
 Disallow: /*.xsd$
 Disallow: /*.xslt$
 Disallow: /xml/
