@@ -1,4 +1,4 @@
-jsonFile = 'xml/index.json';  
+jsonFile = '/xml/index.json';  
 
 
 
@@ -7,8 +7,8 @@ jsonFile = 'xml/index.json';
 // The indices (0 or 1) typically correspond to whether a node is the LAST_CHILD (0) or NOT_LAST_CHILD (1)
 // in its sibling list, influencing the connecting line image.
 const TREE_IMAGES = {
-  FOLDER_PLUS: "images/plas1.gif",      // Plus icon for collapsed folder
-  FOLDER_MINUS: "images/minas1.gif",     // Minus icon for expanded folder
+  FOLDER_PLUS: "/images/plas1.gif",      // Plus icon for collapsed folder
+  FOLDER_MINUS: "/images/minas1.gif",     // Minus icon for expanded folder
 };
 
 // Global object to store the state of menu toggles.
@@ -92,7 +92,7 @@ function highlightMenuItem(menuItemId) {
   if (newActiveLink) {
       newActiveLink.classList.add('active');
   } else {
-      console.log(`WARN: Could not find menu item DOM element for ID: "${menuItemId}" to set active state.`);
+      console.warn(`WARN: Could not find menu item DOM element for ID: "${menuItemId}" to set active state.`);
   }
 }
 
@@ -116,7 +116,7 @@ function linkClick(itemData) {
   // 3. update browser history, connical url and SEO data.
   updatePageData(itemData);
 
-  // 4. close sidebar menue if mobile
+  // 4. close sidebar menu if mobile
   closeSidebarMenu();
 
   // 5. end Google Analytics pageview hit (desirable for both menu clicks and URL loads)
@@ -347,7 +347,6 @@ function handleInitialMobileMenuSetup() {
 }
 
 function handleMobileMenuClick() {
-  console.log('Mobile menu toggled!');
   const isMobileView = window.innerWidth < desktopBreakpoint;
   const navSidebar = document.getElementById('nav-sidebar');
   const appWrapper = document.getElementById('app-wrapper');
@@ -374,6 +373,5 @@ function closeSidebarMenu() {
     if (isMobileView && navSidebar && navSidebar.classList.contains('menu-open')) {
         navSidebar.classList.remove('menu-open');
         appWrapper.classList.remove('mobile-menu-active');
-        console.log('Mobile menu closed due to item click.');
     }
 }

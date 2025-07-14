@@ -122,7 +122,7 @@ function handlePdfViewerLoad() {
             window.history.replaceState(currentMenuItem, currentMenuItem.title, currentMenuItem.cleanurlslug);
             updatePageData(currentMenuItem); // Update page data, Connical URL and SE data  with the current menu item
             expandMenuPath(currentMenuItem.id, menuJsonData.children);
-        } 
+        }
     } else {
         console.warn(`WARN: No matching menu item found for loaded PDF src: ${actualLoadedPdfUrl}. History not updated.`);
     }
@@ -141,7 +141,17 @@ async function handlePageLoadFromUrl(loadedMenuData) {
         expandMenuPath(targetNode.id, loadedMenuData);
     } else {
         console.warn(`No menu node found for vanity URL: "${vanitySlug}". Loading default content.`);
-        linkClick(menuJsonData.children[0], false); // Fallback to first item in menu
+        const defaultMenuItem = menuJsonData.children[0];
+        
+        // 1. SET URL TO ROOT (removes non-existant paths such as /manual/index.html)
+        const homepageSlug = '/'; // Ensure it's '/' if cleanurlslug is empty
+        // Only replace history state if the current URL is NOT already the homepage slug
+        if (window.location.pathname !== homepageSlug) {
+            window.history.replaceState(defaultMenuItem, defaultMenuItem.title, homepageSlug);
+        }
+        
+        // 2. LOAD THE HOME PAGE
+        linkClick(defaultMenuItem); // Fallback to first item in menu
     }
 }
 
