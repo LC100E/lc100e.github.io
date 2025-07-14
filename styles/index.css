@@ -117,6 +117,15 @@ body.resizing {
   left: 0; /* Slide into view */
 }
 
+#nav-sidebar #menu-heading {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#nav-sidebar .menu-title {
+  cursor: pointer;
+}
+
 /* -------------------- */
 /* App Wrapper when Mobile Menu is Active (Mobile Only) */
 /* Used to prevent body/main content scroll when mobile overlay menu is open */
@@ -217,7 +226,7 @@ button#open-pdf-new-tab {
   #main-content-area {
       display: grid;
       /* By default (when .sidebar-closed is NOT present), sidebar is open */
-      grid-template-columns: var(--desktop-sidebar-width) var(--splitter-width) 1fr; /* Sidebar, Splitter, Content */
+      grid-template-columns: var(--desktop-sidebar-width) var(--splitter-width) 1fr;
       grid-template-areas: "sidebar splitter content";
       height: calc(100vh - var(--header-height)); /* Adjust based on header's actual height */
       overflow: hidden; /* Keep overflow hidden for grid layout */
@@ -267,9 +276,9 @@ button#open-pdf-new-tab {
   }
 
   /* Hide splitter when sidebar is closed on desktop */
-  #main-content-area.sidebar-closed #splitter-bar {
-      display: none; /* Hide splitter when sidebar is collapsed */
-  }
+  /* #main-content-area.sidebar-closed #splitter-bar {
+      display: none;
+  } */
 
   /* -------------------- */
   /* PDF Viewer Section & Dynamic PDF Area on Desktop */

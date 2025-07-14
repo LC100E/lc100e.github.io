@@ -20,8 +20,13 @@ function enableUserGridResize() {
   splitter.addEventListener('mousedown', (e) => {
     isDragging = true; // Set flag to indicate dragging has started
     initialMouseX = e.clientX; // Record initial mouse X position
-    initialMenuWidth = menuSidebar.offsetWidth; // Record initial menu width
-    
+    mainLayout.style.transition = 'none'; // Temporarily disable transition
+
+    // Get initial width from CSS variable ---
+    const rootStyles = getComputedStyle(document.documentElement);
+    initialMenuWidth = parseFloat(rootStyles.getPropertyValue('--desktop-sidebar-width'));
+
+
     // Create and append a transparet overlay div to cover the PDF iFrame to allow mouse action
     overlayDiv = document.createElement('div');
     overlayDiv.classList.add('drag-overlay');
@@ -56,10 +61,8 @@ function enableUserGridResize() {
     newWidth = Math.max(MIN_MENU_WIDTH, newWidth); // Ensure width is not less than MIN_MENU_WIDTH
     newWidth = Math.min(maxAllowedWidth, newWidth); // Ensure width is not more than MAX_MENU_WIDTH_PERCENTAGE
 
-    // Update the grid-template-columns CSS property of the main-layout.
-    // This dynamically resizes the columns.
-    // 8px is the fixed width of the splitter, 1fr takes the rest.
-    mainLayout.style.gridTemplateColumns = `${newWidth}px 8px 1fr`;
+    // --- Update the CSS Custom Property ---
+    document.documentElement.style.setProperty('--desktop-sidebar-width', `${newWidth}px`);
   }
 
   // --- MOUSE UP event handler ---
