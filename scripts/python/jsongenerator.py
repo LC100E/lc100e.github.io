@@ -98,6 +98,9 @@ def generate_seo_attributes(item_title, parent_titles):
     if len(h1_text) > 150:
         h1_text = h1_text[:147] + "..." # Truncate and add ellipsis for very long paths
 
+    if (h1_text == "HOME"):
+        h1_text = "LC100 FACTORY SERVICE MANUAL"
+
     return {
         "cleanurlslug": clean_url_slug,
         "fulltitle": full_title,

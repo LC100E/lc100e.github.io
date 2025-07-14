@@ -64,23 +64,18 @@ function updateDynamicPdfArea(itemData) {
   if (pdfFilenameHeading) pdfFilenameHeading.style.display = '';
   if (pdfSeoHeading) pdfSeoHeading.style.display = '';
 
-  // Only show these elements if on a mobile screen AND a PDF is available
-  if (fileOpenedIsPdf) {
-    dynamicPdfArea.style.display = 'flex';
+  dynamicPdfArea.style.display = 'flex';
+  pdfFilenameHeading.style.display = 'none';
+  pdfFilenameHeading.textContent = `file: ${itemData.file}`;
+  pdfSeoHeading.style.display = 'inline-block';
+  pdfSeoHeading.textContent = `${itemData.h1_text}`;
+  
+  if (isMobileScreen) {
     pdfFilenameHeading.style.display = 'none';
-    pdfFilenameHeading.textContent = `file: ${itemData.file}`;
-    pdfSeoHeading.style.display = 'inline-block';
-    pdfSeoHeading.textContent = `${itemData.h1_text}`;
-    if (isMobileScreen) {
-      pdfFilenameHeading.style.display = 'none';
-      openPdfNewTabButton.style.display = 'inline-block';
-      openPdfNewTabButton.onclick = () => {
-        window.open(itemData.file, '_blank');
-      }
+    openPdfNewTabButton.style.display = 'inline-block';
+    openPdfNewTabButton.onclick = () => {
+      window.open(itemData.file, '_blank');
     }
-  } else {
-    dynamicPdfArea.style.display = 'none';
-    pdfFilenameHeading.style.display = 'none';
   }
 }
 
