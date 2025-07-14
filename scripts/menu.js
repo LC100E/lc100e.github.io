@@ -52,6 +52,7 @@ function updateDynamicPdfArea(itemData) {
   const dynamicPdfArea = document.getElementById('dynamic-pdf-area');
   const openPdfNewTabButton = document.getElementById('open-pdf-new-tab');
   const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
+  const pdfSeoHeading = document.getElementById('pdf-seo-heading');
   const fileOpened = itemData.file;
   const isMobileScreen = window.innerWidth <= 1024;
   const fileOpenedIsPdf = fileOpened.endsWith('pdf');
@@ -61,12 +62,15 @@ function updateDynamicPdfArea(itemData) {
   if (dynamicPdfArea) dynamicPdfArea.style.display = '';
   if (openPdfNewTabButton) openPdfNewTabButton.style.display = '';
   if (pdfFilenameHeading) pdfFilenameHeading.style.display = '';
+  if (pdfSeoHeading) pdfSeoHeading.style.display = '';
 
   // Only show these elements if on a mobile screen AND a PDF is available
   if (fileOpenedIsPdf) {
     dynamicPdfArea.style.display = 'flex';
-    pdfFilenameHeading.style.display = 'inline-block';
-    pdfFilenameHeading.textContent = `PDF: ${itemData.file}`;
+    pdfFilenameHeading.style.display = 'none';
+    pdfFilenameHeading.textContent = `file: ${itemData.file}`;
+    pdfSeoHeading.style.display = 'inline-block';
+    pdfSeoHeading.textContent = `${itemData.h1_text}`;
     if (isMobileScreen) {
       pdfFilenameHeading.style.display = 'none';
       openPdfNewTabButton.style.display = 'inline-block';

@@ -74,12 +74,37 @@ def generate_seo_attributes(item_title, parent_titles):
     description = f"Comprehensive information on {item_title} {context} for the LC100 service manual."
     if len(description) > 160:
         description = description[:157] + "..."
+
+    # 4. Generate H1 title for SEO
+    h1_parts = []
     
+    if parent_titles: # Check if there are any menu parents for this item
+        if len(parent_titles) >= 2:
+            # If there are at least two parent levels (immediate and higher)
+            # parent_titles is ordered [immediate_parent, grandparent, ...]
+            h1_parts.append(parent_titles[-1]) # This is the highest-level menu parent (e.g., "New Car Features")
+            h1_parts.append(parent_titles[0])  # This is the immediate parent (e.g., "INTRODUCTION" or "DESIGN")
+        elif len(parent_titles) == 1:
+            # If there's only one menu parent, it serves as both 'top' and 'immediate'
+            h1_parts.append(parent_titles[0]) # The single parent (e.g., "ABBREVIATIONS" if direct child of root)
+        # If parent_titles is empty (item is a direct child of the <pdf> root, like "HOME"),
+        # then no parent context is added to h1_parts for the H1, matching "HOME" example.
+
+    h1_parts.append(item_title) # Always add the item's own title at the end
+
+    h1_text = " / ".join(filter(None, h1_parts))
+    
+    # Ensure h1_text is not excessively long, as per Bing's advice (~150 chars)
+    if len(h1_text) > 150:
+        h1_text = h1_text[:147] + "..." # Truncate and add ellipsis for very long paths
+
     return {
         "cleanurlslug": clean_url_slug,
         "fulltitle": full_title,
         "description": description,
+        "h1_text": h1_text, # Add the new H1 text field
     }
+    
 
 def build_nested_json(element, parent_titles=None):
     """
