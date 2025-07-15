@@ -72,9 +72,11 @@ function updateDynamicPdfArea(itemData) {
   
   if (isMobileScreen) {
     pdfFilenameHeading.style.display = 'none';
-    openPdfNewTabButton.style.display = 'inline-block';
-    openPdfNewTabButton.onclick = () => {
-      window.open(itemData.file, '_blank');
+    if (fileOpenedIsPdf) {
+      openPdfNewTabButton.style.display = 'inline-block';
+      openPdfNewTabButton.onclick = () => {
+        window.open(itemData.file, '_blank');
+      }
     }
   }
 }
