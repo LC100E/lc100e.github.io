@@ -19,7 +19,7 @@ ul, ol {
 .tree-menu-container {
   font-family: Arial, sans-serif; /* Add a generic family for better fallback */
   font-size: 1rem; /* Example: If html font-size is 16px, this will be 16px. */
-  line-height: 1.5; /* Spacing between lines */
+  line-height: 1.1; /* Spacing between lines */
 }
 
 /* --- All Tree Nodes (<li>) --- */

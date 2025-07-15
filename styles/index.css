@@ -11,7 +11,7 @@ html, body {
   height: 100%;
   font-family: Arial, sans-serif;
   overflow: hidden; /* Control scrolling at the app-wrapper level */
-  font-size: 16px; /* Base font size for 1rem = 16px */
+  font-size: 14px; /* Base font size for 1rem = 14px */
 }
 
 body.resizing {
@@ -119,10 +119,6 @@ body.resizing {
 
 #nav-sidebar #menu-heading {
   font-weight: bold;
-  cursor: pointer;
-}
-
-#nav-sidebar .menu-title {
   cursor: pointer;
 }
 
@@ -276,10 +272,6 @@ button#open-pdf-new-tab {
     display: block; /* Make it visible on desktop */
   }
 
-  /* Hide splitter when sidebar is closed on desktop */
-  /* #main-content-area.sidebar-closed #splitter-bar {
-      display: none;
-  } */
 
   /* -------------------- */
   /* PDF Viewer Section & Dynamic PDF Area on Desktop */
