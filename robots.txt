@@ -4,8 +4,8 @@ Sitemap: https://lc100e.github.io/sitemap.xml
 Allow: /sitemap.xml
 
 # disallow file and folders
-Disallow: /*.pdf?
-Disallow: /*.xsd$
-Disallow: /*.xslt$
-Disallow: /xml/
-Disallow: /components/
+Disallow: /scripts/python/
+Disallow: /*_*.*$     # More general: blocks any file starting with _ after a /
+# Disallow: /xml/
+# Disallow: /components/
+
