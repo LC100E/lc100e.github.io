@@ -1,6 +1,8 @@
-jsonFile = '/xml/index.json';  
-
-
+// --- Global Data for Menu items and clean url slugs ---
+jsonFile = '/xml/index.json';
+let slugToItemMap = new Map(); // a flat key value pair to quickly look up data using the cleanurlslug as key
+let iFrameSrcToItemMap = new Map(); // a flat key value pair to quickly look up data using the cleanurlslug as key
+let menuJsonData = null;       // menu hiearchy use to tree expansions and like functions
 
 // --- Global Variables and Image Paths (Adjust these paths as needed) ---
 // These arrays store paths to the different tree line and icon images.
@@ -14,6 +16,10 @@ const TREE_IMAGES = {
 // Global object to store the state of menu toggles.
 // Key: node ID, Value: true (expanded) or false (collapsed)
 const menuToggleState = {};
+const desktopBreakpoint = 1025; // Match your CSS @media (min-width)
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+
 
 /**
  * Handles the click event for expanding/collapsing a menu node.
@@ -48,7 +54,8 @@ function ViewTree(nodeId) {
   }
 }
 
-function updateDynamicPdfArea(itemData) {
+function updateDynamicPdfArea(slug) {
+  const itemData = slugToItemMap.get(slug);
   const dynamicPdfArea = document.getElementById('dynamic-pdf-area');
   const openPdfNewTabButton = document.getElementById('open-pdf-new-tab');
   const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
@@ -82,6 +89,7 @@ function updateDynamicPdfArea(itemData) {
 }
 
 function highlightMenuItem(menuItemId) {
+  console.debug('highlight menu id: ', menuItemId);
   // first remove any current active states
   const currentActiveLinkInDOM = document.querySelector('.item-link.active');
   if (currentActiveLinkInDOM) {
@@ -102,7 +110,8 @@ function highlightMenuItem(menuItemId) {
  * Handles the click event for an item link (PDF).
  * @param {object} itemData - The full JSON object for the clicked item.
  */
-function linkClick(itemData) {
+function linkClick(slug) {
+  const itemData = slugToItemMap.get(slug);
   // 1. display the clicked menu item
   const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
   if (!pdfViewerIframe) {
@@ -116,7 +125,8 @@ function linkClick(itemData) {
   highlightMenuItem(itemData.id);
   
   // 3. update browser history, connical url and SEO data.
-  updatePageData(itemData);
+  updatePageData(slug);
+  expandMenuPath(itemData.id);
 
   // 4. close sidebar menu if mobile
   closeSidebarMenu();
@@ -262,41 +272,78 @@ function collapseAllMenus() {
 
 }
 
+async function loadJsonData() {
+  const response = await fetch(jsonFile);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status} when fetching ${jsonFile}`);
+  }
+  menuJsonData = await response.json(); // Assigns the root object (e.g., {type: 'root', children: [...]})
+    
+  // Clear map in case of re-loading (though usually not an issue on initial DOMContentLoaded)
+  slugToItemMap = new Map();
+  iFrameSrcToItemMap = new Map();
+
+  // --- RECURSIVE FUNCTION TO POPULATE THE SLUG MAP ---
+  // This will traverse the entire menu tree, regardless of nesting depth
+  function populateSlugMapRecursively(node) {
+      if (node.cleanurlslug) {
+        slugToItemMap.set(node.cleanurlslug, node);
+      }
+    
+      if (node.iframesrc) {
+        iFrameSrcToItemMap.set(node.iframesrc, node);  
+      }
+    
+      if (node.children && Array.isArray(node.children)) {
+          for (const child of node.children) {
+              populateSlugMapRecursively(child); // Recursively call for children
+          }
+      }
+  }
+  // Start populating the map from the root of your menu data
+  populateSlugMapRecursively(menuJsonData); 
+  // --- END RECURSIVE POPULATION ---
+
+  console.log(`Slug lookup map created with ${slugToItemMap.size} items.`);
+}
+
+
+// asynchronous function to fetch and inject menu.html
+async function loadMenuHtml() {
+  const menuContainer = document.getElementById('menu-tree');
+  if (!menuContainer) {
+    throw new Error("Menu container element with ID 'menu-tree' not found in the DOM. Cannot inject menu HTML.");
+  }
+
+  const response = await fetch('/menu.html');
+  if (!response.ok) {
+    throw new Error(`Failed to load menu.html: HTTP status ${response.status}`);
+  }
+
+  const menuHtml = await response.text();
+  menuContainer.innerHTML = menuHtml;
+  console.log("menu.html successfully loaded and injected.");
+}
 
 
 // generate and insert the menu once the page loads
 document.addEventListener('DOMContentLoaded', async () => {
 
-  // 1. LOAD THE MENU
+  // 1. Build menu data map and LOAD THE MENU
   try {
-    // a. Get your JSON data (e.g., from a fetch request or a script tag)
-    const response = await fetch(jsonFile);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    window.menuJsonData = await response.json(); // Parse the JSON data and store in a global variable
-    menuJsonData = window.menuJsonData; // also store it in a local variable
-
-    // b. Call the function to generate the HTML
-    const generatedMenuHtml = buildMenuBranchHtml(menuJsonData);
-
-    // c. Insert the generated HTML into your page's DOM
-    const menuContainer = document.getElementById('menu-tree'); // Assuming you have an element with this ID
-    if (menuContainer) {
-      menuContainer.innerHTML = generatedMenuHtml;
-    } else {
-      console.error("Menu container element with ID 'menu-tree' not found.");
-    }
-
+    await loadJsonData(); // Populates global menuJsonData and slugToItemMap
+    await loadMenuHtml(); // Loads and injects menu.html
   } catch (err) {
-    console.error("Error loading or parsing menu data:", err);
-  };
+    console.error("Critical error during page initialization:", err);
+    document.body.innerHTML = "<p style='color: red; text-align: center; margin-top: 50px;'>Error loading page content. Please try again later.</p>";
+    return; // Stop further execution if critical setup fails
+  }
 
   // 2. HANDLE INITIAL PAGE LOAD FROM URL (AFTER MENU DATA IS READY) ---
   // Ensure loadPageFromUrl.js is loaded BEFORE this point in your HTML <script> tags.
   // Call the main function from loadPageFromUrl.js, passing the loaded data.
   if (typeof handlePageLoadFromUrl === 'function') {
-    await handlePageLoadFromUrl(menuJsonData.children); // Pass the data
+    await handlePageLoadFromUrl(); // Pass the data
   } else {
     console.error("handlePageLoadFromUrl function not found. Ensure loadPageFromUrl.js is loaded.");
   }
@@ -317,10 +364,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-// GLOBALS FOR MOBILE MENU AND GRID SETUP
-const desktopBreakpoint = 1025; // Match your CSS @media (min-width)
-
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 
 
   
