@@ -5,7 +5,8 @@ Allow: /sitemap.xml
 
 # disallow file and folders
 Disallow: /scripts/python/
-Disallow: /*_*.*$     # More general: blocks any file starting with _ after a /
-# Disallow: /xml/
-# Disallow: /components/
+
+# block any file startig with '_'
+Disallow: /*/_* 
+
 
