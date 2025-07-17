@@ -8,5 +8,6 @@ original/
 
 
 # ignore these files
+**/_*.*
 *.bak
 .DS_Store
