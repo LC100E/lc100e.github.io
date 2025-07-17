@@ -14,7 +14,7 @@ function findNodeByVanityUrl(nodes, vanitySlug) {
   return null;
 }
 
-function findNodeByPdfIframeSrc(nodes, targetHash) {
+function findNodeByPdfIframeSrc(targetHash, nodes = menuJsonData.children) {
     if (!nodes || !Array.isArray(nodes)) return null;
 
     for (const node of nodes) {
@@ -23,7 +23,7 @@ function findNodeByPdfIframeSrc(nodes, targetHash) {
         return node;
       }
       if (node.children && node.children.length > 0) {
-        const foundChild = findNodeByPdfIframeSrc(node.children, targetHash); // Pass original targetHash
+        const foundChild = findNodeByPdfIframeSrc(targetHash, node.children ); // Pass original targetHash
         if (foundChild) return foundChild;
       }
     }
@@ -31,13 +31,13 @@ function findNodeByPdfIframeSrc(nodes, targetHash) {
   }
 
 // Helper function to find a node and its parents for expansion
-function findNodeAndParents(nodes, targetId, parentNodes = []) {
+function findNodeAndParents(targetId, nodes = menuJsonData.children, parentNodes = []) {
   for (const node of nodes) {
       if (node.id == targetId) { // Use == for potential type coercion (string vs number)
           return { foundNode: node, parents: parentNodes };
       }
       if (node.children && node.children.length > 0) {
-          const result = findNodeAndParents(node.children, targetId, [...parentNodes, node]);
+          const result = findNodeAndParents(targetId, node.children, [...parentNodes, node]);
           if (result.foundNode) {
               return result;
           }
@@ -48,13 +48,8 @@ function findNodeAndParents(nodes, targetId, parentNodes = []) {
 
 // Function to expand the menu path to a given node ID
 // This function relies on global/accessible collapseAllMenus() and ViewTree()
-function expandMenuPath(targetNodeId, menuData) {
-    if (!menuData || menuData.length === 0) {
-        console.warn("menuData not loaded for expandMenuPath.");
-        return;
-    }
-
-    const { foundNode, parents } = findNodeAndParents(menuData, targetNodeId);
+function expandMenuPath(targetNodeId) {
+    const { foundNode, parents } = findNodeAndParents(targetNodeId);
     if (!foundNode) {
         console.warn(`Node with ID ${targetNodeId} not found for menu expansion.`);
         return;
@@ -90,27 +85,33 @@ function handlePdfViewerLoad() {
     // CRITICAL: Get the *actual* loaded PDF URL from inside the iframe's content
     let actualLoadedPdfUrl = '';
     try {
-        // Attempt to access contentWindow.location.href first (most direct for iframes)
+        // Attempt to access contentWindow.location.href for the iFrame
         if (pdfViewerIframe.contentWindow && pdfViewerIframe.contentWindow.location.href) {
             actualLoadedPdfUrl = pdfViewerIframe.contentWindow.location.href;
+            console.debug('obtained iFrame src from contentWindow.location.href');
         } else {
             // Fallback: Check for embed/object tags within the iframe's document
             const embedElement = pdfViewerIframe.contentDocument?.querySelector('embed, object');
             if (embedElement && embedElement.src) {
                 actualLoadedPdfUrl = embedElement.src;
+                console.debug('obtained iFrame src from embedd/object tags within iFrame');
             } else {
                 // Final fallback: Use the iframe's own src attribute
                 actualLoadedPdfUrl = pdfViewerIframe.src;
+                console.debug('obtained iFrame src from src attribute');
             }
         }
     } catch (e) {
         console.error(`Error accessing iframe content (cross-origin or timing issue): ${e.message}. Falling back to iframe.src.`, 'error');
         actualLoadedPdfUrl = pdfViewerIframe.src;
+        console.warn('fallback iFrame src using src attribute');
     }
   
     const urlObject = new URL(actualLoadedPdfUrl, window.location.href);
     const targetIframeHash = urlObject.pathname + urlObject.search;
-    currentMenuItem = findNodeByPdfIframeSrc(menuJsonData.children, targetIframeHash);
+    console.debug('searching for menu Item using iFrame src of: ', targetIframeHash);
+    // currentMenuItem = findNodeByPdfIframeSrc(targetIframeHash);
+    currentMenuItem = iFrameSrcToItemMap.get(targetIframeHash);
 
     if (currentMenuItem) {
   
@@ -118,10 +119,15 @@ function handlePdfViewerLoad() {
         // but does not change the URL, so we need to replace the URL manually
         // This ensures that every distinct PDF load creates a unique, navigable history entry.
         // The browser's implicit entry for the iframe load will be followed by our explicit push.
-        if (window.location.hash !== currentMenuItem.cleanurlslug) { // Only push if the URL will actually change
-            window.history.replaceState(currentMenuItem, currentMenuItem.title, currentMenuItem.cleanurlslug);
-            updatePageData(currentMenuItem); // Update page data, Connical URL and SE data  with the current menu item
-            expandMenuPath(currentMenuItem.id, menuJsonData.children);
+        let newUrlForState = '';
+       
+        newUrlForState =  window.location.origin + "/index.html?slug=" + currentMenuItem.cleanurlslug;
+        console.debug(`new url: ${newUrlForState}, pathname: ${window.location.pathname}, search: ${window.location.search}`);
+
+        if (window.location.search !== newUrlForState) { // Only push if the URL will actually change
+            window.history.replaceState(currentMenuItem, currentMenuItem.title, newUrlForState);
+            updatePageData(currentMenuItem.cleanurlslug); // Update page data, Connical URL and SE data  with the current menu item
+            expandMenuPath(currentMenuItem.id);
         }
     } else {
         console.warn(`WARN: No matching menu item found for loaded PDF src: ${actualLoadedPdfUrl}. History not updated.`);
@@ -129,29 +135,48 @@ function handlePdfViewerLoad() {
 }
   
 
-async function handlePageLoadFromUrl(loadedMenuData) {
-    const currentPathname = window.location.pathname;
-    const vanitySlug = currentPathname.substring(1)
-    const targetNode = findNodeByVanityUrl(loadedMenuData, vanitySlug);
+async function handlePageLoadFromUrl() {
+    // 1. Get the slug from the URL query parameter (e.g., yourpage.html?slug=example-item)
+    console.debug('window href: ', window.location.href);
+    const urlParams = new URLSearchParams(window.location.search);
+    const slugFromQuery = urlParams.get('slug'); // This will be the value of the 'slug' parameter
+    console.debug('urlParams: ', urlParams);
+    console.debug('slugFromQuery: ', slugFromQuery);
+        
+    let targetNode = null;
+    // Only attempt map lookup if a 'slug' query parameter exists and has a value
+    if (slugFromQuery) {
+        targetNode = slugToItemMap.get(slugFromQuery);
+    }
 
     if (targetNode) {
-        // Call the shared linkClick function to load content, update URL/title/description/canonical/GA
-        linkClick(targetNode);
+        // Node found based on the slug from the URL query parameter
         collapseAllMenus();
-        expandMenuPath(targetNode.id, loadedMenuData);
+        linkClick(targetNode.cleanurlslug);
     } else {
-        console.warn(`No menu node found for vanity URL: "${vanitySlug}". Loading default content.`);
-        const defaultMenuItem = menuJsonData.children[0];
+        // No valid slug found in query, or slug not found in map. Load default content.
+        console.warn(`No menu node found for slug "${slugFromQuery || 'none'}" from URL query. Loading default content.`);
+
+        // Assume the first item in the top-level children is the default home page
+        const defaultMenuItem = slugToItemMap.get("home");
+
+        // Construct the correct URL for the default item, using its cleanurlslug as a query parameter
+        // This ensures the URL in the address bar is clean if an invalid slug was present.
+        // const defaultSlug = defaultMenuItem.cleanurlslug;
+        const defaultSlugWithQuery = 'index.html?slug=' + defaultMenuItem.cleanurlslug;
+        console.debug('default Slug with Query: ', defaultSlugWithQuery);
+      
         
-        // 1. SET URL TO ROOT (removes non-existant paths such as /manual/index.html)
-        const homepageSlug = '/'; // Ensure it's '/' if cleanurlslug is empty
-        // Only replace history state if the current URL is NOT already the homepage slug
-        if (window.location.pathname !== homepageSlug) {
-            window.history.replaceState(defaultMenuItem, defaultMenuItem.title, homepageSlug);
+        // Update the URL in the address bar using replaceState for this initial fallback scenario.
+        // This prevents bad URLs from staying in the history on page load.
+        const currentFullUrl = window.location.pathname + window.location.search;
+        if (currentFullUrl !== defaultSlugWithQuery) {
+            window.history.replaceState(defaultMenuItem, defaultMenuItem.fulltitle, defaultSlugWithQuery);
         }
         
-        // 2. LOAD THE HOME PAGE
-        linkClick(defaultMenuItem); // Fallback to first item in menu
+        // Now, load the content for the default item.
+        collapseAllMenus();
+        linkClick(defaultMenuItem.cleanurlslug); 
     }
 }
 

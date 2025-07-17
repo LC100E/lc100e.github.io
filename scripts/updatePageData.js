@@ -1,14 +1,18 @@
-function updatePageData(menuItem) {
+function updatePageData(slug) {
+  const menuItem = slugToItemMap.get(slug);
+  console.debug('update page data for slug: ', slug);
 
-  updateDynamicPdfArea(menuItem);
-  updateCanonicalLink(menuItem.cleanurlslug);
+  updateDynamicPdfArea(slug);
+  updateCanonicalLink(slug);
   updatePageHeader(menuItem.fulltitle, menuItem.description);
 }
 
-function updateCanonicalLink(vanityUrl) {
+function updateCanonicalLink(slug) {
   var existingLink = document.querySelector("link[rel='canonical']");
   const baseDomain = window.location.origin; // e.g. https://lc100e.github.io
-  let absoluteCanonicalUrl = new URL(vanityUrl, baseDomain).href;
+  const pathWithSearch = 'index.html?slug=' + slug;
+  let absoluteCanonicalUrl = new URL(pathWithSearch, baseDomain).href;
+  console.debug('update to connical url: ', absoluteCanonicalUrl);
 
   if (existingLink) {
     existingLink.setAttribute('href', absoluteCanonicalUrl);
