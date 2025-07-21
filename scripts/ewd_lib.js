@@ -1,6 +1,13 @@
 var pageParam = -1;
 var arrayPage;
 
+function goToHomePage() {
+	// This will navigate the browser to your index.html page
+	window.top.location.href = "/index.html";
+}
+
+
+
 async function document_onload(){		
 	if( window.location.search != "" ){
 		pageParam = getParam(window.location.search, "page");
