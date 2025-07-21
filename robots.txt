@@ -9,4 +9,5 @@ Disallow: /scripts/python/
 # block any file startig with '_'
 Disallow: /*/_* 
 
-
+# block spam urls that have a query param (?) at the end of the url
+Disallow: /*.pdf?
