@@ -271,7 +271,7 @@ def _render_node_to_html(node, depth=0, is_last_sibling=False):
         # Add id="link-{node_id}" to the <a> tag
         # onclick uses single quotes for the attribute, and double quotes for the JS string literal.
         # This is safe because cleanurlslug_value is already sanitized and won't contain " or '.
-        html_parts.append(f'{indent}    <a id="link-{node_id}" onclick=\'linkClick("{cleanurlslug_value}"); return false;\' title="{node_title}" class="{item_link_classes}">')
+        html_parts.append(f'{indent}    <a id="link-{node_id}" href="/index.html?slug={cleanurlslug_value}" onclick=\'linkClick("{cleanurlslug_value}"); return false;\' title="{node_title}" class="{item_link_classes}">')
         html_parts.append(f'{indent}      {node_title}')
         html_parts.append(f'{indent}    </a>')
         html_parts.append(f'{indent}  </div>')

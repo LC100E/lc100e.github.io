@@ -120,12 +120,10 @@ function linkClick(slug) {
   }
   pdfViewerIframe.src = itemData.iframesrc; // Ensure this points to your iframe element
 
-
-  // 2. remove previous menu highlight and add new highlight
-  highlightMenuItem(itemData.id);
-  
-  // 3. update browser history, connical url and SEO data.
+  // 2. update browser history, connical url and SEO data.
   updatePageData(slug);
+
+  // 3. expand the menus to match content
   expandMenuPath(itemData.id);
 
   // 4. close sidebar menu if mobile
