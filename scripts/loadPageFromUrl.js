@@ -113,9 +113,10 @@ function handlePdfViewerLoad() {
         // but does not change the URL, so we need to replace the URL manually
         // This ensures that every distinct PDF load creates a unique, navigable history entry.
         // The browser's implicit entry for the iframe load will be followed by our explicit push.
-        let newUrlForState =  "?slug=" + currentMenuItem.cleanurlslug;
+        let newUrlForState =  "/index.html?slug=" + currentMenuItem.cleanurlslug;
+        let currentBrowserRelativeUrl = window.location.pathname + window.location.search;
         
-        if (window.location.search !== newUrlForState) { // Only push if the URL will actually change
+        if (currentBrowserRelativeUrl !== newUrlForState) { // Only push if the URL will actually change
             window.history.replaceState(currentMenuItem, currentMenuItem.title, newUrlForState);
         }
     } else {
