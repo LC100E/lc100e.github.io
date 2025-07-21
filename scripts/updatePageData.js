@@ -17,7 +17,7 @@ function updateCanonicalLink(slug) {
   if (existingLink) {
     existingLink.setAttribute('href', absoluteCanonicalUrl);
   } else {
-    var newLink = parentDocument.createElement('link');
+    var newLink = document.createElement('link');
     newLink.setAttribute('rel', 'canonical');
     newLink.setAttribute('href', absoluteCanonicalUrl);
     document.head.appendChild(newLink);
