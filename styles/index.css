@@ -1,0 +1,287 @@
+/* ========================================================= */
+/* --- GLOBAL / RESET STYLES ---                           */
+/* ========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Control scrolling at the app-wrapper level */
+  font-size: 14px; /* Base font size for 1rem = 14px */
+}
+
+body.resizing {
+  cursor: ew-resize !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+.footer {
+  color: red;
+  font-family: Arial;
+  font-size: x-small;
+  margin-left: auto;
+}
+
+/* Define CSS variables for easier management */
+:root {
+  --desktop-sidebar-width: 350px; /* Default open width for desktop sidebar */
+  --splitter-width: 8px; /* Width of the splitter bar */
+  --header-height: 58px; /* Approximate header height, adjust if needed */
+}
+
+/* ========================================================= */
+/* --- APP LAYOUT (MOBILE-FIRST) ---                       */
+/* These styles apply to mobile devices and smaller screens */
+/* ========================================================= */
+
+#app-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header auto, main content takes remaining */
+  height: 100%;
+  overflow: hidden; /* Prevents app-wrapper from showing scrollbars, child sections will scroll */
+}
+
+#app-header {
+  background-color: #BBC7CD;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* For positioning #mobile-menu-toggle */
+  min-height: var(--header-height); /* Ensure minimum height */
+}
+
+#app-header-image {
+  width: 170px;
+  height: 30px;
+}
+
+/* -------------------- */
+/* Mobile Menu Toggle Button (Always Visible) */
+/* -------------------- */
+#mobile-menu-toggle {
+  display: inline-block; /* Always visible */
+  background: none;
+  border: 1px solid black;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1001; /* Ensure it's above other content */
+}
+
+/* -------------------- */
+/* Main Content Area (Mobile: Flex Column) */
+/* -------------------- */
+#main-content-area {
+  display: flex;
+  flex-direction: column; /* Stacks sidebar and content vertically */
+  flex-grow: 1; /* Takes remaining height in app-wrapper */
+  overflow: hidden; /* Manages its own scrolling */
+  position: relative;
+}
+
+/* -------------------- */
+/* Navigation Sidebar (#nav-sidebar) */
+/* Mobile Default: Hidden full-screen overlay */
+/* -------------------- */
+#nav-sidebar {
+  background-color: #CCD5DA;
+  padding: 15px;
+  overflow-y: auto; /* Enable scrolling for long menus */
+  flex-shrink: 0;
+
+  /* Mobile overlay styles */
+  position: fixed; /* Fixed position for overlay */
+  left: -100%; /* Initially hidden off-screen to the left */
+  width: 70%; /* Full width of the viewport as an overlay */
+  z-index: 1000; /* Ensure it appears above content */
+  flex-direction: column;
+  transition: left 0.3s ease-out; /* Smooth slide for mobile */
+  top: 60px;
+  bottom: 0;
+}
+
+/* State when the mobile menu is OPEN */
+#nav-sidebar.menu-open {
+  left: 0; /* Slide into view */
+}
+
+#nav-sidebar #menu-heading {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* -------------------- */
+/* App Wrapper when Mobile Menu is Active (Mobile Only) */
+/* Used to prevent body/main content scroll when mobile overlay menu is open */
+/* -------------------- */
+#app-wrapper.mobile-menu-active {
+  overflow: hidden; /* Prevent scrolling of content behind the overlay */
+  height: 100vh; /* Ensure the wrapper takes full viewport height */
+  /* You might also add a blur or dimming effect to the content here if desired */
+  /* filter: blur(2px); */
+}
+
+/* -------------------- */
+/* Splitter Bar (Mobile: Hidden by Default) */
+/* -------------------- */
+#splitter-bar {
+  display: none; /* Hidden by default on mobile */
+  background-color: #ccc;
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: none;
+}
+
+/* -------------------- */
+/* PDF Viewer Section & Dynamic PDF Area (Mobile) */
+/* -------------------- */
+#pdf-viewer-section {
+  background-color: #CCD5DA;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+#dynamic-pdf-area {
+  background-color: #CCD5DA;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  flex-shrink: 0;
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: flex-start; */
+  gap: 20px;
+}
+
+button#open-pdf-new-tab {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  min-width: 150px;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  display: none; /* Hidden by default, JS will show it for mobile-PDF UI */
+}
+
+.pdf-heading {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  flex-grow: 0;
+}
+
+.pdf-heading#pdf-filename-heading {
+  display: none;
+}
+
+#pdf-viewer-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  flex-grow: 1;
+}
+
+/* Overlay for preventing iframe interaction during drag */
+.drag-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  cursor: ew-resize;
+  background-color: transparent;
+}
+
+
+/* ========================================================= */
+/* --- LARGE SCREEN OVERRIDES (@media min-width) ---       */
+/* ========================================================= */
+@media (min-width: 1025px) { /* Adjust breakpoint as needed */
+
+  /* Reset #app-wrapper overflow if needed for desktop */
+  #app-wrapper {
+      overflow: auto; /* Allow scrolling if content exceeds viewport */
+  }
+
+  /* -------------------- */
+  /* Main Content Area (Desktop: Grid for toggleable sidebar) */
+  /* -------------------- */
+  #main-content-area {
+      display: grid;
+      /* By default (when .sidebar-closed is NOT present), sidebar is open */
+      grid-template-columns: var(--desktop-sidebar-width) var(--splitter-width) 1fr;
+      grid-template-areas: "sidebar splitter content";
+      height: calc(100vh - var(--header-height)); /* Adjust based on header's actual height */
+      overflow: hidden; /* Keep overflow hidden for grid layout */
+      /* Smooth transition for grid columns when the class changes */
+      /* transition: grid-template-columns 0.3s ease-out; */
+  }
+
+  /* State when the sidebar is CLOSED on desktop (JS will add .sidebar-closed) */
+  #main-content-area.sidebar-closed {
+    grid-template-columns: 0px 0px 1fr; /* Collapse sidebar and splitter width */
+  }
+
+  /* -------------------- */
+  /* Navigation Sidebar (#nav-sidebar) on Desktop */
+  /* -------------------- */
+  #nav-sidebar {
+    grid-area: sidebar; /* Assign to grid area */
+    position: static; /* Remove fixed positioning (revert to flow) */
+    left: auto; /* Reset left position from mobile overlay */
+    width: auto; /* Width controlled by grid-template-columns */
+    height: auto; /* Height controlled by grid row */
+    z-index: auto; /* Remove fixed z-index */
+    box-shadow: none; /* Remove overlay shadow */
+    border-right: 1px solid #ccc; /* Add desktop sidebar border */
+    transition: none; /* No transition on properties controlled by grid */
+    overflow-x: hidden; /* Hide horizontal scrollbar if width goes to 0 */
+    padding: 15px; /* Keep padding consistent */
+    background-color: #CCD5DA; /* Keep background consistent */
+    /* Ensure it's displayed, grid handles its width */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide border when sidebar is closed on desktop */
+  #main-content-area.sidebar-closed #nav-sidebar {
+      border-right: none;
+      /* You might also want to hide padding or content if width is 0 */
+      padding: 0;
+  }
+
+  /* -------------------- */
+  /* Splitter Bar on Desktop */
+  /* -------------------- */
+  #splitter-bar {
+    grid-area: splitter; /* Assign to grid area */
+    display: block; /* Make it visible on desktop */
+  }
+
+
+  /* -------------------- */
+  /* PDF Viewer Section & Dynamic PDF Area on Desktop */
+  /* -------------------- */
+  #pdf-viewer-section {
+    grid-area: content; /* Assign to grid area */
+  }
+
+}

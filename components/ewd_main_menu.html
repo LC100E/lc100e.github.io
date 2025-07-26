@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<link REL="STYLESHEET" HREF="/styles/ewd.css" />
+	<script src="/scripts/ewd_relay.js"></script>
+	<script src="/scripts/ewd_lib.js"></script>
+	<script src="/scripts/ewd_xml.js"></script>
+
+	<TITLE id="ewdMenu"></TITLE>
+	<script>
+		GetTitleName("ewdMenu");
+	</script>
+</head>
+
+<body style="background-color: #D4D0C8;">
+	<table border="0" width="100%">
+		<tr>
+			<td width="20%">
+				<input type="button" name="home" value="HOME" onclick="goToHomePage()">
+			</td>
+			<td align="center">
+				<table>
+					<tr>
+						<td>
+							<div id="prevBtn"><input type="button" name="prev_page" value=" &lt; " onclick="page(-1)"></div>
+						</td>
+						<td>
+							<div id="n_page">page 1</div>
+						</td>
+						<td>
+							<div id="nextBtn"><input type="button" name="next_page" value=" &gt; " onclick="page(1)"></div>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="20%">
+				<div id="btn_Inner" style="visibility:hidden"><input type="button" name="inner" value="Inner Circuit" onclick="navigateToInner()"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</HTML>

@@ -1,0 +1,121 @@
+/* --- Global List Resets (Highly Recommended - place at the top of your stylesheet) --- */
+ul, ol {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;       /* Remove default padding */
+  margin: 0;        /* Remove default margin */
+}
+
+/* --- Menu expansion control (No changes needed, specific and clear) --- */
+.menu-node.collapsed > .menu-children {
+  display: none; /* Hide children when collapsed */
+}
+.menu-node.expanded > .menu-children {
+  display: block; /* Show children when expanded */
+}
+
+/* --- General Menu Container --- */
+/* This sets the overall font and base size for the menu system. */
+/* Using a sensible base like 1rem and scaling from there is flexible. */
+.tree-menu-container {
+  font-family: Arial, sans-serif; /* Add a generic family for better fallback */
+  font-size: 1rem; /* Example: If html font-size is 16px, this will be 16px. */
+  line-height: 1.1; /* Spacing between lines */
+}
+
+/* --- All Tree Nodes (<li>) --- */
+/* Removed redundant list resets due to global ul/ol reset */
+.tree-node {
+  white-space: nowrap; /* Prevent text wrapping within a node line */
+}
+
+/* --- Content Wrapper for each menu Node (common flex behavior) --- */
+/* Removed redundant padding-left: 0; as it's overridden by specific node types */
+.node-content {
+  display: flex;       /* Aligns images and text nicely */
+  align-items: center; /* Vertically center items */
+}
+
+/* --- Tree Line and Toggle Images --- */
+.tree-line-img,
+.toggle-icon {
+  height: 1.5rem; /* Relative to the font-size of the parent .node-content */
+  width: auto;
+}
+
+.toggle-icon {
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+/* Align menu +/- expander with title */
+.menu-toggle-area {
+  display: flex;
+  align-items: center;
+  gap: 3px; /* Modern way to add space between flex items without margins */
+}
+
+/* --- Menu Specific Styles (Collapsible Parent Headers) --- */
+.menu-node .node-content {
+  cursor: pointer;       /* Indicate the entire area is clickable */
+  user-select: none;     /* Prevent text selection when clicking to expand/collapse */
+  background-color: #f0f0f0; /* Light background for menu headers */
+  padding: 2px 5px;      /* Applies padding specific to these headers */
+  border-bottom: 1px solid #eee;
+}
+
+.menu-node .node-content:hover {
+  background-color: #e0e0e0; /* Hover effect */
+}
+
+.menu-node .menu-title {
+  font-weight: bold;
+  color: #333;
+}
+
+/* --- Children Container (The collapsible part - handles indentation) --- */
+/* Removed redundant list resets due to global ul/ol reset */
+.menu-children {
+  padding-left: 20px; /* Indentation for sub-levels */
+}
+
+/* --- Item Specific Styles (Individual PDF Links) --- */
+.item-node .node-content {
+  padding: 2px 5px; /* Applies padding specific to individual link items */
+}
+
+/* --- Common styles for menu titles and link text (for ellipsis and flex behavior) --- */
+.menu-title,
+.item-link {
+  display: inline-block;    /* Essential for text-overflow: ellipsis to work reliably */
+  text-decoration: none;    /* Remove underline from links */
+  color: black;             /* Default link color */
+  white-space: nowrap;      /* Prevent text wrapping for link text */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* Add ellipsis if text is too long */
+  flex-grow: 1;             /* Allow to grow and take available space */
+  flex-shrink: 1;           /* Allow to shrink */
+  min-width: 0;             /* Crucial for flex items with text-overflow to shrink properly */
+  width: 100%;              /* The fix for ellipsis we discussed previously */
+  font-size: 1rem; /* If .tree-menu-container is 1rem, this will be 17.6px */
+}
+
+/* --- Item Link specific styles (hover state) --- */
+.item-link:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #d9534f;
+}
+
+a.item-link.active {
+  font-weight: bold;
+}
+
+/* --- Specific item link types (from your sDatatype) --- */
+/* These are unique and should remain as is */
+.item-link.sb {
+  color: #0056b3; /* Example: blue for "sb" */
+  font-style: italic;
+}
+
+.item-link.sup {
+  color: #5cb85c; /* Example: green for "sup" */
+  font-style: italic;
+}

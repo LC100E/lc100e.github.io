@@ -1,0 +1,90 @@
+html, body {
+  margin: 0;
+  box-sizing: border-box;
+  /* REMOVE height: 100%; from here */
+  /* This is crucial. Setting height: 100% on html/body within the iframe
+     tells them to be 100% of the iframe's *current* height. To make them
+     grow with content, you need to let them expand naturally. */
+  font-size: 12px;
+}
+
+body {
+  color:#000000;
+  font-family:Arial;
+  font-size:1.2rem;
+  background-color:#CCD5DA;
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center; /* Keeps direct children (header, content, footer) horizontally centered */
+  justify-content: flex-start; /* <-- CHANGE: Aligns children to the start (top) of the flex container */
+  text-align: center; /* Keeps text *within* the children horizontally centered */
+  /* Add min-height to ensure body fills at least the viewport if content is short,
+     but still allows it to grow taller than the viewport. */
+  min-height: 100vh;
+}
+
+body.blank{
+  background-color:#FFFFFF;
+  color: #000000;
+}
+
+/* These classes (body.header, body.main) seem intended for the <body> itself.
+   Ensure they are not conflicting if applied. */
+body.header {
+  width:100%;
+  margin-top:0px;
+  margin-left:0px;
+  margin-right:0px;
+  background-color:#BBC7CD;
+}
+
+body.main {
+  width:100%;
+  margin-left:6px;
+  margin-right:6px;
+  background-color:#CCD5DA;
+}
+
+body.bg01 {
+  background-color:#ffffff;
+  background-image: url(/images/back_a.jpg);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.cartitle {
+  color: #de0000;
+  font-family:Arial;
+  font-size: 1.8rem;
+}
+
+.home-footer {
+  color: #000000;
+  font-family:Arial;
+  font-size: xx-small;
+  align-self: flex-end;
+  /* --- REMOVE THESE PROPERTIES --- */
+  /* align-self: flex-end; */ /* This would align the footer to the right (cross-axis) */
+  /* justify-self: flex-end; */ /* This is a Grid property, not for Flexbox */
+  /* position:absolute; */ /* This takes it out of flow, preventing parent from sizing to it */
+  /* bottom: 0; */ /* Pins it to the bottom of the viewport/positioned parent */
+
+  /* --- ADD THESE PROPERTIES --- */
+  margin-top: auto; /* <-- KEY: This pushes the footer to the very bottom of the flex container (body) */
+                    /* It consumes all available space between the previous flex item and itself */
+  width: 100%; /* Ensures the footer spans the full width for its content */
+  text-align: right; /* Aligns content *within* the footer to the right */
+  padding: 10px 20px; /* Add some padding if desired for the footer area */
+}
+
+.model-list {
+  display: flex;
+  justify-content: center;
+}
+
+.model-list  ul {
+  list-style-type: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,25 @@
+<html>
+  <head>
+  <title>GSIC - Global Service Information Center</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <link href="./frame.css" rel="stylesheet" type="text/css" media="all"></link>
+  <script>
+    var prm = location.search;
+  </script>
+  </head>
+
+  <body>
+    <div class="container" id="gridContainer">
+      <div class="container" id="mainContainer">
+        <iframe class="global" scrolling="no" src="global.html" name="global"></iframe>
+        <iframe class="global" scrolling="no" src="pub.html" name="pub"></iframe>
+      </div>
+
+      <div class="container" id="menuContainer">
+        <iframe name="local" src="menu.html"></iframe>
+        <iframe name="contents" src="system_top.html"></iframe>
+      </div>
+    </div>
+  </body>
+  </html>
