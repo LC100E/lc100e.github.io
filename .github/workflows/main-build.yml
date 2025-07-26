@@ -1,0 +1,44 @@
+name: Main Site Build & Deploy
+
+on:
+  push:
+    branches:
+      - main # Trigger on pushes to your main branch
+  # pull_request:
+  #   branches:
+  #     - main # Optionally, run on pull requests to main for pre-merge validation
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Standard GitHub Actions runner
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Use your specific Python version, e.g., '3.9' or '3.10'
+        # Optional: cache-dependency-path: requirements.txt # If you use requirements.txt
+
+    # - name: Install Python Dependencies # Uncomment if you have a requirements.txt file
+    #   run: pip install -r requirements.txt
+
+    - name: Generate Sitemap
+      # This ensures sitemap.xml is updated in src/public BEFORE site-build.py copies it
+      run: python json-to-sitemap.py
+
+    - name: Build Site (excluding PDFs)
+      # This runs generate_all_static_content() and copy_non_pdf_assets_to_dist()
+      # Note: site-build.py --all is NOT used here as it would copy PDFs
+      run: python site-build.py --generate-static --copy-src
+
+    - name: Deploy to GitHub Pages # Example deployment step
+      uses: peaceiris/actions-gh-pages@v3 # Using a common action for GitHub Pages
+      if: github.ref == 'refs/heads/main' # Only deploy to GH Pages from the main branch
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided token
+        publish_dir: ./dist # The directory to publish
+        # cname: your-domain.com # Uncomment if you use a custom domain
+        # publish_branch: gh-pages # Or your desired deployment branch

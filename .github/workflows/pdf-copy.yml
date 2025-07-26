@@ -1,0 +1,40 @@
+name: Manual PDF Copy & Deploy
+
+on:
+  workflow_dispatch: # This allows manual triggering from the GitHub UI
+    inputs:
+      reason:
+        description: 'Reason for copying PDFs (e.g., "Updated Service Manual PDF")'
+        required: false
+        default: 'Manual PDF update'
+
+jobs:
+  copy-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x' # Ensure consistency with main-build.yml
+
+    # - name: Install Python Dependencies # Uncomment if you have a requirements.txt file
+    #   run: pip install -r requirements.txt
+
+    - name: Copy PDF Assets and Full Build
+      # Using --all ensures a clean slate and copies everything, including PDFs.
+      # If you prefer to ONLY copy PDFs without rebuilding other parts,
+      # you'd need to modify site-build.py to add a --copy-pdfs-only flag.
+      # For now, --all is the simplest existing way to include PDFs.
+      run: python site-build.py --all
+
+    - name: Deploy to GitHub Pages # Example deployment step
+      uses: peaceiris/actions-gh-pages@v3 # Re-use the same deployment action
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist # The same deployment directory
+        # cname: your-domain.com
+        # publish_branch: gh-pages
