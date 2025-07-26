@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main # Trigger on pushes to your main branch
+  workflow_dispatch: # Add this line to enable manual triggering
+    inputs:
+      reason:
+        description: 'Reason for manual build'
+        required: false
+        default: 'Manual trigger'
   # pull_request:
   #   branches:
   #     - main # Optionally, run on pull requests to main for pre-merge validation
