@@ -29,7 +29,7 @@ jobs:
       # If you prefer to ONLY copy PDFs without rebuilding other parts,
       # you'd need to modify site-build.py to add a --copy-pdfs-only flag.
       # For now, --all is the simplest existing way to include PDFs.
-      run: python scripts/python/site-build.py --all
+      run: python src/scripts/python/site-build.py --all
 
     - name: Deploy to GitHub Pages # Example deployment step
       uses: peaceiris/actions-gh-pages@v3 # Re-use the same deployment action

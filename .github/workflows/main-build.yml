@@ -27,12 +27,12 @@ jobs:
 
     - name: Generate Sitemap
       # This ensures sitemap.xml is updated in src/public BEFORE site-build.py copies it
-      run: python scripts/python/json-to-sitemap.py
+      run: python src/scripts/python/json-to-sitemap.py
 
     - name: Build Site (excluding PDFs)
       # This runs generate_all_static_content() and copy_non_pdf_assets_to_dist()
       # Note: site-build.py --all is NOT used here as it would copy PDFs
-      run: python scripts/python/site-build.py --generate-static --copy-src
+      run: python src/scripts/python/site-build.py --generate-static --copy-src
 
     - name: Deploy to GitHub Pages # Example deployment step
       uses: peaceiris/actions-gh-pages@v3 # Using a common action for GitHub Pages
