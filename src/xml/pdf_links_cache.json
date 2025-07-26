@@ -1,0 +1,1388 @@
+{
+  "brm/brm080e-d/m_in_0002.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 2,
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0004.pdf, Page: 1",
+        "text_area": [
+          93.31700134277344,
+          652.5505981445312,
+          165.5355682373047,
+          665.1190185546875
+        ],
+        "target_file": "m_in_0004.pdf",
+        "target_page": 1,
+        "text_covered": "SYMBOLS\nSee page IN-4."
+      },
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0004.pdf, Page: 2",
+        "text_area": [
+          93.31700134277344,
+          698.4152221679688,
+          165.5355682373047,
+          710.983642578125
+        ],
+        "target_file": "m_in_0004.pdf",
+        "target_page": 2,
+        "text_covered": "Weld method a\nSee page IN-5."
+      }
+    ]
+  },
+  "brm/brm080e-d/m_in_0010.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 2,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 3,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 4,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 5,
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0004.pdf, Page: 1",
+        "text_area": [
+          387.996337890625,
+          132.10992431640625,
+          437.0167541503906,
+          145.100341796875
+        ],
+        "target_file": "m_in_0004.pdf",
+        "target_page": 1,
+        "text_covered": "for your re\n page IN-4,"
+      },
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0004.pdf, Page: 2",
+        "text_area": [
+          439.95794677734375,
+          131.8648681640625,
+          446.3305969238281,
+          145.83563232421875
+        ],
+        "target_file": "m_in_0004.pdf",
+        "target_page": 2,
+        "text_covered": "fe\n5."
+      },
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0006.pdf, Page: 1",
+        "text_area": [
+          353.96978759765625,
+          270.78277587890625,
+          404.674072265625,
+          283.3511962890625
+        ],
+        "target_file": "m_in_0006.pdf",
+        "target_page": 1,
+        "text_covered": "ecautions o\n page IN-6."
+      },
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_in_0006.pdf, Page: 1",
+        "text_area": [
+          186.49899291992188,
+          601.7526245117188,
+          237.20326232910156,
+          614.321044921875
+        ],
+        "target_file": "m_in_0006.pdf",
+        "target_page": 1,
+        "text_covered": "ecautions o\n page IN-6."
+      },
+      {
+        "page_number": 3,
+        "type": "Remote GoTo",
+        "destination": "File: m_ar_0002.pdf, Page: 1",
+        "text_area": [
+          462.0970153808594,
+          188.06683349609375,
+          516.3079833984375,
+          200.63525390625
+        ],
+        "target_file": "m_ar_0002.pdf",
+        "target_page": 1,
+        "text_covered": "ST TREATM\n page AR-2."
+      }
+    ]
+  },
+  "brm/brm080e-d/m_in_0004.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 612.0,
+        "height": 792.0
+      },
+      {
+        "page_number": 2,
+        "width": 612.0,
+        "height": 792.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          163.5019989013672,
+          411.7757873535156,
+          239.85752868652344,
+          424.3442077636719
+        ],
+        "text_covered": "(See page IN-5)"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_10_0455.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_10_0473.pdf, Page: 7",
+        "text_area": [
+          147.22816467285156,
+          174.3382568359375,
+          204.07766723632812,
+          186.614013671875
+        ],
+        "target_file": "m_10_0473.pdf",
+        "target_page": 7,
+        "text_covered": "see page 479"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0206.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 5,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 6,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 7,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 8,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 9,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 10,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 11,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 12",
+        "text_area": [
+          75.8551025390625,
+          279.6645812988281,
+          135.7269287109375,
+          290.82440185546875
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 12,
+        "text_covered": "(See page 174)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          75.8551025390625,
+          345.08795166015625,
+          135.7269287109375,
+          356.2477722167969
+        ],
+        "text_covered": "(See page 212)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          75.8551025390625,
+          450.53668212890625,
+          135.7269287109375,
+          461.6965026855469
+        ],
+        "text_covered": "(See page 213)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          75.8551025390625,
+          487.5571594238281,
+          135.7269287109375,
+          498.7170104980469
+        ],
+        "text_covered": "(See page 214)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          74.871337890625,
+          671.790771484375,
+          135.8966064453125,
+          684.098388671875
+        ],
+        "text_covered": "Diagnosis\ng\n(See page 216)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          75.8551025390625,
+          717.2200927734375,
+          135.7269287109375,
+          728.3798828125
+        ],
+        "text_covered": "(See page 216)"
+      },
+      {
+        "page_number": 6,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 7",
+        "text_area": [
+          452.07464599609375,
+          464.09521484375,
+          511.6837158203125,
+          476.3710021972656
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 7,
+        "text_covered": "see page 169."
+      },
+      {
+        "page_number": 6,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 10",
+        "text_area": [
+          524.9102172851562,
+          515.9700927734375,
+          561.6065063476562,
+          528.245849609375
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 10,
+        "text_covered": "see page"
+      },
+      {
+        "page_number": 6,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 10",
+        "text_area": [
+          112.98876953125,
+          529.9169921875,
+          132.23876953125,
+          542.1927490234375
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 10,
+        "text_covered": "172."
+      },
+      {
+        "page_number": 6,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 11",
+        "text_area": [
+          493.8431396484375,
+          582.0477294921875,
+          553.8427734375,
+          593.842529296875
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 11,
+        "text_covered": "see page 173."
+      },
+      {
+        "page_number": 6,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 12",
+        "text_area": [
+          450.00341796875,
+          629.58349609375,
+          509.62774658203125,
+          641.8592529296875
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 12,
+        "text_covered": "see page 174."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_10_0482.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_10_0417.pdf, Page: 1",
+        "text_area": [
+          321.1212463378906,
+          111.1812744140625,
+          362.736572265625,
+          124.8460693359375
+        ],
+        "target_file": "m_10_0417.pdf",
+        "target_page": 1,
+        "text_covered": "page 417."
+      },
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_10_0422.pdf, Page: 2",
+        "text_area": [
+          157.14443969726562,
+          265.84124755859375,
+          216.1512451171875,
+          278.26373291015625
+        ],
+        "target_file": "m_10_0422.pdf",
+        "target_page": 2,
+        "text_covered": "see page 423."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0158.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0163.pdf, Page: 12",
+        "text_area": [
+          214.8704833984375,
+          154.870849609375,
+          293.8443603515625,
+          168.2041015625
+        ],
+        "target_file": "m_04_0163.pdf",
+        "target_page": 12,
+        "text_covered": "y has adopted and \n refer to page 174."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_03_0048.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 5,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 6,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 7,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 8,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 9,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 10,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 11,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 12,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 13,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 14,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 15,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 16,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 17,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 18,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          186.46026611328125,
+          142.69920349121094,
+          197.6201171875
+        ],
+        "text_covered": "[See page 56]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          293.32647705078125,
+          142.69920349121094,
+          304.4862976074219
+        ],
+        "text_covered": "[See page 57]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          355.29156494140625,
+          142.69920349121094,
+          366.45135498046875
+        ],
+        "text_covered": "[See page 58]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          400.0797424316406,
+          142.69920349121094,
+          411.23956298828125
+        ],
+        "text_covered": "[See page 62]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          635.808837890625,
+          142.67234802246094,
+          646.9686279296875
+        ],
+        "text_covered": "[See page 63]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          687.7962036132812,
+          142.69920349121094,
+          698.9560546875
+        ],
+        "text_covered": "[See page 64]"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          87.81730651855469,
+          720.054443359375,
+          142.69920349121094,
+          731.2142333984375
+        ],
+        "text_covered": "[See page 64]"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0217.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0157.pdf, Page: 1",
+        "text_area": [
+          274.7681579589844,
+          112.15032958984375,
+          333.6470642089844,
+          123.3653564453125
+        ],
+        "target_file": "m_04_0157.pdf",
+        "target_page": 1,
+        "text_covered": "see page 157"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0203.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0206.pdf, Page: 9",
+        "text_area": [
+          448.98260498046875,
+          202.2308349609375,
+          508.609130859375,
+          214.506591796875
+        ],
+        "target_file": "m_04_0206.pdf",
+        "target_page": 9,
+        "text_covered": "see page 214."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_07_0330.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_06_0320.pdf, Page: 1",
+        "text_area": [
+          146.57760620117188,
+          381.94775390625,
+          206.2284698486328,
+          394.2235412597656
+        ],
+        "target_file": "m_06_0320.pdf",
+        "target_page": 1,
+        "text_covered": "see page 320."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_03_0071.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_03_0073.pdf, Page: 1",
+        "text_area": [
+          101.93389892578125,
+          176.93621826171875,
+          156.8231201171875,
+          188.09600830078125
+        ],
+        "target_file": "m_03_0073.pdf",
+        "target_page": 1,
+        "text_covered": "(See page 73)"
+      },
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_03_0074.pdf, Page: 1",
+        "text_area": [
+          101.93389892578125,
+          292.75982666015625,
+          156.822021484375,
+          304.02337646484375
+        ],
+        "target_file": "m_03_0074.pdf",
+        "target_page": 1,
+        "text_covered": "(See page 74)\n(See page 74)"
+      },
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_03_0077.pdf, Page: 1",
+        "text_area": [
+          102.0506591796875,
+          436.92041015625,
+          156.922119140625,
+          449.22802734375
+        ],
+        "target_file": "m_03_0077.pdf",
+        "target_page": 1,
+        "text_covered": "(See page 77)"
+      },
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_03_0080.pdf, Page: 1",
+        "text_area": [
+          101.93389892578125,
+          572.25634765625,
+          156.8231201171875,
+          583.4161376953125
+        ],
+        "target_file": "m_03_0080.pdf",
+        "target_page": 1,
+        "text_covered": "(See page 80)"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0200.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0160.pdf, Page: 1",
+        "text_area": [
+          446.2618713378906,
+          391.64324951171875,
+          505.8774719238281,
+          403.9190673828125
+        ],
+        "target_file": "m_04_0160.pdf",
+        "target_page": 1,
+        "text_covered": "see page 160."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_03_0107.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 5,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 6,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 7,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 8,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 9,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 10,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 11,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          171.210205078125,
+          167.36734008789062,
+          182.37005615234375
+        ],
+        "text_covered": "(See page 112)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          108.2044677734375,
+          235.89599609375,
+          168.2041015625,
+          249.229248046875
+        ],
+        "text_covered": "(See page 114)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          323.9968566894531,
+          167.36734008789062,
+          335.15667724609375
+        ],
+        "text_covered": "(See page 113)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          404.1610107421875,
+          167.36734008789062,
+          415.3208312988281
+        ],
+        "text_covered": "(See page 115)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          500.7094421386719,
+          167.36734008789062,
+          511.8692626953125
+        ],
+        "text_covered": "(See page 116)"
+      },
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          537.6732177734375,
+          167.36734008789062,
+          548.8330688476562
+        ],
+        "text_covered": "(See page 116)"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0163.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 5,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 6,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 7,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 8,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 9,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 10,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 11,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 12,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 13,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 14,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 15,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 16,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 17,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          107.8865966796875,
+          288.96240234375,
+          167.7584228515625,
+          300.1222229003906
+        ],
+        "text_covered": "(See page 174)"
+      },
+      {
+        "page_number": 13,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          485.1635437011719,
+          465.4004821777344,
+          527.966796875,
+          477.67626953125
+        ],
+        "text_covered": "page 173."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0188.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0206.pdf, Page: 7",
+        "text_area": [
+          80.9581069946289,
+          174.3382568359375,
+          137.80325317382812,
+          186.614013671875
+        ],
+        "target_file": "m_04_0206.pdf",
+        "target_page": 7,
+        "text_covered": "see page 212"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_10_0420.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_10_0427.pdf, Page: 12",
+        "text_area": [
+          250.53076171875,
+          150.4149169921875,
+          310.18597412109375,
+          162.690673828125
+        ],
+        "target_file": "m_10_0427.pdf",
+        "target_page": 12,
+        "text_covered": "see page 438."
+      }
+    ]
+  },
+  "ncf/ncf258e/m_10_0427.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 5,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 6,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 7,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 8,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 9,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 10,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 11,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 12,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 13,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 14,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 15,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 16,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 17,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 18,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 19,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 20,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          111.18123626708984,
+          288.8228454589844,
+          164.59793090820312,
+          299.3819580078125
+        ],
+        "text_covered": "(See page 438)"
+      },
+      {
+        "page_number": 13,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          485.0980529785156,
+          477.02349853515625,
+          524.8500366210938,
+          488.2037353515625
+        ],
+        "text_covered": "page 437"
+      },
+      {
+        "page_number": 20,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          151.5543212890625,
+          262.114501953125,
+          203.728759765625,
+          272.052490234375
+        ],
+        "text_covered": "see page 436)\nsee page 436)"
+      },
+      {
+        "page_number": 20,
+        "type": "Named Destination",
+        "destination": null,
+        "text_area": [
+          150.93319702148438,
+          340.9972839355469,
+          202.48651123046875,
+          350.9352722167969
+        ],
+        "text_covered": "see page 437"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_02_0012.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 1,
+        "type": "Remote GoTo",
+        "destination": "File: m_02_0010.pdf, Page: 1",
+        "text_area": [
+          115.37339782714844,
+          270.545654296875,
+          166.76553344726562,
+          282.82147216796875
+        ],
+        "target_file": "m_02_0010.pdf",
+        "target_page": 1,
+        "text_covered": "see page 10"
+      }
+    ]
+  },
+  "ncf/ncf258e/m_04_0249.pdf": {
+    "page_sizes": [
+      {
+        "page_number": 1,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 2,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 3,
+        "width": 613.0,
+        "height": 791.0
+      },
+      {
+        "page_number": 4,
+        "width": 613.0,
+        "height": 791.0
+      }
+    ],
+    "links": [
+      {
+        "page_number": 2,
+        "type": "Remote GoTo",
+        "destination": "File: m_04_0254.pdf, Page: 1",
+        "text_area": [
+          391.408447265625,
+          456.1060485839844,
+          469.0971374511719,
+          468.3818359375
+        ],
+        "target_file": "m_04_0254.pdf",
+        "target_page": 1,
+        "text_covered": "refer to page 254."
+      }
+    ]
+  }
+}

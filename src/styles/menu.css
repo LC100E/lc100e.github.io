@@ -119,3 +119,35 @@ a.item-link.active {
   color: #5cb85c; /* Example: green for "sup" */
   font-style: italic;
 }
+
+/* Styles for individual clickable hotspots */
+.pdf-hotspot {
+    position: absolute;
+    pointer-events: auto; /* Re-enable clicks for this specific element */
+    cursor: pointer;
+    
+    /* --- TEMPORARY DEBUGGING STYLES --- */
+    background-color: rgba(255, 0, 0, 0.4); /* Semi-transparent red */
+    border: 1px dashed blue; /* Blue dashed border */
+    /* --- END TEMPORARY DEBUGGING STYLES --- */
+
+    /* In production, remove background-color and border for true transparency */
+}
+
+.pdf-hotspot:hover {
+    background-color: rgba(0, 255, 0, 0.4); /* Change color on hover for feedback */
+}
+
+/* Ensure the overlay container itself is visible and positioned correctly */
+#pdf-hotspot-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through by default */
+    z-index: 10; /* Ensure it's above the iframe */
+    display: block !important; /* Force display if hidden by JS */
+    /* For debugging, you might also give the overlay a light background to see its bounds */
+    /* background-color: rgba(255, 255, 0, 0.1); */ 
+}
