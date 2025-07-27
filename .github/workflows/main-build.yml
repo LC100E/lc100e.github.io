@@ -3,7 +3,7 @@ name: Main Site Build & Deploy
 on:
   push:
     branches:
-      - main # Trigger on pushes to your main branch
+      - master # Trigger on pushes to your main branch
   workflow_dispatch: # Add this line to enable manual triggering
     inputs:
       reason:
