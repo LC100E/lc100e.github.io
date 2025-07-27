@@ -1,49 +1,22 @@
-// Helper function to find a node by its vanity URL path
-// function findNodeByVanityUrl(nodes, path) {
-//   for (const node of nodes) {
-//       if (node.path && node.path === path) {
-//           return node;
-//       }
-//       if (node.children && node.children.length > 0) {
-//           const foundChild = findNodeByVanityUrl(node.children, path);
-//           if (foundChild) {
-//               return foundChild;
-//           }
-//       }
-//   }
-//   return null;
-// }
-
-// function findNodeByPdfIframeSrc(targetHash, nodes = menuJsonData.children) {
-//     if (!nodes || !Array.isArray(nodes)) return null;
-
-//     for (const node of nodes) {
-//       const nodeHash = node.iframesrc; // node.url is already a hash fragment in menuJsonData
-//       if (nodeHash === targetHash) {
-//         return node;
-//       }
-//       if (node.children && node.children.length > 0) {
-//         const foundChild = findNodeByPdfIframeSrc(targetHash, node.children ); // Pass original targetHash
-//         if (foundChild) return foundChild;
-//       }
-//     }
-//     return null;
-//   }
+// Ensure getPdfData, loadAndDisplayPdfExtractedLinksList, and other common functions
+// (updatePageData, highlightMenuItem, pathToItemMap, fileToItemMap, etc.) are globally accessible
+// or imported/defined in a way that loadPageFromUrl.js can see them.
+// Typically, menu.js and pdf-overlay.js would load before this script.
 
 // Helper function to find a node and its parents for expansion
 function findNodeAndParents(targetId, nodes = menuJsonData.children, parentNodes = []) {
-  for (const node of nodes) {
-      if (node.id == targetId) { // Use == for potential type coercion (string vs number)
-          return { foundNode: node, parents: parentNodes };
-      }
-      if (node.children && node.children.length > 0) {
-          const result = findNodeAndParents(targetId, node.children, [...parentNodes, node]);
-          if (result.foundNode) {
-              return result;
-          }
-      }
-  }
-  return { foundNode: null, parents: [] };
+    for (const node of nodes) {
+        if (node.id == targetId) { // Use == for potential type coercion (string vs number)
+            return { foundNode: node, parents: parentNodes };
+        }
+        if (node.children && node.children.length > 0) {
+            const result = findNodeAndParents(targetId, node.children, [...parentNodes, node]);
+            if (result.foundNode) {
+                return result;
+            }
+        }
+    }
+    return { foundNode: null, parents: [] };
 }
 
 // Function to expand the menu path to a given node ID
@@ -55,7 +28,6 @@ function expandMenuPath(targetNodeId) {
         return;
     }
 
-    // Now expand all parent nodes leading to the target
     parents.forEach(parentNode => {
         const listItem = document.getElementById(`node-${parentNode.id}`);
         if (listItem && listItem.classList.contains('collapsed')) {
@@ -63,121 +35,148 @@ function expandMenuPath(targetNodeId) {
         }
     });
 
-    // Activate/highlight the menu item
     highlightMenuItem(targetNodeId);
 
-    // Optionally, ensure the target node itself is visible/expanded if it's a folder
     const targetListItem = document.getElementById(`node-${targetNodeId}`);
     if (targetListItem) {
-        // If it's a folder and collapsed, expand it.
         if (targetListItem.classList.contains('menu-node') && targetListItem.classList.contains('collapsed')) {
             ViewTree(targetNodeId);
         }
-        // Scroll the selected item into view for better UX
         targetListItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
 
-// function handlePdfViewerLoad() {
-//     const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
-//     let currentMenuItem = null;
-//     const iframeId = pdfViewerIframe.dataset.menuItemId;
+// --- Handles the intial page load for index and any pasted url ---
+async function loadPageFromUrl() {
+    const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
+    const pageTitleElement = document.getElementById('pageTitle');
+    const appHeaderTitle = document.getElementById('app-header-title');
+    const pdfSeoHeading = document.getElementById('pdf-seo-heading');
+    const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
 
-//     // CRITICAL: Get the *actual* loaded PDF URL from inside the iframe's content
-//     let actualLoadedPdfUrl = '';
-//     try {
-//         // Attempt to access contentWindow.location.href for the iFrame
-//         if (pdfViewerIframe.contentWindow && pdfViewerIframe.contentWindow.location.href) {
-//             actualLoadedPdfUrl = pdfViewerIframe.contentWindow.location.href;
-//             console.debug("pdf1: ", actualLoadedPdfUrl);
-//         } else {
-//             // Fallback: Check for embed/object tags within the iframe's document
-//             const embedElement = pdfViewerIframe.contentDocument?.querySelector('embed, object');
-
-//             if (embedElement && embedElement.src) {
-//                 actualLoadedPdfUrl = embedElement.src;
-//                 console.debug("pdf2: ", actualLoadedPdfUrl);
-//             } else {
-//                 // Final fallback: Use the iframe's own src attribute
-//                 actualLoadedPdfUrl = pdfViewerIframe.src;
-//                 console.debug("pdf3: ", actualLoadedPdfUrl);
-//             }
-//         }
-//     } catch (e) {
-//         console.error(`Error accessing iframe content (cross-origin or timing issue): ${e.message}. Falling back to iframe.src.`, 'error');
-//         actualLoadedPdfUrl = pdfViewerIframe.src;
-//         console.warn('fallback iFrame src using src attribute');
-//     }
-  
-
-//     const urlObject = new URL(actualLoadedPdfUrl, window.location.href);
-//     const targetIframeHash = urlObject.pathname + urlObject.search;
-//     console.debug("HANDLE PDF VIEWER LOAD");
-    
-    
-//     console.debug("  searhing map with iFrameSrc of: ", targetIframeHash);
-//     currentMenuItem = iframeSrcToItemMap.get(targetIframeHash);
-//     alternateMenuItem = idToItemMap.get(parseInt(iframeId, 10));
-
-//     console.debug("  found Menu Item1: ", currentMenuItem);
-//     console.debug("  found Menu id, Item2: ", iframeId, alternateMenuItem);
-
-//     console.debug("window location: ", window.location.pathname);
-//     if (currentMenuItem) {
-//         // Critical.  each change in iFrame content pushes an implicit event to the browser history stack.
-//         // but does not change the URL, so we need to replace the URL manually
-//         // This ensures that every distinct PDF load creates a unique, navigable history entry.
-//         // The browser's implicit entry for the iframe load will be followed by our explicit push.
-//         let newUrlForState =  currentMenuItem.path;
-//         let currentBrowserRelativeUrl = window.location.pathname;
-//         console.debug("  comparing CURRENT: ", currentBrowserRelativeUrl, "   to NEW: ", newUrlForState);
-        
-//         updatePageData(currentMenuItem.path);
-//         highlightMenuItem(currentMenuItem.id);
-//         if (currentBrowserRelativeUrl !== newUrlForState) { // Only push if the URL will actually change
-//             window.history.replaceState(currentMenuItem, currentMenuItem.title, newUrlForState);
-//         }
-//     } else {
-//         console.warn(`WARN: No matching menu item found for loaded PDF src: ${iframeId}. History not updated.`);
-//         updatePageDatafor404();
-//         window.history.replaceState(null, '404 - page not found', "/404.html");
-//     }
-// }
-  
-
-async function handlePageLoadFromUrl() {
-    // 1. Get the path from the URL  (e.g., yourpage.html/path/)
-    const currentUrlPath = window.location.pathname;
-    console.debug("HANDLE PAGE LOAD FROM URL")
-    console.log("  attempting to load page for path: ", currentUrlPath);
-    // Using a regex to replace "/index.html" at the end of the string, case-insensitively
-    pathHash = currentUrlPath.replace(/\/index\.html$/i, '/');
-    console.log("  path Hash with index.html removed: ", pathHash);
-        
-    let targetNode = null;
-    // Only attempt map lookup if a 'path' component exists and has a value
-    if (pathHash) {
-        targetNode = pathToItemMap.get(pathHash);
-        console.debug("  found target node: ", targetNode);
+    // Ensure essential DOM elements exist before proceeding
+    if (!pdfViewerIframe || !pageTitleElement || !appHeaderTitle || !pdfSeoHeading || !pdfFilenameHeading) {
+        console.error("Critical DOM elements for page loading not found! Aborting loadPageFromUrl.");
+        return;
     }
 
-    if (targetNode) {
-        // Node found based on the path from the URL query parameter
-        collapseAllMenus();
-        expandMenuPath(targetNode.id);
-        updatePageData(targetNode.path)
-        window.history.replaceState(targetNode, targetNode.title, targetNode.path); // ensure correct URL in history stack
+    const currentBrowserPath = window.location.pathname;
+    const cleanedBrowserPath = currentBrowserPath.replace(/\/index\.html$/i, '/');
+    
+    // Ensure pathToItemMap is defined. It should be initialized by menu.js.
+    if (typeof pathToItemMap === 'undefined') {
+        console.error("pathToItemMap is not defined. Menu data likely not loaded. Cannot proceed with navigation.");
+        // If essential map is missing, force a redirect to 404 as we can't navigate correctly.
+        window.location.replace('/404.html');
+        return;
+    }
+
+    // Attempt to find a matching menu item for the current browser path
+    let currentMenuItem = pathToItemMap.get(cleanedBrowserPath); // pathToItemMap from menu.js
+
+    // --- CRITICAL FIX FOR 404 RECURSION / STABLE 404 DISPLAY ---
+    // If the browser's current URL is explicitly '/404.html',
+    // we assume the 404 page is intentionally loaded and prevent further navigation logic.
+    if (cleanedBrowserPath === '/404.html') {  
+        // Ensure iframe content is correctly set for 404 (it should be in 404.html already)
+        if (pdfViewerIframe && pdfViewerIframe.contentWindow) {
+            pdfViewerIframe.contentWindow.location.replace('/components/404-content.html');
+            pdfViewerIframe.dataset.menuItemId = ''; // No specific menu item for 404
+        }
         
-        // linkClick(targetNode.path);
-    } else {
-        // No valid path found in query, or path not found in map. Load default content.
-        console.warn(`No menu node found for path "${currentUrlPath || 'none'}" from URL query. Loading default content.`);
-        
-        // Now, load the content for the default item.
         collapseAllMenus();
         updatePageDatafor404();
-        window.history.replaceState(null, '404 - page not found', "/404.html");
-        // linkClick(defaultMenuItem.path); 
+        // Update page titles/headings for 404 context
+        // pageTitleElement.textContent = "404 - Page Not Found";
+        // appHeaderTitle.textContent = "Page Not Found";
+        // pdfSeoHeading.textContent = "404: Page Not Found";
+        // pdfFilenameHeading.textContent = "The requested page does not exist.";
+        // document.getElementById('open-pdf-new-tab').href = "#"; // Disable for 404
+
+        // Clear the links menu for 404 pages (no embedded links on a 404 page)
+        if (typeof populatePdfLinksMenu === 'function') {
+            populatePdfLinksMenu({ file: null, path: '/404.html', title: 'Page Not Found' });
+        }
+        
+        // Ensure no menu item is highlighted/active in the sidebar
+        if (typeof highlightMenuItem === 'function') {
+            highlightMenuItem(null);
+        }
+
+        // Update history for SEO and consistency (optional, but good practice for 404)
+        // This makes sure if the user types a bad URL and lands on 404.html, their history reflects /404.html
+        window.history.replaceState(null, '404 - Page Not Found', '/404.html');
+
+        return; // EXIT HERE to prevent any further processing and potential loop
+    }
+    // --- END CRITICAL FIX ---
+
+
+    // --- Normal navigation for valid menu items ---
+    if (currentMenuItem) {
+        console.debug("LOADPAGEFROMURL: Valid menu item found:", currentMenuItem);
+
+        if (pdfViewerIframe && pdfViewerIframe.contentWindow) {
+            // Use replace to avoid polluting iframe history for PDF content
+            pdfViewerIframe.contentWindow.location.replace(currentMenuItem.iframesrc);
+            pdfViewerIframe.dataset.menuItemId = String(currentMenuItem.id);
+        }
+        
+        // Collapse all menus before expanding the relevant one
+        if (typeof collapseAllMenus === 'function') {
+            collapseAllMenus();
+        }
+        
+        // Update main page data, typically SEO titles and content headings
+        if (typeof updatePageData === 'function') {
+            updatePageData(currentMenuItem.path);
+        } else {
+            // Fallback: manually update elements if updatePageData is not available
+            pageTitleElement.textContent = currentMenuItem.fulltitle;
+            appHeaderTitle.textContent = currentMenuItem.fulltitle;
+            pdfSeoHeading.textContent = currentMenuItem.h1_text || currentMenuItem.title;
+            pdfFilenameHeading.textContent = currentMenuItem.title;
+            document.getElementById('open-pdf-new-tab').href = currentMenuItem.iframesrc || "#"; // Link for new tab
+        }
+
+        // Highlight the current menu item in the sidebar
+        if (typeof highlightMenuItem === 'function') {
+            highlightMenuItem(currentMenuItem.id);
+        }
+
+        // Update browser history (important for direct URL access and back/forward buttons)
+        window.history.replaceState(currentMenuItem, currentMenuItem.fulltitle, currentMenuItem.path);
+        
+        // --- Logic for PDF Links Menu ---
+        if (currentMenuItem.file && currentMenuItem.file.endsWith('.pdf')) {    
+            if (typeof populatePdfLinksMenu === 'function') {
+                populatePdfLinksMenu(currentMenuItem); // Populate with valid menu item data
+            } else {
+                console.warn("populatePdfLinksMenu function not available.");
+            }
+        } else {
+            console.warn(`No PDF file or valid data found for page ${currentMenuItem.path}. Clearing PDF links menu.`);
+            // Clear the links menu for non-PDFs or missing data
+            if (typeof populatePdfLinksMenu === 'function') {
+                populatePdfLinksMenu({ file: null }); // Pass object with null file for clearing
+            } else {
+                console.warn("populatePdfLinksMenu function not available.");
+            }
+        }
+
+        // Also expand the menu to the current item
+        if (currentMenuItem.id && typeof expandMenuPath === 'function') {
+            expandMenuPath(currentMenuItem.id); // Expand the menu to the active item
+        } else if (currentMenuItem.id) {
+            console.warn("expandMenuPath function not available.");
+        }
+
+    } else { // --- Handling for invalid URLs that are NOT already /404.html ---
+        console.warn(`WARN: No matching menu item found for URL: "${cleanedBrowserPath}". Redirecting to 404 page.`);
+        
+        // This is the crucial step: force a full browser navigation to 404.html.
+        // This will trigger a new page load, and the first 'if' block will then handle it.
+        window.location.replace('/404.html');
+        // The script execution will effectively stop here as the browser navigates to the new URL.
     }
 }
-

@@ -1,7 +1,0 @@
-
-
-
-function call_runOnLoadProc()
-{
-
-}

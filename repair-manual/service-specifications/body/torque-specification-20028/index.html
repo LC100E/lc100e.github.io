@@ -28,10 +28,7 @@
 
   <link rel="stylesheet" href="/styles/index.css">
   <link rel="stylesheet" href="/styles/menu.css">
-  <script src="/scripts/grid.js"></script>
-  <script src="/scripts/updatePageData.js"></script>
-  <script src="/scripts/loadPageFromUrl.js"></script>
-  <script src="/scripts/menu.js"></script>
+  <link rel="stylesheet" href="/styles/pdf-controls.css">
 
 </head>
 
@@ -49,25 +46,41 @@
       <aside id="nav-sidebar">
         <nav id="menu-tree-container">
           <p id="menu-heading" onclick="collapseAllMenus()">LAND CRUISER STATION WAGON</p><br>
-          <p id="menu-tree">Loading menu...</p> <!-- Placeholder for JS main menu insertion -->
+          <p id="menu-tree">Loading menu...</p>
         </nav>
       </aside>
 
-      <div id="splitter-bar"></div> <!-- draggable splitter for user resizing -->
-
-      <section id="pdf-viewer-section"> <!-- Main PDF viewer and related controls -->
+      <div id="splitter-bar"></div>
+      <section id="pdf-viewer-section">
         <div id="dynamic-pdf-area">
           <button id="open-pdf-new-tab">Open PDF in New Tab</button>
           <h1 class="pdf-heading" id="pdf-seo-heading">BODY / Repair Manual / TORQUE SPECIFICATION ( 2002.8 - )</h1>
           <h2 class="pdf-heading" id="pdf-filename-heading">TORQUE SPECIFICATION ( 2002.8 - )</h2>
+          <button id="pdf-links-menu-toggle" aria-label="Toggle Document Links">&#9776;</button>
+
+          <div id="pdf-links-panel" class="collapsed">
+            <h3>Page Referenced Links</h3>
+            <ul id="pdf-links-list">
+              <li class="no-links-message">No links found for this document.</li>
+            </ul>
+          </div>
+
         </div>
-        <!-- The main PDF viewer iframe -->
+
         <iframe id="pdf-viewer-iframe" name="pdf" src="/pdf/rm/rm970e/m_ss_0014.pdf" dataMenuItemId="600" title="PDF Document Viewer"></iframe>
+
       </section>
 
     </main>
 
   </div>
+
+  <script src="/scripts/pdf-embedded-links.js"></script>
+  <script src="/scripts/updatePageData.js"></script>
+  <script src="/scripts/grid.js"></script>
+  <script src="/scripts/loadPageFromUrl.js"></script>
+  <script src="/scripts/menu.js"></script>
+
 </body>
 
 </html>

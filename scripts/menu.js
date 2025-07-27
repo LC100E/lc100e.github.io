@@ -1,8 +1,9 @@
 // --- Global Data for Menu items and clean url paths ---
 jsonFile = '/xml/index.json';
 let pathToItemMap = new Map(); // a flat key value pair to quickly look up data using the url path as key
-// let iframeSrcToItemMap = new Map(); // a flat key value pair to quickly look up data using iFrame src as key
+let fileToItemMap = new Map(); // a flat key value pair to quickly look up data using the filename as key
 let menuJsonData = null;       // menu hiearchy use to tree expansions and like functions
+let isMobileScreen = window.innerWidth <= 1024;
 
 // --- Global Variables and Image Paths (Adjust these paths as needed) ---
 // These arrays store paths to the different tree line and icon images.
@@ -61,8 +62,7 @@ function updateDynamicPdfArea(path) {
   const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
   const pdfSeoHeading = document.getElementById('pdf-seo-heading');
   const fileOpened = itemData.file;
-  const isMobileScreen = window.innerWidth <= 1024;
-  const fileOpenedIsPdf = fileOpened.endsWith('pdf');
+  const fileOpenedIsPdf = fileOpened && fileOpened.endsWith('pdf'); // Check if fileOpened is defined
 
   // Crucial: Clear any previous inline styles first for all elements
   // This allows your CSS media queries to then take control.
@@ -71,18 +71,25 @@ function updateDynamicPdfArea(path) {
   if (pdfFilenameHeading) pdfFilenameHeading.style.display = '';
   if (pdfSeoHeading) pdfSeoHeading.style.display = '';
 
-  dynamicPdfArea.style.display = 'flex';
-  pdfFilenameHeading.style.display = 'none';
-  pdfFilenameHeading.textContent = `file: ${itemData.file}`;
-  pdfSeoHeading.style.display = 'inline-block';
-  pdfSeoHeading.textContent = `${itemData.h1_text}`;
+  dynamicPdfArea.style.display = 'flex'; // This seems to be setting initial display, adjust if needed
+  
+  if (pdfFilenameHeading) { // Ensure element exists before accessing
+      pdfFilenameHeading.style.display = 'none';
+      pdfFilenameHeading.textContent = `file: ${itemData.file}`;
+  }
+  if (pdfSeoHeading) { // Ensure element exists before accessing
+      pdfSeoHeading.style.display = 'inline-block';
+      pdfSeoHeading.textContent = `${itemData.h1_text}`;
+  }
   
   if (isMobileScreen) {
-    pdfFilenameHeading.style.display = 'none';
+    if (pdfFilenameHeading) pdfFilenameHeading.style.display = 'none';
     if (fileOpenedIsPdf) {
-      openPdfNewTabButton.style.display = 'inline-block';
-      openPdfNewTabButton.onclick = () => {
-        window.open(itemData.file, '_blank');
+      if (openPdfNewTabButton) { // Ensure button exists
+          openPdfNewTabButton.style.display = 'inline-block';
+          openPdfNewTabButton.onclick = () => {
+            window.open(itemData.iframesrc, '_blank'); // Open the iframe source directly
+          }
       }
     }
   }
@@ -105,15 +112,16 @@ function highlightMenuItem(menuItemId) {
   }
 }
 
+
 /**
  * Handles the click event for an item link (PDF).
- * @param {object} itemData - The full JSON object for the clicked item.
+ * @param {object} path - The path of the clicked item.
  */
 function linkClick(path) {
   const itemData = pathToItemMap.get(path);
   console.info("LINK CLICK: ", itemData);
 
-  // 1. update browser history, connical url and SEO data.
+  // 1. update browser history, canonical url and SEO data.
   updatePageData(path);
   window.history.pushState(itemData, itemData.title, itemData.path);
 
@@ -127,11 +135,12 @@ function linkClick(path) {
   pdfViewerIframe.dataset.menuItemId = itemData.id; // This is a unique identify for all iFrame content
  
 
-  // 3. highlight the menu item
+  // 3. update Menu
   highlightMenuItem(itemData.id);
-
-  // 4. close sidebar menu if mobile
   closeSidebarMenu();
+
+  // 4. update and display the PDF embedded link menu.
+  populatePdfLinksMenu(itemData); 
 
   // 5. end Google Analytics pageview hit (desirable for both menu clicks and URL loads)
   if (typeof gtag === 'function') {
@@ -145,24 +154,15 @@ function linkClick(path) {
 
 
 function collapseAllMenus() {
-  // Get all elements that represent a menu node (<li> with class 'menu-node')
   const menuNodes = document.querySelectorAll('.menu-node');
-
   if (menuNodes.length === 0) {
     return;
   }
-
-  // Iterate over each menu node
   menuNodes.forEach(nodeElement => {
-    // Check if the node is currently expanded
     if (nodeElement.classList.contains('expanded')) {
-      // Extract the node ID from the element's ID (e.g., "node-4042" -> "4042")
       const nodeIdString = nodeElement.id.replace('node-', '');
       const nodeId = parseInt(nodeIdString, 10);
-
-      // Call ViewTree to collapse this specific node.
-      // ViewTree is designed to toggle, so calling it on an 'expanded' node will collapse it.
-      if (!isNaN(nodeId)) { // Ensure nodeId is a valid number
+      if (!isNaN(nodeId)) { 
         ViewTree(nodeId);
       } else {
         console.warn(`Could not parse node ID from element: ${nodeElement.id}`);
@@ -176,38 +176,28 @@ async function loadJsonData() {
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status} when fetching ${jsonFile}`);
   }
-  menuJsonData = await response.json(); // Assigns the root object (e.g., {type: 'root', children: [...]})
+  menuJsonData = await response.json(); 
     
-  // Clear map in case of re-loading (though usually not an issue on initial DOMContentLoaded)
   pathToItemMap = new Map();
-  // iframeSrcToItemMap = new Map();
-  // idToItemMap = new Map();
+  fileToItemMap = new Map();
 
-  // --- RECURSIVE FUNCTION TO POPULATE THE PATH MAP ---
-  // This will traverse the entire menu tree, regardless of nesting depth
   function populatePathMapRecursively(node) {
       if (node.path) {
         pathToItemMap.set(node.path, node);
       }
-    
-      // if (node.iframesrc) {
-      //   iframeSrcToItemMap.set(node.iframesrc, node);  
-      // }
-    
-    // if (node.id) {
-    //   idToItemMap.set(node.id, node);
-    // }
-    
+      if (node.file) {
+        // IMPORTANT: Ensure this 'file' key matches the keys in your pdf_links_cache.json
+        // e.g., "manuals/m_in_0001.pdf"
+        const filename = node.file.split('/').pop();
+        fileToItemMap.set(filename, node); 
+      }
       if (node.children && Array.isArray(node.children)) {
           for (const child of node.children) {
-              populatePathMapRecursively(child); // Recursively call for children
+              populatePathMapRecursively(child);
           }
       }
   }
-  // Start populating the map from the root of your menu data
   populatePathMapRecursively(menuJsonData); 
-  // --- END RECURSIVE POPULATION ---
-
   console.log(`Path lookup map created with ${pathToItemMap.size} items.`);
 }
 
@@ -230,78 +220,57 @@ async function loadMenuHtml() {
 }
 
 
-// generate and insert the menu once the page loads
+// MAIN ONLOAD FUNCTION TO SET EVERYTHING UP
 document.addEventListener('DOMContentLoaded', async () => {
 
-  // 1. Build menu data map and LOAD THE MENU
+  // 1. LOAD THE MENU AND CORE DATA (THIS IS DONE IN menu.js)
   try {
-    await loadJsonData(); // Populates global menuJsonData and pathToItemMap
+    await loadJsonData(); // Populates global menuJsonData, pathToItemMap, and fileToItemMap
     await loadMenuHtml(); // Loads and injects menu.html
+    // pdf-overlay.js's DOMContentLoaded runs concurrently to load allPdfDataMap
   } catch (err) {
     console.error("Critical error during page initialization:", err);
     document.body.innerHTML = "<p style='color: red; text-align: center; margin-top: 50px;'>Error loading page content. Please try again later.</p>";
     return; // Stop further execution if critical setup fails
   }
 
-    // 2. HANDLE INITIAL PAGE LOAD FROM URL (AFTER MENU DATA IS READY) ---
-  if (typeof handlePageLoadFromUrl === 'function') {
-    await handlePageLoadFromUrl();
+  // 2. HANDLE INITIAL PAGE LOAD FROM URL (AFTER MENU DATA IS READY)
+  if (typeof loadPageFromUrl === 'function') {
+    await loadPageFromUrl();
   } else {
-    console.error("handlePageLoadFromUrl function not found. Ensure loadPageFromUrl.js is loaded.");
+    console.error("loadPageFromUrl function not found. Ensure loadPageFromUrl.js is loaded.");
   }
- 
-  // 3. HANDLE INITIAL MOBILE MENU AND GRID STATE
+  
+  // 4. HANDLE INITIAL MOBILE MENU AND GRID STATE
   handleInitialMobileMenuSetup();
 
-  // 4. ADD EVENT LISTENERS TO MENU ITEMS for grid resize
-  enableUserGridResize();
+  // 5. ADD EVENT LISTENERS TO MENU ITEMS for grid resize
+  enableUserGridResize(); // Assuming this function is defined elsewhere
 
-  // 5. ADD EVENT LISTENER FOR BROSER BACK BUTTON
+  // 6. ADD EVENT LISTENER FOR BROWSER BACK BUTTON
   window.onpopstate = function (event) {
     console.warn("POPEVENT fired");
     const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
     if (!pdfViewerIframe) {
         console.error("Error: pdfViewerIframe element not found in onpopstate.");
-        // Critical error, perhaps redirect to a general error page
         window.location.replace('/404.html'); 
         return;
     }
 
-    // The event.state contains the object we pushed/replaced with pushState/replaceState
     const currentMenuItem = event.state; 
 
     if (currentMenuItem) {
-        // Update iframe's src and data-menu-item-id based on history state
-        // pdfViewerIframe.src = currentMenuItem.iframesrc; 
-        pdfViewerIframe.contentWindow.location.replace(currentMenuItem.iframesrc); // change the content directly to avoid implicit entry on history stack  
+        pdfViewerIframe.contentWindow.location.replace(currentMenuItem.iframesrc);
         pdfViewerIframe.dataset.menuItemId = String(currentMenuItem.id); 
-
-        // Update main page's UI elements
         updatePageData(currentMenuItem.path); 
         highlightMenuItem(currentMenuItem.id);
-
-        console.debug(`onpopstate: Navigated back/forward to path "${currentMenuItem.path}" (ID: ${currentMenuItem.id}). Iframe src set to: "${currentMenuItem.iframesrc}"`);
-
+        populatePdfLinksMenu(currentMenuItem); // update and display the PDF enbedded link menu
     } else {
-        // This can happen if the initial history state was null (e.g., direct access to an old static page before JS loaded)
-        // In this case, re-evaluate based on the current URL
         console.warn("onpopstate: event.state was null. Re-evaluating page based on current URL.");
-        // loadPageFromURL(); // Fallback: Use loadPageFromURL to parse the current browser URL
     }
   };
-
-  // 5. ADD EVENT LISTENER FOR PDF VIEWER IFRAME
-  // const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
-  // if (pdfViewerIframe) {
-  //   pdfViewerIframe.onload = handlePdfViewerLoad;
-  // } else {
-  //   console.error("No iframe with id 'pdf-viewer-iframe' found.");
-  // }
-
 });
 
-
-  
 function handleInitialMobileMenuSetup() {
   const isMobileView = window.innerWidth < desktopBreakpoint;
   const mainContentArea = document.getElementById('main-content-area'); // Reference to the main grid container
@@ -309,20 +278,12 @@ function handleInitialMobileMenuSetup() {
   const appWrapper = document.getElementById('app-wrapper');
 
   if (isMobileView) {
-      // On mobile view:
-      // Ensure desktop-specific class is removed
       mainContentArea.classList.remove('sidebar-closed');
-      // Ensure mobile overlay is hidden by default (CSS handles this, but remove 'menu-open' if present)
-      navSidebar.classList.remove('menu-open');
-      appWrapper.classList.remove('mobile-menu-active'); // Remove global mobile overlay class
-  } else {
-      // On desktop view:
-      // Ensure mobile-specific overlay classes are removed
       navSidebar.classList.remove('menu-open');
       appWrapper.classList.remove('mobile-menu-active');
-      // Ensure desktop sidebar is open by default (add 'sidebar-closed' to toggle OFF)
-      // It starts open, so we DON'T add 'sidebar-closed' here initially.
-      // mainContentArea.classList.add('sidebar-open'); // You could use an 'open' class if preferred
+  } else {
+      navSidebar.classList.remove('menu-open');
+      appWrapper.classList.remove('mobile-menu-active');
   }
 }
 
@@ -330,15 +291,12 @@ function handleMobileMenuClick() {
   const isMobileView = window.innerWidth < desktopBreakpoint;
   const navSidebar = document.getElementById('nav-sidebar');
   const appWrapper = document.getElementById('app-wrapper');
-  const mainContentArea = document.getElementById('main-content-area'); // Reference to the main grid container
+  const mainContentArea = document.getElementById('main-content-area');
   
-
   if (isMobileView) {
-    // Mobile behavior: Toggle the overlay class on nav-sidebar
     navSidebar.classList.toggle('menu-open');
-    appWrapper.classList.toggle('mobile-menu-active'); // For global effects like overflow: hidden
+    appWrapper.classList.toggle('mobile-menu-active');
   } else {
-    // Desktop behavior: Toggle the 'sidebar-closed' class on the main grid container
     mainContentArea.classList.toggle('sidebar-closed');
   }
 }
@@ -346,10 +304,9 @@ function handleMobileMenuClick() {
 function closeSidebarMenu() {
     const navSidebar = document.getElementById('nav-sidebar');
     const appWrapper = document.getElementById('app-wrapper');
-    const desktopBreakpoint = 1025; // Ensure this matches your CSS breakpoint and other JS uses
+    const desktopBreakpoint = 1025; 
     const isMobileView = window.innerWidth < desktopBreakpoint;
 
-    // Only attempt to close if it's a mobile view AND the menu is currently open
     if (isMobileView && navSidebar && navSidebar.classList.contains('menu-open')) {
         navSidebar.classList.remove('menu-open');
         appWrapper.classList.remove('mobile-menu-active');
