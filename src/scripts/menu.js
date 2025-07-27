@@ -3,6 +3,7 @@ jsonFile = '/xml/index.json';
 let pathToItemMap = new Map(); // a flat key value pair to quickly look up data using the url path as key
 let fileToItemMap = new Map(); // a flat key value pair to quickly look up data using the filename as key
 let menuJsonData = null;       // menu hiearchy use to tree expansions and like functions
+let isMobileScreen = window.innerWidth <= 1024;
 
 // --- Global Variables and Image Paths (Adjust these paths as needed) ---
 // These arrays store paths to the different tree line and icon images.
@@ -61,7 +62,6 @@ function updateDynamicPdfArea(path) {
   const pdfFilenameHeading = document.getElementById('pdf-filename-heading');
   const pdfSeoHeading = document.getElementById('pdf-seo-heading');
   const fileOpened = itemData.file;
-  const isMobileScreen = window.innerWidth <= 1024;
   const fileOpenedIsPdf = fileOpened && fileOpened.endsWith('pdf'); // Check if fileOpened is defined
 
   // Crucial: Clear any previous inline styles first for all elements
@@ -112,9 +112,6 @@ function highlightMenuItem(menuItemId) {
   }
 }
 
-// --- Removed fetchAndDisplayPdfLinks function ---
-// It's no longer needed because allPdfDataMap is loaded globally
-// and getPdfData handles the lookup.
 
 /**
  * Handles the click event for an item link (PDF).
@@ -142,15 +139,8 @@ function linkClick(path) {
   highlightMenuItem(itemData.id);
   closeSidebarMenu();
 
-  // 4. --- UPDATED: No more itemData.link_data_path ---
-  // We now get the data directly from the global allPdfDataMap using itemData.file
-  const pdfFilename = itemData.file; // e.g., "manuals/m_in_0001.pdf"
-  const currentPdfData = getPdfData(pdfFilename); // From pdf-overlay.js
-
-  // Update the text list of links in pdf-overlay.js
-  // Ensure loadAndDisplayPdfExtractedLinksList is accessible (it is, if pdf-overlay.js loads first)
-  loadAndDisplayPdfExtractedLinksList(currentPdfData.links);
-
+  // 4. update and display the PDF embedded link menu.
+  populatePdfLinksMenu(itemData); 
 
   // 5. end Google Analytics pageview hit (desirable for both menu clicks and URL loads)
   if (typeof gtag === 'function') {
@@ -272,59 +262,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (currentMenuItem) {
         pdfViewerIframe.contentWindow.location.replace(currentMenuItem.iframesrc);
         pdfViewerIframe.dataset.menuItemId = String(currentMenuItem.id); 
-
         updatePageData(currentMenuItem.path); 
         highlightMenuItem(currentMenuItem.id);
-
-        // --- UPDATED: Load PDF data for history state ---
-        const pdfFilename = currentMenuItem.file;
-        // const currentPdfData = getPdfData(pdfFilename); // From pdf-overlay.js
-        // iframe.onload will call createPdfHotspotOverlays with the correct data
-        // when the iframe content (the PDF) finishes loading.
-
-        console.debug(`onpopstate: Navigated back/forward to path "${currentMenuItem.path}" (ID: ${currentMenuItem.id}). Iframe src set to: "${currentMenuItem.iframesrc}"`);
-
+        populatePdfLinksMenu(currentMenuItem); // update and display the PDF enbedded link menu
     } else {
         console.warn("onpopstate: event.state was null. Re-evaluating page based on current URL.");
-        // If your loadPageFromURL function is robust enough to handle the current browser URL, call it here:
-        // loadPageFromURL(); 
     }
   };
-
-  // 7. ADD EVENT LISTENER FOR PDF VIEWER IFRAME to create overlays on load
-//   const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
-//   if (pdfViewerIframe) {
-//     // UPDATED: Now, when the iframe loads, it will retrieve the specific PDF's data
-//     // from the globally loaded allPdfDataMap and pass it to createPdfHotspotOverlays.
-//     pdfViewerIframe.onload = () => {
-//         const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname); // Or derive from dataset.menuItemId
-//         if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
-//           const pdfData = getPdfData(currentItem.file);
-//           console.debug("PDFVIEWER ONLOAD, links: ", pdfData.links);
-//             createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
-//         } else {
-//             // Clear overlays if it's not a PDF or no data is found
-//             createPdfHotspotOverlays([], []); 
-//         }
-//     };
-    
-//     // Also trigger if already loaded (e.g., from browser cache)
-//     if (pdfViewerIframe.contentDocument && pdfViewerIframe.contentDocument.readyState === 'complete') {
-//       const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname);
-//       console.debug("DEBUG: currentItem: ", currentItem);
-//         if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
-//             const pdfData = getPdfData(currentItem.file);
-//           console.debug("2PDFVIEWER ONLOAD, links: ", pdfData.links);
-//           createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
-          
-//         } else {
-//             console.debug("3PDFVIEWER ONLOAD, no links: ");
-//             createPdfHotspotOverlays([], []); 
-//         }
-//     }
-//   } else {
-//     console.error("No iframe with id 'pdf-viewer-iframe' found for hotspot overlay setup.");
-//   }
 });
 
 function handleInitialMobileMenuSetup() {

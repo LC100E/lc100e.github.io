@@ -2,11 +2,11 @@ import os
 import fitz  # PyMuPDF
 import json
 from urllib.parse import urlparse, parse_qs
-# import argparse # Removed: No longer needed as command-line options are removed
 
 def extract_pdf_data(pdf_path):
     """
     Extracts embedded links (annotations) and page dimensions from a single PDF file.
+    This function extracts ALL available data, including page sizes and link bounding boxes (text_area).
 
     Args:
         pdf_path (str): The full path to the PDF file.
@@ -18,7 +18,8 @@ def extract_pdf_data(pdf_path):
               Returns empty lists for page_sizes and links if no data is found or on error.
     """
     links_found = []
-    page_dimensions = []
+    page_dimensions = [] # Restored: Page dimensions are extracted here
+
     try:
         doc = fitz.open(pdf_path)
         for page_num in range(doc.page_count):
@@ -39,7 +40,7 @@ def extract_pdf_data(pdf_path):
                     "page_number": page_num + 1, # Human-readable page number (1-indexed)
                     "type": None,
                     "destination": None,
-                    "text_area": None, # Bounding box coordinates [x0, y0, x1, y1]
+                    "text_area": None, # Restored: Bounding box coordinates will be extracted
                 }
 
                 link_kind = link.get("kind")
@@ -74,6 +75,7 @@ def extract_pdf_data(pdf_path):
                     link_details["destination"] = str(link) # Log raw link object for unknown types
 
                 # Attempt to get text covered by the link's bounding box
+                # This logic is kept as text_area is now extracted in this function.
                 if link_details["text_area"]:
                     try:
                         link_text = page.get_textbox(link_details["text_area"]).strip()
@@ -90,14 +92,15 @@ def extract_pdf_data(pdf_path):
         print(f"  Error processing PDF '{pdf_path}': {e}")
     
     return {
-        "page_sizes": page_dimensions,
+        "page_sizes": page_dimensions, # Restored: page_sizes is returned by this function
         "links": links_found
     }
 
 def generate_pdf_link_cache(pdf_root_directory, output_cache_file, limit_cache_writes=None):
     """
     Crawls a specified directory for PDF files, extracts embedded links and page dimensions,
-    and writes them to a single JSON cache file in the desired format.
+    and writes them to a single JSON cache file in the desired format,
+    FILTERING OUT 'page_sizes' and 'text_area' before writing.
 
     Args:
         pdf_root_directory (str): The root directory to start crawling for PDFs.
@@ -151,13 +154,34 @@ def generate_pdf_link_cache(pdf_root_directory, output_cache_file, limit_cache_w
 
                 print(f"Scanning PDF {files_scanned_total}: {cache_key}")
                 
-                pdf_data = extract_pdf_data(full_pdf_path)
+                # Extract all data
+                pdf_data_raw = extract_pdf_data(full_pdf_path)
                 
-                # --- CORRECTED LOGIC: Only add to cache if embedded links are found ---
-                if pdf_data.get('links') and len(pdf_data['links']) > 0:
-                    combined_pdf_data_cache[cache_key] = pdf_data
+                # --- Filter data before adding to cache ---
+                filtered_pdf_data = {}
+                
+                # Copy and filter links to remove 'text_area'
+                if pdf_data_raw.get('links') and isinstance(pdf_data_raw['links'], list):
+                    filtered_links = []
+                    for link in pdf_data_raw['links']:
+                        cleaned_link = link.copy()
+                        if 'text_area' in cleaned_link:
+                            del cleaned_link['text_area'] # Remove text_area here
+                        filtered_links.append(cleaned_link)
+                    filtered_pdf_data['links'] = filtered_links
+                else:
+                    filtered_pdf_data['links'] = [] # Ensure links array exists
+
+                # 'page_sizes' is deliberately NOT copied to filtered_pdf_data
+                # --- End filter ---
+
+                # Only add to cache if embedded links are found after filtering
+                if filtered_pdf_data.get('links') and len(filtered_pdf_data['links']) > 0:
+                    combined_pdf_data_cache[cache_key] = filtered_pdf_data
                     files_added_to_cache += 1
-                    print(f"  Added to cache (Total cached: {files_added_to_cache}/{limit_cache_writes if limit_cache_writes is not None else 'All'}). Links: {len(pdf_data.get('links', []))}, Pages: {len(pdf_data.get('page_sizes', []))}")
+                    print(f"  Added to cache (Total cached: {files_added_to_cache}/{limit_cache_writes if limit_cache_writes is not None else 'All'}). Links: {len(filtered_pdf_data.get('links', []))}")
+                    # Note: Page sizes are extracted but NOT written to the cache in this version.
+                    # print(f"  Pages (extracted, not cached): {len(pdf_data_raw.get('page_sizes', []))}") 
                 else:
                     print(f"  No embedded links found. Not added to cache.")
         
@@ -178,7 +202,8 @@ def generate_pdf_link_cache(pdf_root_directory, output_cache_file, limit_cache_w
         print(f"PDFs with links added to cache: {files_added_to_cache}")
         print(f"Cache file created at: {os.path.abspath(output_cache_file)}")
         total_links_extracted = sum(len(v.get('links', [])) for v in combined_pdf_data_cache.values())
-        print(f"Total links extracted: {total_links_extracted}")
+        print(f"Total links extracted (from cache): {total_links_extracted}")
+        print(f"Note: 'page_sizes' and 'text_area' are extracted but NOT written to the cache file.")
     except Exception as e:
         print(f"Error writing cache file: {e}")
 
@@ -194,7 +219,7 @@ if __name__ == "__main__":
     # --- IMPORTANT: Set the limit for testing with a subset of files ---
     # Set to an integer to limit the number of PDFs *with links* that are written to the cache.
     # Set to None to process ALL PDF files and cache all found links.
-    CACHE_WRITE_LIMIT = 20 # Still set to 20, as per your previous requirement
+    CACHE_WRITE_LIMIT = None # was set to 20 while debugging
 
     try:
         import fitz

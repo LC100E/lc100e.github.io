@@ -2,6 +2,7 @@
 
 /* --- Hamburger Menu Toggle Button (#pdf-links-menu-toggle) --- */
 #pdf-links-menu-toggle {
+    display:none;
     margin-left: auto;
     
     /* Basic styling for appearance */
