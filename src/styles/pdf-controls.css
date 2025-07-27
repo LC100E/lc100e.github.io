@@ -1,0 +1,106 @@
+/* File: /styles/pdf-controls.css */
+
+/* --- Hamburger Menu Toggle Button (#pdf-links-menu-toggle) --- */
+#pdf-links-menu-toggle {
+    margin-left: auto;
+    
+    /* Basic styling for appearance */
+    background-color: #007bff; /* Example blue color */
+    color: white;
+    border: none;
+    font-size: 1.2em; /* Makes the hamburger icon (☰) a good size */
+    cursor: pointer;
+    border-radius: 4px; /* Slightly rounded corners */
+    
+    z-index: 200; /* Ensure it's above the links panel and other content */
+    
+    /* Optional: Add transition for hover effects */
+    transition: background-color 0.2s ease;
+}
+
+#pdf-links-menu-toggle:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* --- Collapsible Links Panel (#pdf-links-panel) --- */
+#pdf-links-panel {
+    position: absolute;
+    top: 0; /* Align with the top of the dynamic-pdf-area */
+    right: 0;
+    width: 300px; /* Set a fixed width for the panel (adjust as needed) */
+    height: 100%; /* Make it fill the height of the dynamic-pdf-area */
+    
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+    border-left: 1px solid #ccc; /* A subtle border on the left */
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* Shadow for a lifted effect */
+    
+    overflow-y: auto; /* Enable scrolling if the list of links is long */
+    padding: 15px; /* Internal padding */
+    box-sizing: border-box; /* Include padding in the width/height calculation */
+    
+    z-index: 150; /* Ensure it's above the iframe but below the toggle button */
+
+    /* Initial state: collapsed (off-screen to the right) */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out; /* Smooth slide-in/out animation */
+}
+
+/* State when the panel is expanded (controlled by JavaScript adding/removing 'expanded' class) */
+#pdf-links-panel.expanded {
+    transform: translateX(0); /* Slide fully into view */
+}
+
+/* --- Styling for the content within the panel --- */
+#pdf-links-panel h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    color: #333;
+    border-bottom: 1px solid #eee; /* Separator for the heading */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+#pdf-links-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+#pdf-links-list li {
+    margin-bottom: 8px; /* Spacing between list items */
+}
+
+#pdf-links-list li a {
+    text-decoration: none; /* Remove default underline */
+    color: #007bff; /* Link color */
+    font-size: 0.9em;
+    display: block; /* Makes the entire list item area clickable */
+    padding: 5px 0;
+    
+    /* Handle long link text */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show "..." for overflowing text */
+}
+
+#pdf-links-list li a:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Styling for the "No links found" message */
+#pdf-links-list .no-links-message {
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Logic to hide the "No links found" message when actual links are present */
+#pdf-links-panel #pdf-links-list:has(li:not(.no-links-message)) .no-links-message {
+    display: none; 
+}
+/* Ensure it shows if there are no other links */
+#pdf-links-panel #pdf-links-list:not(:has(li:not(.no-links-message))) .no-links-message {
+    display: block; 
+}

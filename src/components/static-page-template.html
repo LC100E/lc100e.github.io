@@ -28,6 +28,7 @@
 
   <link rel="stylesheet" href="/styles/index.css">
   <link rel="stylesheet" href="/styles/menu.css">
+  <link rel="stylesheet" href="/styles/pdf-controls.css">
 
 </head>
 
@@ -55,17 +56,26 @@
           <button id="open-pdf-new-tab">Open PDF in New Tab</button>
           <h1 class="pdf-heading" id="pdf-seo-heading">{{ h1_text }}</h1>
           <h2 class="pdf-heading" id="pdf-filename-heading">{{ h2_text }}</h2>
+          <button id="pdf-links-menu-toggle" aria-label="Toggle Document Links">&#9776;</button>
+
+          <div id="pdf-links-panel" class="collapsed">
+            <h3>Page Referenced Links</h3>
+            <ul id="pdf-links-list">
+              <li class="no-links-message">No links found for this document.</li>
+            </ul>
+          </div>
+
         </div>
+
         <iframe id="pdf-viewer-iframe" name="pdf" src="{{ iframe_src }}" dataMenuItemId="{{ item_id }}" title="PDF Document Viewer"></iframe>
 
-        <div id="pdf-hotspot-overlay"></div>
       </section>
 
     </main>
 
   </div>
 
-  <script src="/scripts/pdf-overlay.js"></script>
+  <script src="/scripts/pdf-embedded-links.js"></script>
   <script src="/scripts/updatePageData.js"></script>
   <script src="/scripts/grid.js"></script>
   <script src="/scripts/loadPageFromUrl.js"></script>

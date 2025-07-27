@@ -48,11 +48,7 @@ function expandMenuPath(targetNodeId) {
     }
 }
 
-// --- REMOVED: handlePdfViewerLoad() is no longer needed.
-// Its responsibilities are now handled directly by the pdfViewerIframe.onload handler in menu.js.
-
-
-// --- Modified Initial Page Load Handling (loadPageFromURL) ---
+// --- Handles the intial page load for index and any pasted url ---
 async function loadPageFromUrl() {
     console.warn("--> in function loadPageFromUrl");
 
@@ -70,18 +66,26 @@ async function loadPageFromUrl() {
         highlightMenuItem(currentMenuItem.id); // Assuming highlightMenuItem is global
         window.history.replaceState(currentMenuItem, currentMenuItem.fulltitle, currentMenuItem.path);
         
-        // --- UPDATED: Get PDF data from allPdfDataMap ---
+        // --- UPDATED LOGIC FOR PDF LINKS ---
         // itemData.file is the key for allPdfDataMap (e.g., "manuals/m_in_0001.pdf")
-        if (currentMenuItem.file && currentMenuItem.file.endsWith('.pdf')) {
-            // getPdfData is from pdf-overlay.js and assumes allPdfDataMap is loaded
+        if (currentMenuItem.file && currentMenuItem.file.endsWith('.pdf')) {    
+            // getPdfData is from pdf-embedded-links.js (or pdf-data-utils.js)
             const pdfData = getPdfData(currentMenuItem.file); 
-            // Update the text list of links
-            loadAndDisplayPdfExtractedLinksList(pdfData.links); 
-            // Overlays will be created by pdfViewerIframe.onload in menu.js once iframe content fully loads
+            console.debug("LOADPAGEFROMURL, current menu item file:", currentMenuItem.file);
+            console.debug("LOADPAGEFROMURL, pdfData (links):", pdfData.links);
+            
+            // NEW: Populate the hamburger menu with extracted PDF links
+            // populatePdfLinksMenu is from pdf-links-menu.js
+            populatePdfLinksMenu(pdfData.links); 
+            console.debug("LOADPAGEFROMURL, links passed to menu:", pdfData.links);
+
+            // The calls to loadAndDisplayPdfExtractedLinksList and createPdfHotspotOverlays
+            // are REMOVED entirely as they are no longer required.
+
         } else {
-            console.warn(`No PDF file or valid data found in allPdfDataMap for initial page ${currentMenuItem.path}.`);
-            // Clear any old link list data for non-PDFs or missing data
-            loadAndDisplayPdfExtractedLinksList([]); 
+            console.warn(`No PDF file or valid data found for initial page ${currentMenuItem.path}. Clearing PDF links menu.`);
+            // Clear the links menu for non-PDFs or missing data
+            populatePdfLinksMenu([]); 
         }
         console.debug(`loadPageFromURL: Initial load for path "${cleanedBrowserPath}". Iframe content set to: "${currentMenuItem.iframesrc}"`);
 
@@ -98,8 +102,7 @@ async function loadPageFromUrl() {
         if (pdfViewerIframe && pdfViewerIframe.contentWindow) {
             pdfViewerIframe.contentWindow.location.replace('/404-iframe-content.html');
         }
-        loadAndDisplayPdfExtractedLinksList([]); // Clear any old link list for 404
-        // Also clear overlays for 404
-        createPdfHotspotOverlays([], []); // Assuming createPdfHotspotOverlays is global
+        // Clear the links menu for 404 pages as well
+        populatePdfLinksMenu([]); 
     }
 }

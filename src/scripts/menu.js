@@ -198,7 +198,8 @@ async function loadJsonData() {
       if (node.file) {
         // IMPORTANT: Ensure this 'file' key matches the keys in your pdf_links_cache.json
         // e.g., "manuals/m_in_0001.pdf"
-        fileToItemMap.set(node.file, node); 
+        const filename = node.file.split('/').pop();
+        fileToItemMap.set(filename, node); 
       }
       if (node.children && Array.isArray(node.children)) {
           for (const child of node.children) {
@@ -244,14 +245,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // 2. HANDLE INITIAL PAGE LOAD FROM URL (AFTER MENU DATA IS READY)
-  // This function in loadPageFromUrl.js will now use getPdfData to initialize overlays
   if (typeof loadPageFromUrl === 'function') {
     await loadPageFromUrl();
   } else {
     console.error("loadPageFromUrl function not found. Ensure loadPageFromUrl.js is loaded.");
   }
   
-  // 3. REMOVED: loadAndDisplayPdfExtractedLinksList() - This will now be called by linkClick
   // 4. HANDLE INITIAL MOBILE MENU AND GRID STATE
   handleInitialMobileMenuSetup();
 
@@ -279,8 +278,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // --- UPDATED: Load PDF data for history state ---
         const pdfFilename = currentMenuItem.file;
-        const currentPdfData = getPdfData(pdfFilename); // From pdf-overlay.js
-        loadAndDisplayPdfExtractedLinksList(currentPdfData.links);
+        // const currentPdfData = getPdfData(pdfFilename); // From pdf-overlay.js
         // iframe.onload will call createPdfHotspotOverlays with the correct data
         // when the iframe content (the PDF) finishes loading.
 
@@ -294,39 +292,39 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // 7. ADD EVENT LISTENER FOR PDF VIEWER IFRAME to create overlays on load
-  const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
-  if (pdfViewerIframe) {
-    // UPDATED: Now, when the iframe loads, it will retrieve the specific PDF's data
-    // from the globally loaded allPdfDataMap and pass it to createPdfHotspotOverlays.
-    pdfViewerIframe.onload = () => {
-        const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname); // Or derive from dataset.menuItemId
-        if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
-          const pdfData = getPdfData(currentItem.file);
-          console.debug("PDFVIEWER ONLOAD, links: ", pdfData.links);
-            createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
-        } else {
-            // Clear overlays if it's not a PDF or no data is found
-            createPdfHotspotOverlays([], []); 
-        }
-    };
+//   const pdfViewerIframe = document.getElementById('pdf-viewer-iframe');
+//   if (pdfViewerIframe) {
+//     // UPDATED: Now, when the iframe loads, it will retrieve the specific PDF's data
+//     // from the globally loaded allPdfDataMap and pass it to createPdfHotspotOverlays.
+//     pdfViewerIframe.onload = () => {
+//         const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname); // Or derive from dataset.menuItemId
+//         if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
+//           const pdfData = getPdfData(currentItem.file);
+//           console.debug("PDFVIEWER ONLOAD, links: ", pdfData.links);
+//             createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
+//         } else {
+//             // Clear overlays if it's not a PDF or no data is found
+//             createPdfHotspotOverlays([], []); 
+//         }
+//     };
     
-    // Also trigger if already loaded (e.g., from browser cache)
-    if (pdfViewerIframe.contentDocument && pdfViewerIframe.contentDocument.readyState === 'complete') {
-      const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname);
-      console.debug("DEBUG: currentItem: ", currentItem);
-        if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
-            const pdfData = getPdfData(currentItem.file);
-          console.debug("2PDFVIEWER ONLOAD, links: ", pdfData.links);
-          createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
+//     // Also trigger if already loaded (e.g., from browser cache)
+//     if (pdfViewerIframe.contentDocument && pdfViewerIframe.contentDocument.readyState === 'complete') {
+//       const currentItem = pathToItemMap.get(pdfViewerIframe.contentWindow.location.pathname);
+//       console.debug("DEBUG: currentItem: ", currentItem);
+//         if (currentItem && currentItem.file && currentItem.file.endsWith('.pdf')) {
+//             const pdfData = getPdfData(currentItem.file);
+//           console.debug("2PDFVIEWER ONLOAD, links: ", pdfData.links);
+//           createPdfHotspotOverlays(pdfData.links, pdfData.page_sizes);
           
-        } else {
-            console.debug("3PDFVIEWER ONLOAD, no links: ");
-            createPdfHotspotOverlays([], []); 
-        }
-    }
-  } else {
-    console.error("No iframe with id 'pdf-viewer-iframe' found for hotspot overlay setup.");
-  }
+//         } else {
+//             console.debug("3PDFVIEWER ONLOAD, no links: ");
+//             createPdfHotspotOverlays([], []); 
+//         }
+//     }
+//   } else {
+//     console.error("No iframe with id 'pdf-viewer-iframe' found for hotspot overlay setup.");
+//   }
 });
 
 function handleInitialMobileMenuSetup() {

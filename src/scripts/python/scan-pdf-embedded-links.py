@@ -138,6 +138,8 @@ def generate_pdf_link_cache(pdf_root_directory, output_cache_file, limit_cache_w
                     if relative_from_project_root.startswith(pdf_relative_path_segment + os.sep):
                         cache_key = relative_from_project_root[len(pdf_relative_path_segment + os.sep):]
                         cache_key = cache_key.replace(os.sep, '/')
+                        # *** ADD THE LEADING '/pdf/' to align with the key source ***
+                        cache_key = '/pdf/' + cache_key 
                     else:
                         relative_from_src_root = os.path.relpath(full_pdf_path, start=os.path.join(PROJECT_ROOT, 'src'))
                         cache_key = relative_from_src_root.replace(os.sep, '/')
