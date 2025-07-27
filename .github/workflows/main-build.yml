@@ -42,7 +42,7 @@ jobs:
 
     - name: Deploy to GitHub Pages # Example deployment step
       uses: peaceiris/actions-gh-pages@v3 # Using a common action for GitHub Pages
-      if: github.ref == 'refs/heads/main' # Only deploy to GH Pages from the main branch
+      if: github.ref == 'refs/heads/master' # Only deploy to GH Pages from the main branch
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided token
         publish_dir: ./dist # The directory to publish
