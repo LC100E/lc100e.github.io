@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="../scripts/select.js"></script>
+	<script type="text/javascript" src="../scripts/lib/browser.js"></script>
+	<link REL="STYLESHEET" href="../styles/global.css">
+</HEAD>
+
+<BODY TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
+	<!-- 上段 -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="logo" nowrap width="170">
+				<img class="logo" alt="logo" src="../icon/logo.png">
+			</td>
+			<td class="system-name" nowrap>
+				<span class="system-name">GSIC - Global Service Information Center</span>
+			</td>
+			<td class="select-name" width="250" nowrap>
+				<span class="select-name">Your select: LAND CRUISER Station Wagon</span>
+			</td>
+		</tr>
+	</table>
+	
+	<!-- 下段 -->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="left" width="180">
+				<table>
+					<tr>
+						<td width="50" class="window-control-button">
+							<a class="window-control-button" href="#" onClick="call_runOnClickTop()">
+								Top
+							</a>
+						</td>
+						<td width="50" class="window-control-button">
+							<a class="window-control-button" href="#" onClick="call_runOnClickBack()">
+								Back
+							</a>
+						</td>
+						<td width="50" class="window-control-button">
+							<a class="window-control-button" href="#" onClick="call_runOnClickNew()">
+								New
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td align="left">
+				<table>
+					<tr>
+						<td class="popup-button" width="120">
+							<a class="popup-button" href="#" onClick="call_runOnClickLocation()">
+								Location
+							</a>
+						</td>
+						<td class="popup-button" width="120">
+							<a class="popup-button" href="#" onClick="call_runOnClickDiagram()">
+								Overall EWD
+							</a>
+						</td>
+						<td class="popup-button" width="120">
+							<a class="popup-button" href="#" onClick="call_runOnClickList()">
+								Connector List
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td align="right">
+				<table>
+					<tr>
+						<td class="popup-button" width="110" nowrap>
+							<a class="popup-button" href="#" onClick="call_runOnClickIntro()">
+								Introduction
+							</a>
+						</td>
+						<td width="50" class="window-control-button">
+							<a class="window-control-button" href="#" onClick="call_runOnClickPrint()">
+								Print
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<p></p>
+	
+	
+	<!-- Location of Sub Menu -->
+	<form>
+		<input type="hidden" name="submenu-loc-div" value="310">
+		<input type="hidden" name="submenu-loc-lay" value="40">
+	</form>
+	
+	<!-- Sub Menu -->
+	<div id="d_divPopupDiagram" style="visibility:hidden">
+		<table border="1" bordercolor="#c0c0c0" cellspacing="0" cellpadding="3">
+			<tr>
+				<td class="popup-item">
+					<a class="popup-item" href="#" onClick="call_runOnClickPopupItem('diag_overall_category')">
+						Category
+					</a>
+				</td>
+				<td class="popup-item">
+					<a class="popup-item" href="#" onClick="call_runOnClickPopupItem('diag_overall_location')">
+						Location
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<layer id="d_layPopupDiagram" visibility="hidden">
+		<table border="1" bordercolor="#c0c0c0" cellspacing="0" cellpadding="3">
+			<tr>
+				<td class="popup-item">
+					<a class="popup-item" href="#" onClick="call_runOnClickPopupItem('diag_overall_category')">
+						Category
+					</a>
+				</td>
+				<td class="popup-item">
+					<a class="popup-item" href="#" onClick="call_runOnClickPopupItem('diag_overall_location')">
+						Location
+					</a>
+				</td>
+			</tr>
+		</table>
+	</layer>
+	
+</BODY>
+</HTML>
