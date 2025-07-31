@@ -5,32 +5,32 @@ import textwrap
 import os
 import shutil
 import argparse
-import sys # Import the sys module to check command-line arguments
+import sys
 
 # Global counter for unique IDs, mimicking client-client-side `linkid`
 _global_node_id_counter = 0
 
 # List to store all 'item' nodes for static page generation (populated by XML parsing)
-_all_item_nodes = [] # This will still be used during the XML parsing phase
+_all_item_nodes = []
 
 # --- Main Script Constants (relative to your project root) ---
 XML_FILE_PATH = 'src/xml/pdf.xml'
 
 # Output paths for generated content
-OUTPUT_JSON_PATH = 'src/xml/index.json' # Generated here, then copied to dist
-OUTPUT_MENU_HTML_PATH = 'src/components/menu.html' # Generated here, then copied to dist
+OUTPUT_JSON_PATH = 'src/xml/index.json'
+OUTPUT_MENU_HTML_PATH = 'src/components/menu.html'
 
 # Directory for all prerendered static pages (and the root of your deployment)
 DIST_DIR = 'dist' 
 
 # Source paths for static assets that need to be copied to dist/
-SOURCE_PUBLIC_DIR = 'src/public' # For sitemap, robots.txt, verification, 404.html, favicon.ico
-SOURCE_COMPONENTS_DIR = 'src/components' # For menu.html (generated) and potentially other components
+SOURCE_PUBLIC_DIR = 'src/public'
+SOURCE_COMPONENTS_DIR = 'src/components'
 SOURCE_IMAGES_DIR = 'src/images'
 SOURCE_SCRIPTS_DIR = 'src/scripts'
 SOURCE_STYLES_DIR = 'src/styles'
-SOURCE_PDF_DIR = 'src/pdf' # Crucial for your iframe PDFs
-SOURCE_XML_DIR = 'src/xml' # For index.json, but other XML files could be here too
+SOURCE_PDF_DIR = 'src/pdf'
+SOURCE_XML_DIR = 'src/xml'
 
 # HTML template for static pages
 TEMPLATE_FILE_PATH = 'src/components/static-page-template.html'
@@ -336,7 +336,7 @@ def generate_static_html_pages(all_item_nodes, output_dir, html_template):
     os.makedirs(output_dir, exist_ok=True)
 
     # Path to the 404 iframe content (adjust if your 404-iframe-content.html is not at root)
-    four_o_four_iframe_path = "/404-iframe-content.html" 
+    four_o_four_iframe_path = "/components/404-content.html" 
 
     for item in all_item_nodes:
         # Get data for template
@@ -385,6 +385,42 @@ def generate_static_html_pages(all_item_nodes, output_dir, html_template):
             print(f"Error writing static page to {file_path}: {e}")
 
     print(f"Finished generating {len(all_item_nodes)} static HTML pages.")
+    
+# --- NEW FUNCTION FOR 404 PAGE GENERATION ---
+def generate_404_page(output_dir, html_template):
+    """
+    Generates a dynamic 404.html page using the main template.
+    """
+    print(f"Generating 404.html...")
+    
+    # Define the 404 page content based on the template
+    fulltitle = "404 Not Found | LC100 Factory Service Manual"
+    description = "The requested page could not be found."
+    h1_text = "404 Not Found"
+    h2_text = "" # No h2 for this page
+    iframe_src = "/components/404-content.html" # A static page shown in the iframe
+    item_id = "404page" # A unique ID for the 404 page
+
+    page_content = html_template.replace("{{ fulltitle }}", fulltitle)
+    page_content = page_content.replace("{{ description }}", description)
+    page_content = page_content.replace("{{ canonical_url }}", f"https://lc100e.github.io/404.html")
+    page_content = page_content.replace("{{ h1_text }}", h1_text)
+    page_content = page_content.replace("{{ h2_text }}", h2_text)
+    page_content = page_content.replace("{{ iframe_src }}", iframe_src)
+    page_content = page_content.replace("{{ item_id }}", str(item_id))
+    
+    # The output path for the 404 page
+    output_path = os.path.join(output_dir, '404.html')
+
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(page_content)
+        print(f"  Generated: {output_path}")
+    except IOError as e:
+        print(f"Error writing 404.html: {e}")
+        
+    print(f"Finished generating 404.html.")
+
 
 def clean_dist_directory(dist_path):
     """Removes the entire dist directory if it exists, for a clean build."""
@@ -438,7 +474,7 @@ def copy_non_pdf_assets_to_dist():
     # SOURCE_PDF_DIR is intentionally EXCLUDED from this function
     copy_directory_contents(SOURCE_SCRIPTS_DIR, os.path.join(DIST_DIR, 'scripts'))
     copy_directory_contents(SOURCE_STYLES_DIR, os.path.join(DIST_DIR, 'styles'))
-    copy_directory_contents(SOURCE_XML_DIR, os.path.join(DIST_DIR, 'xml')) # Includes index.json and pdf.xml
+    copy_directory_contents(SOURCE_XML_DIR, os.path.join(DIST_DIR, 'xml'))
            
     print("Non-PDF static asset copying completed.")
 
@@ -498,6 +534,11 @@ def generate_all_static_content():
         else:
             print("Static page generation skipped due to missing template content.")
 
+        # --- RESTORED: Generate the 404 page after all other pages ---
+        if static_page_template:
+            generate_404_page(DIST_DIR, static_page_template)
+        # --- END RESTORED ---
+        
         return True # Indicate success
     except FileNotFoundError:
         print(f"Error: XML input file not found at {XML_FILE_PATH}. Please ensure it exists.")
@@ -530,8 +571,6 @@ def main():
     if args.all:
         clean_dist_directory(DIST_DIR) # Clean is now directly called here for --all
         args.generate_static = True
-        # For --all, we need to ensure both non-PDF and PDF assets are copied
-        # We'll handle this explicitly below instead of setting a single 'copy-src' flag
     
     # Content generation (XML parsing, JSON, Menu HTML, all Static Pages)
     if args.generate_static: 
@@ -540,14 +579,10 @@ def main():
             return # Exit if content generation failed
 
     # Asset Copying Logic
-    if args.copy_src:
-        # If --copy-src is explicitly used, it EXCLUDES PDFs
+    if args.copy_src or args.all: # Changed logic to handle --all correctly
         copy_non_pdf_assets_to_dist()
     
-    # If --all was specified, ensure PDFs are also copied
     if args.all:
-        # This covers all assets for a full build, including PDFs
-        copy_non_pdf_assets_to_dist()
         copy_pdf_assets_to_dist()
 
     print("\n--- Build process completed successfully! ---")
