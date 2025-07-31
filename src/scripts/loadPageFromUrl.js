@@ -79,17 +79,17 @@ async function loadPageFromUrl() {
     // we assume the 404 page is intentionally loaded and prevent further navigation logic.
     if (cleanedBrowserPath === '/404.html') {  
         // Ensure iframe content is correctly set for 404 (it should be in 404.html already)
-        if (pdfViewerIframe && pdfViewerIframe.contentWindow) {
-            pdfViewerIframe.contentWindow.location.replace('/components/404-content.html');
-            pdfViewerIframe.dataset.menuItemId = ''; // No specific menu item for 404
-        }
+        // if (pdfViewerIframe && pdfViewerIframe.contentWindow) {
+        //     pdfViewerIframe.contentWindow.location.replace('/components/404-content.html');
+        //     pdfViewerIframe.dataset.menuItemId = ''; // No specific menu item for 404
+        // }
         
         collapseAllMenus();
         updatePageDatafor404();
         // Update page titles/headings for 404 context
         // pageTitleElement.textContent = "404 - Page Not Found";
         // appHeaderTitle.textContent = "Page Not Found";
-        // pdfSeoHeading.textContent = "404: Page Not Found";
+        pdfSeoHeading.textContent = "404: Page Not Found"; // set the H1 heading back to 404.
         // pdfFilenameHeading.textContent = "The requested page does not exist.";
         // document.getElementById('open-pdf-new-tab').href = "#"; // Disable for 404
 
@@ -130,14 +130,15 @@ async function loadPageFromUrl() {
         // Update main page data, typically SEO titles and content headings
         if (typeof updatePageData === 'function') {
             updatePageData(currentMenuItem.path);
-        } else {
-            // Fallback: manually update elements if updatePageData is not available
-            pageTitleElement.textContent = currentMenuItem.fulltitle;
-            appHeaderTitle.textContent = currentMenuItem.fulltitle;
-            pdfSeoHeading.textContent = currentMenuItem.h1_text || currentMenuItem.title;
-            pdfFilenameHeading.textContent = currentMenuItem.title;
-            document.getElementById('open-pdf-new-tab').href = currentMenuItem.iframesrc || "#"; // Link for new tab
         }
+        // } else {
+        //     // Fallback: manually update elements if updatePageData is not available
+        //     pageTitleElement.textContent = currentMenuItem.fulltitle;
+        //     appHeaderTitle.textContent = currentMenuItem.fulltitle;
+        //     pdfSeoHeading.textContent = currentMenuItem.h1_text || currentMenuItem.title;
+        //     pdfFilenameHeading.textContent = currentMenuItem.title;
+        //     document.getElementById('open-pdf-new-tab').href = currentMenuItem.iframesrc || "#"; // Link for new tab
+        // }
 
         // Highlight the current menu item in the sidebar
         if (typeof highlightMenuItem === 'function') {
