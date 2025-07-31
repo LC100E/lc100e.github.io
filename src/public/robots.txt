@@ -11,4 +11,4 @@ Disallow: /scripts/python/
 Disallow: /*/_* 
 
 # block spam urls that have a query param (?) at the end of the url
-Disallow: /*.pdf?
+Disallow: /*.pdf?*
