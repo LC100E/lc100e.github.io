@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // This line automatically parses the JSON into a JavaScript object (map)
         allPdfDataMap = await response.json();
-        console.log("All PDF data (links & page sizes) loaded:", allPdfDataMap);
         
     } catch (e) {
         console.error("Could not load all PDF data (pdf_links_cache.json):", e);
@@ -104,7 +103,6 @@ function populatePdfLinksMenu(menuItem) {
         backLinkAnchor.href = lastNonPdfPage; 
         backLinkAnchor.addEventListener('click', (event) => {
             event.preventDefault(); 
-            console.log("Navigating back to original non-PDF page:", lastNonPdfPage);
             window.location.href = lastNonPdfPage; 
             // Close hamburger on menu item click (for "Back" link too)
             linksPanel.classList.remove('expanded');
@@ -117,7 +115,7 @@ function populatePdfLinksMenu(menuItem) {
         separator.classList.add('separator'); 
         linksList.appendChild(separator);
     }
-    // --- END Back to Original Page logic ---
+
 
     // Now loop through ALL link types to populate the menu
     linksToDisplay.forEach(link => { // Using linksToDisplay (which is all links)
@@ -156,7 +154,6 @@ function populatePdfLinksMenu(menuItem) {
  * @param {object} link - The link object containing type, destination, text_covered, target_page, etc.
  */
 function handleEmbeddedLinkClick(link) {
-    console.log("Embedded link clicked:", link);
 
     if (link.type === "URI") {
         window.open(link.destination, '_blank'); // Open external links in a new tab
@@ -166,7 +163,7 @@ function handleEmbeddedLinkClick(link) {
         if (iframe && link.target_page) {
             const currentSrc = iframe.src.split('#')[0];
             iframe.src = `${currentSrc}#page=${link.target_page}`;
-            console.log(`Attempting to jump to internal page: ${link.target_page} by reloading iframe.`);
+            console.warn(`Attempting to jump to internal page: ${link.target_page} by reloading iframe.`);
         } else {
             alert(`Internal page link to Page ${link.target_page}. Browser might not support direct jump or PDF viewer iframe element not found.`);
         }
