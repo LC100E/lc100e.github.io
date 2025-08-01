@@ -198,7 +198,6 @@ async function loadJsonData() {
       }
   }
   populatePathMapRecursively(menuJsonData); 
-  console.log(`Path lookup map created with ${pathToItemMap.size} items.`);
 }
 
 
@@ -216,7 +215,6 @@ async function loadMenuHtml() {
 
   const menuHtml = await response.text();
   menuContainer.innerHTML = menuHtml;
-  console.log("menu.html successfully loaded and injected.");
 }
 
 
@@ -257,8 +255,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    const currentMenuItem = event.state; 
+    let currentMenuItem = event.state; 
 
+    if (!currentMenuItem && window.location.pathname === '/404.html') {
+      console.warn("onpopstate: event.state was null on 404 page. Replacing this with the home page.");
+      currentMenuItem = pathToItemMap.get('/'); // Default to home page
+      window.history.replaceState(currentMenuItem, currentMenuItem.title, currentMenuItem.path);
+    }
+    
     if (currentMenuItem) {
         pdfViewerIframe.contentWindow.location.replace(currentMenuItem.iframesrc);
         pdfViewerIframe.dataset.menuItemId = String(currentMenuItem.id); 
